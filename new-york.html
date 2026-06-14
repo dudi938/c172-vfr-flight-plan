@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ניו יורק · תוכנית VFR C172</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
+    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html" class="active">ניו יורק</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
+  </div>
+  <div class="search-bar">
+    <input id="globalSearch" type="search" autocomplete="off"
+      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
+    <div id="searchResults" class="search-dropdown" role="listbox"></div>
+  </div>
+</header>
+  <div class="wrap" id="top">
+    <h1>ניו יורק — מסלולי VFR</h1>
+    <p class="lead">מסלולי VFR מבסיס KFRG (Republic, Long Island), מתחת ל-Class B של ניו יורק.</p>
+    <div class="chip-nav"><a class="chip" href="#trip-n1">N1 - East End Long Island (חוף לונג איילנד)</a><a class="chip" href="#trip-n2">N2 - Hudson Valley (נהר והרים)</a><a class="chip" href="#trip-n3">N3 - Block Island / Vineyard / Provincetown (איים וחופים)</a><a class="chip" href="#trip-n4">N4 - Manhattan / Hudson Corridor (מתקדם)</a></div>
+
+    <div class="card trip" id="trip-n1" data-search-title="N1 East End Long Island">
+          <h3 class="trip-title">N1 - East End Long Island (חוף לונג איילנד)</h3>
+          <span class="pill">N1 | KFRG → KJPX → KMTP → KFRG | מרחק כולל: 142.1NM | זמן טיסה כולל: 1:17 | כמות ימים: 1</span>
+          <p><b>למה המסלול הזה יפה ומיוחד:</b> טיסת חוף קלאסית בקצה המזרחי של לונג איילנד עם תצפיות ים וחופים ארוכים.</p>
+          <table>
+            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
+            <tbody>
+              <tr><td>KFRG→KJPX</td><td>East Hampton Town Airport (KJPX) - East Hampton, New York</td><td>עצירת בילוי/הפסקה באזור החוף המזרחי</td><td>54.6NM</td><td>30 דק'</td><td>2,500</td><td>KFRG TWR 118.8 | KJPX TWR/CTAF 125.225, AWOS 118.075</td></tr>
+              <tr><td>KJPX→KMTP</td><td>Montauk Airport (KMTP) - Montauk, New York</td><td>עצירת נוף ליד המגדלור וארוחה קצרה</td><td>16.6NM</td><td>9 דק'</td><td>2,000</td><td>KMTP CTAF/UNICOM 122.7</td></tr>
+              <tr><td>KMTP→KFRG</td><td>Republic Airport (KFRG) - Farmingdale, New York</td><td>סיום הטיול וחזרה לבסיס</td><td>70.9NM</td><td>39 דק'</td><td>3,500</td><td>NY Approach לפי כיוון חזרה; FRG ATIS 126.65</td></tr>
+            </tbody>
+          </table>
+          <div>
+            <b>נקודות עניין והסבר:</b>
+            <ul>
+              <li><b>Montauk Point Light</b> - קצה יבשה בולט, נקודת זיהוי מצוינת מהאוויר.</li>
+              <li><b>East Hampton</b> - אזור חוף מוכר עם קו חוף ברור וניווט קל.</li>
+              <li><b>Long Island South Shore</b> - רצועת חוף רציפה שמקלה על ניהול נתיב VFR.</li>
+            </ul>
+            <div class="links">
+              <a href="https://parks.ny.gov/historic-sites/11/details.aspx" target="_blank">Montauk Point State Park</a>
+              <a href="https://www.easthamptonvillage.org/" target="_blank">East Hampton Village</a>
+              <a href="https://www.discoverlongisland.com/" target="_blank">Discover Long Island</a>
+            </div>
+          </div>
+          <div class="img-grid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/East_Hampton_-_Montauk_Point_Light_-_20160730044846.jpeg" alt="Montauk Light">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Beach_in_East_Hampton.jpg" alt="East Hampton beach">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Barrier_beach%2C_south_shore_Long_Island_%283379501577%29.jpg" alt="Long Island south shore">
+          </div>
+          <div id="mapN1" class="map"></div>
+        </div>
+
+    <div class="card trip" id="trip-n2" data-search-title="N2 Hudson Valley">
+          <h3 class="trip-title">N2 - Hudson Valley (נהר והרים)</h3>
+          <span class="pill">N2 | KFRG → 20N → 44N → KPOU → KFRG | מרחק כולל: 165.4NM | זמן טיסה כולל: 1:30 | כמות ימים: 1</span>
+          <p><b>למה המסלול הזה יפה ומיוחד:</b> מעבר נהר+הרים ביום אחד, עם תחנות קצרות שמתאימות לבניית שעות XC איכותית.</p>
+          <table>
+            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
+            <tbody>
+              <tr><td>KFRG→20N</td><td>Kingston-Ulster Airport (20N) - Kingston, New York</td><td>עצירת ביניים ראשונה להפסקה/תדלוק לפי צורך</td><td>79.6NM</td><td>43 דק'</td><td>4,500</td><td>20N CTAF 123.3</td></tr>
+              <tr><td>20N→44N</td><td>Sky Acres Airport (44N) - LaGrangeville, New York</td><td>עצירה קצרה נופית/צילום באזור העמק</td><td>19.7NM</td><td>11 דק'</td><td>3,500</td><td>44N CTAF 122.8</td></tr>
+              <tr><td>44N→KPOU</td><td>Hudson Valley Regional Airport (KPOU) - Poughkeepsie, New York</td><td>עצירת תדלוק תפעולית לפני חזרה דרומה</td><td>8.1NM</td><td>4 דק'</td><td>2,500</td><td>KPOU TWR/CTAF 124.0, GND 121.8, ATIS 126.75</td></tr>
+              <tr><td>KPOU→KFRG</td><td>Republic Airport (KFRG) - Farmingdale, New York</td><td>סיום טיול וחזרה לבסיס</td><td>58.0NM</td><td>32 דק'</td><td>4,500</td><td>NY Approach + חזרה ל-FRG</td></tr>
+            </tbody>
+          </table>
+          <div>
+            <b>נקודות עניין והסבר:</b>
+            <ul>
+              <li><b>Hudson River</b> - ציר נהר רחב עם נקודות זיהוי ברורות לאורך כל העמק.</li>
+              <li><b>West Point</b> - אתר היסטורי בולט מאוד מהאוויר על גדת הנהר.</li>
+              <li><b>Catskills</b> - נוף הררי צפוני שמוסיף מורכבות נוחה ל-VFR.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.scenichudson.org/explore-the-valley/" target="_blank">Hudson Valley Highlights</a>
+              <a href="https://www.westpoint.edu/" target="_blank">West Point</a>
+              <a href="https://www.visitthecatskills.com/" target="_blank">Visit the Catskills</a>
+            </div>
+          </div>
+          <div class="img-grid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Clinton_Cove_at_Hudson_River_Park_01.jpg" alt="Hudson River">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Aerial_view_of_West_Point_and_Hudson_River_02_-_white_balanced_%289614194870%29.jpg" alt="West Point">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/Central_Catskills_from_Twin_south_summit.jpg" alt="Catskills">
+          </div>
+          <div id="mapN2" class="map"></div>
+        </div>
+
+    <div class="card trip" id="trip-n3" data-search-title="N3 Block Island Vineyard Provincetown">
+          <h3 class="trip-title">N3 - Block Island / Vineyard / Provincetown (איים וחופים)</h3>
+          <span class="pill">N3 | KFRG → KBID → KMVY → KPVC → KFRG | מרחק כולל: 342.0NM | זמן טיסה כולל: 3:07 | כמות ימים: 2</span>
+          <p><b>למה המסלול הזה יפה ומיוחד:</b> איים וחופים ברצף - אחת מטיסות הנוף היפות בצפון־מזרח, עם דגש ניהול סיכוני מים.</p>
+          <table>
+            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
+            <tbody>
+              <tr><td>KFRG→KBID</td><td>Block Island State Airport (KBID) - Block Island, Rhode Island</td><td>עצירת נוף/הפסקה על אי</td><td>87.3NM</td><td>48 דק'</td><td>5,500</td><td>KBID CTAF 123.0, AWOS 134.775</td></tr>
+              <tr><td>KBID→KMVY</td><td>Martha's Vineyard Airport (KMVY) - Martha's Vineyard, Massachusetts</td><td>יעד לינה ובילוי מרכזי</td><td>45.5NM</td><td>25 דק'</td><td>4,500</td><td>KMVY TWR/CTAF 121.4, GND 124.35, ATIS 126.25</td></tr>
+              <tr><td>KMVY→KPVC</td><td>Provincetown Municipal Airport (KPVC) - Provincetown, Massachusetts</td><td>עצירת יום/סיור קייפ קוד</td><td>44.4NM</td><td>24 דק'</td><td>4,500</td><td>KPVC CTAF 122.8, AWOS 119.275</td></tr>
+              <tr><td>KPVC→KFRG</td><td>Republic Airport (KFRG) - Farmingdale, New York</td><td>לג חזרה ארוך לבסיס</td><td>164.8NM</td><td>1:30</td><td>6,500</td><td>Boston/NY Approach לפי המקטע</td></tr>
+            </tbody>
+          </table>
+          <div>
+            <b>נקודות עניין והסבר:</b>
+            <ul>
+              <li><b>Block Island</b> - אי קטן ופופולרי ל-GA עם גישה קצרה ונוחה.</li>
+              <li><b>Martha's Vineyard</b> - יעד חוף מרכזי עם הרבה אטרקציות קרקע ללילה.</li>
+              <li><b>Provincetown</b> - קצה קייפ קוד, נוף ימי ונמל אייקוני.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.blockislandinfo.com/" target="_blank">Block Island</a>
+              <a href="https://www.mvy.com/" target="_blank">Martha's Vineyard Airport / Island</a>
+              <a href="https://ptown.org/" target="_blank">Provincetown</a>
+            </div>
+          </div>
+          <div class="img-grid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/HiRes_BlockIsland_Aerial_7-23-2015.jpg" alt="Block Island">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Marthasvineyard-Aquinnah-cliffs-summer.jpeg/3840px-Marthasvineyard-Aquinnah-cliffs-summer.jpeg" alt="Martha's Vineyard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Provincetown_Harbor.jpg" alt="Provincetown Harbor">
+          </div>
+          <div id="mapN3" class="map"></div>
+        </div>
+
+    <div class="card trip" id="trip-n4" data-search-title="N4 Manhattan Hudson Corridor">
+          <h3 class="trip-title">N4 - Manhattan / Hudson Corridor (מתקדם)</h3>
+          <span class="pill">N4 | KFRG → VZ → Statue → Intrepid → GWB → Alpine → KFRG | מרחק כולל: 78.3NM | זמן טיסה כולל: 0:43 | כמות ימים: 1</span>
+          <p><b>למה המסלול הזה יפה ומיוחד:</b> הנתיב האייקוני של ניו יורק במסדרון ההדסון - צפוף ומאתגר, אך חווייתי מאוד.</p>
+          <table>
+            <thead><tr><th>לג/מקטע</th><th>שדה/אזור מעליו טסים</th><th>מטרת הקטע</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
+            <tbody>
+              <tr><td>KFRG→VZ</td><td>Republic Airport (KFRG) → Verrazzano Narrows (VZ), New York</td><td>כניסה מסודרת למסדרון ההדסון</td><td>29.7NM</td><td>16 דק'</td><td>1,200-1,300</td><td>הכנה לכניסה למסדרון, CTAF 123.05</td></tr>
+              <tr><td>VZ→Statue</td><td>אזור פסל החירות, New York Harbor</td><td>קטע נוף מרכזי + דיווח חובה</td><td>5.0NM</td><td>3 דק'</td><td>1,000-1,200</td><td>דיווח נקודת חובה: Statue</td></tr>
+              <tr><td>Statue→Intrepid</td><td>Lower/West Manhattan waterfront</td><td>מעבר נופי לאורך קו הרקיע</td><td>5.0NM</td><td>3 דק'</td><td>1,000-1,200</td><td>להישאר בצד הנתיב לפי הכיוון</td></tr>
+              <tr><td>Intrepid→GWB→Alpine</td><td>Upper Manhattan → GWB → Alpine, NJ</td><td>סיום קטע המסדרון ודיווחי חובה צפוניים</td><td>12.1NM</td><td>7 דק'</td><td>1,000-1,300</td><td>דיווח GWB ו-Alpine לפי נהלים</td></tr>
+              <tr><td>Alpine→KFRG</td><td>Alpine, New Jersey → Republic Airport (KFRG), Farmingdale NY</td><td>יציאה מהאזור העמוס וחזרה לבסיס</td><td>26.7NM</td><td>15 דק'</td><td>2,500</td><td>יציאה מהאזור הצפוף וחזרה ל-FRG</td></tr>
+            </tbody>
+          </table>
+          <div>
+            <b>נקודות עניין והסבר:</b>
+            <ul>
+              <li><b>Lower Manhattan</b> - קו רקיע מפורסם, זיהוי מהיר לניווט עירוני.</li>
+              <li><b>Statue of Liberty</b> - נקודת דיווח מרכזית במסדרון.</li>
+              <li><b>George Washington Bridge</b> - נקודת סיום/מעבר צפונית חשובה.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">Hudson Corridor Kneeboard (FAA Safety)</a>
+              <a href="https://www.faasafety.gov/" target="_blank">FAA Safety Resources</a>
+            </div>
+          </div>
+          <div class="img-grid">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Luchtfoto_van_Lower_Manhattan.jpg/3840px-Luchtfoto_van_Lower_Manhattan.jpg" alt="Lower Manhattan">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Liberty_Island_photo_Don_Ramey_Logan.jpg" alt="Statue of Liberty">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/George_Washington_Bridge_001.JPG" alt="George Washington Bridge">
+          </div>
+          <div id="mapN4" class="map"></div>
+        </div>
+  </div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
+  </div>
+</footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="assets/search-index.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>

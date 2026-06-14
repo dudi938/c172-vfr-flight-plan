@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מידע ובטיחות · תוכנית VFR C172</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
+    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html" class="active">מידע ובטיחות</a></nav>
+  </div>
+  <div class="search-bar">
+    <input id="globalSearch" type="search" autocomplete="off"
+      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
+    <div id="searchResults" class="search-dropdown" role="listbox"></div>
+  </div>
+</header>
+  <div class="wrap" id="top">
+    <h1>מידע ובטיחות</h1>
+    <p class="lead">עקרונות הטיסה הנופית, אזהרות בטיחות, ומקורות מומלצים מטייסים.</p>
+    <div class="note">
+          <b>חשוב:</b> זהו מסמך תכנון והכנה. לפני כל טיסה חובה לבצע אימות עדכני ב־Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים, משקל/איזון, ותדרים עדכניים.
+        </div>
+
+    <h2 id="vfr-principles">עקרונות VFR לגרסה זו</h2>
+    <div class="grid">
+          <div class="card">
+            <h3>VFR בנוף ובהנאה</h3>
+            <ul>
+              <li>יציאות מוקדמות 07:00-09:30 כדי להימנע מקונבקציה אחה"צ.</li>
+              <li>לגים קצרים יחסית, מרחב החלטה לכל תחנה, חלופה ברורה.</li>
+              <li>העדפה לנתיבים לאורך נהרות/חופים/רכסים שקל לזהות חזותית.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>סיכונים מיוחדים במסלולים שלך</h3>
+            <ul>
+              <li>KGAI בתוך SFRA - נהלי Potomac ו-DC SFRA חובה.</li>
+              <li>KFRG בסביבה צפופה תחת Class B של ניו יורק.</li>
+              <li>לגים מעל מים (N3 וחלק מ-N1) - ציוד ציפה ו-no-go ברור.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>תדרים בסיסיים</h3>
+            <ul>
+              <li>KGAI: CTAF 123.075 | AWOS 128.275 | CD 121.6</li>
+              <li>KFRG: ATIS 126.65 | TWR 118.8 | GND 121.6 | CD 128.25</li>
+              <li>Hudson Corridor: CTAF 123.05 ודיווח נקודות חובה</li>
+            </ul>
+          </div>
+        </div>
+
+    <h2 id="recommended-vfr">טיולי VFR מומלצים מטייסים (מחקר רשת)</h2>
+    <div class="grid">
+          <div class="card">
+            <h3>1) Hudson River Corridor - ניו יורק</h3>
+            <p><b>למה טייסים אוהבים:</b> נחשב לאחד מנתיבי ה־VFR האיקוניים בארה"ב - קו רקיע מנהטן, פסל החירות וגשרים מרכזיים.</p>
+            <ul>
+              <li>טווח גבהים נפוץ במסדרון: 1,000-1,300 רגל.</li>
+              <li>דיווחים עצמיים ב-CTAF 123.05 בנקודות חובה.</li>
+              <li>מתאים רק במז"א טוב ועם הכנה מוקדמת לנהלים.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.aopa.org/news-and-media/all-news/2017/march/flight-training-magazine/road-trip-hudson-river-corridor" target="_blank">AOPA - Hudson River Corridor</a>
+              <a href="https://www.aopa.org/news-and-media/all-news/2026/june/pilot/musings-sailing-over-manhattan" target="_blank">AOPA - Sailing over Manhattan</a>
+              <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">FAA Safety - NYC Kneeboard</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>2) Chesapeake Bay Loop - מרילנד/וירג'יניה</h3>
+            <p><b>למה טייסים אוהבים:</b> נתיב חוף/מפרץ יפה, הרבה נקודות נחיתה ואטרקציות היסטוריות לאורך המפרץ.</p>
+            <ul>
+              <li>שילוב מצוין בין נוף מים לניווט קל לפי קו חוף.</li>
+              <li>יעדים פופולריים: Bay Bridge, Havre de Grace, Tangier Island.</li>
+              <li>דורש תשומת לב לאזורי אוויר מורכבים סביב DC/BWI.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.aopa.org/news-and-media/all-news/2024/march/pilot/destinations-in-captain-smiths-footsteps" target="_blank">AOPA - Chesapeake destinations</a>
+              <a href="https://youcanfly.aopa.org/flying-clubs/flying-club-newsletter/2024/may/15/event-spotlight" target="_blank">AOPA You Can Fly - Tangier Island</a>
+              <a href="https://www.aopa.org/news-and-media/all-news/2022/february/08/threading-the-needle-between-baltimore-and-washington" target="_blank">AOPA - DC/Baltimore transit</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>3) Shenandoah + Blue Ridge Scenic</h3>
+            <p><b>למה טייסים אוהבים:</b> נתיב הרים ועמקים קלאסי עם נוף מרשים לכל אורך הרכס.</p>
+            <ul>
+              <li>מתאים מאוד לבניית שעות VFR בשטח הררי.</li>
+              <li>נקודות ייחוס טבעיות טובות לניווט חזותי.</li>
+              <li>להקפיד על מרווחי גובה ורוח רכס.</li>
+            </ul>
+            <div class="links">
+              <a href="https://aopa.org/news-and-media/all-news/2021/july/pilot/flying-the-at" target="_blank">AOPA - Flying the Appalachian Trail</a>
+              <a href="https://garrettfisher.me/flights-nc-va-shenandoah-national-park-blue-ridge-parkway/" target="_blank">Pilot blog - Shenandoah / Blue Ridge</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>4) Long Island → Montauk → Block Island</h3>
+            <p><b>למה טייסים אוהבים:</b> אחת מטיסות ה־VFR הפופולריות באזור ניו יורק - חופים, מגדלור, וגישת אי.</p>
+            <ul>
+              <li>Montauk ו-Block Island נחשבים יעדים אהובים מאוד על טייסי GA.</li>
+              <li>מעברי מים קצרים עם נוף חזק מאוד.</li>
+              <li>תכנון רוח/ראות ימית הכרחי.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.flyingmag.com/flying-to-block-island-and-six-things-you-have-to-see-after-you-land/" target="_blank">Flying Magazine - Block Island</a>
+              <a href="https://planeandpilotmag.com/the-scenic-route/" target="_blank">Plane & Pilot - Scenic route to Montauk</a>
+              <a href="https://vfrmap.com/fe?q=KMTP&req=get_afd" target="_blank">VFRMap / AFD - KMTP details</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>5) NYC East River / Skyline (למתקדמים)</h3>
+            <p><b>למה טייסים אוהבים:</b> מסלול עירוני נדיר עם זוויות על גשרים, Central Park וקו רקיע.</p>
+            <ul>
+              <li>דורש בדרך כלל Clearance ב-Class B (תלוי בנתיב ובנהלים עדכניים).</li>
+              <li>מומלץ לבצע רק אחרי היכרות טובה עם Hudson.</li>
+              <li>להחזיק TAC/Helicopter chart עדכני.</li>
+            </ul>
+            <div class="links">
+              <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">FAA Safety - NYC SFRA procedures</a>
+              <a href="https://vansairforce.net/threads/east-river-exclusion-go-fly-it.148951/" target="_blank">Pilot community discussion (East River)</a>
+            </div>
+          </div>
+          <div class="card">
+            <h3>6) Coastal Roadtrip צפונה (MD/DE/CT/RI)</h3>
+            <p><b>למה טייסים אוהבים:</b> נתיב חוף ארוך עם עצירות רבות, נוף ים רציף ותחושת "trip" אמיתית.</p>
+            <ul>
+              <li>חוויית XC מעולה לבניית שעות משמעותית.</li>
+              <li>מומלץ עם Flight Following באזורים צפופים.</li>
+              <li>לתכנן היטב תחנות תדלוק ושעות מז"א ימי.</li>
+            </ul>
+            <div class="links">
+              <a href="https://airfactsjournal.com/2024/08/my-first-and-last-flying-road-trip/" target="_blank">Air Facts - East Coast flying road trip</a>
+            </div>
+          </div>
+        </div>
+  </div>
+<footer class="site-footer">
+  <div class="footer-inner">
+    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
+  </div>
+</footer>
+  
+  <script src="assets/search-index.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
