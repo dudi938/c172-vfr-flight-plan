@@ -80,6 +80,7 @@ airport_cards = [extract_balanced(raw, m.start())
 regions = {
     "maryland":  ("trip-m1 trip-m2 trip-m3 trip-m4".split(), "מרילנד", "מסלולי VFR מבסיס KGAI (Montgomery County / WIFA). שימו לב לנהלי DC SFRA בכל המראה/נחיתה."),
     "new-york":  ("trip-n1 trip-n2 trip-n3 trip-n4".split(), "ניו יורק", "מסלולי VFR מבסיס KFRG (Republic, Long Island), מתחת ל-Class B של ניו יורק."),
+    "nyc-dc":    ("trip-d1 trip-d2 trip-d3 trip-d4 trip-d5".split(), "ניו יורק↔וושינגטון", "היעדים המתויירים ביותר ע\"י קהילת ה-GA במסדרון NYC↔DC: איים, חופים, ארוחות fly-in ומסדרון ההדסון. טווח ~שעתיים לכל כיוון ב-C172. חובה: הדרכת DC SFRA ואיסור כניסה ל-FRZ ללא אישור."),
     "bonus":     ("trip-r1 trip-r2 trip-r3 trip-r4 trip-r5 trip-r6".split(), "טיולי בונוס", "מסלולי VFR מומלצים נוספים שחקרנו - שילובי מרילנד/ניו יורק/קונטיקט."),
 }
 
@@ -114,6 +115,7 @@ NAV_ITEMS = [
     ("index.html", "בית"),
     ("maryland.html", "מרילנד"),
     ("new-york.html", "ניו יורק"),
+    ("nyc-dc.html", "ניו יורק↔וושינגטון"),
     ("bonus.html", "טיולי בונוס"),
     ("airports.html", "שדות"),
     ("info.html", "מידע ובטיחות"),
@@ -215,6 +217,7 @@ overview = ""
 region_meta = [
     ("maryland.html", "מרילנד", "M1–M4", "מבסיס KGAI · שננדואה, צ'ספיק, הרי מערב מרילנד, ניאגרה", len(regions["maryland"][0])),
     ("new-york.html", "ניו יורק", "N1–N4", "מבסיס KFRG · קצה לונג איילנד, עמק ההדסון, איים, מסדרון מנהטן", len(regions["new-york"][0])),
+    ("nyc-dc.html", "ניו יורק↔וושינגטון", "D1–D5", "יעדי קהילת ה-GA · Ocean City, Lancaster, מסדרון הדסון, Block Island, Tangier", len(regions["nyc-dc"][0])),
     ("bonus.html", "טיולי בונוס", "R1–R6", "מסלולים מומלצים נוספים שחקרנו ברשת", len(regions["bonus"][0])),
 ]
 cards_html = "\n".join(
