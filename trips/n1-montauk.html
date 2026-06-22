@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טיול N1: קצה לונג איילנד ומונטאוק | C172 VFR Flight Plans</title>
+    <meta name="description" content="טיסה קלה ומושלמת למתחילים לאורך חוף לונג איילנד עד למגדלור מונטאוק בקצה. חופים לבנים, אוקיינוס כחול, ונחיתה בשדה ליד החוף.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="../index.html">C172 VFR Trips</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">טיולים</a></li>
+                <li><a href="../planning.html">תכנון</a></li>
+                <li><a href="../weather.html">מזג אויר</a></li>
+                <li><a href="../resources.html">משאבים</a></li>
+                <li><a href="../about.html">אודות</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="trip-page">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <ol>
+                <li><a href="../index.html">דף הבית</a></li>
+                <li><a href="../index.html#trips">טיולים</a></li>
+                <li aria-current="page">קצה לונג איילנד ומונטאוק</li>
+            </ol>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920');">
+            <div class="hero-content">
+                <h1>טיול N1: קצה לונג איילנד ומונטאוק</h1>
+                <p class="hero-subtitle">KFRG → KJPX → KMTP → KFRG</p>
+            </div>
+        </section>
+
+        <!-- Share Buttons -->
+        <div class="share-buttons">
+            <button class="share-btn" aria-label="שתף בוואטסאפ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23-1.48 0-2.93-.39-4.19-1.15l-.3-.17-3.12.82.83-3.04-.2-.32a8.188 8.188 0 0 1-1.26-4.38c.01-4.54 3.7-8.24 8.25-8.24M8.53 7.33c-.16 0-.43.06-.66.31-.22.25-.87.86-.87 2.07 0 1.22.89 2.39 1 2.56.14.17 1.76 2.67 4.25 3.73.59.27 1.05.42 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.16-.48-.27-.25-.14-1.47-.74-1.69-.82-.23-.08-.37-.12-.56.12-.16.25-.64.81-.78.97-.15.17-.29.19-.53.07-.26-.13-1.06-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.12-.24-.01-.39.11-.5.11-.11.27-.29.37-.44.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.11-.56-1.35-.77-1.84-.2-.48-.4-.42-.56-.43-.14 0-.3-.01-.46-.01z"/></svg>
+                שתף
+            </button>
+            <button class="share-btn" aria-label="העתק קישור">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                העתק קישור
+            </button>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">✈️</div>
+                <div class="stat-label">מרחק</div>
+                <div class="stat-value">~120 NM</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-label">זמן טיסה</div>
+                <div class="stat-value">~1:05</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-label">משך</div>
+                <div class="stat-value">חצי יום</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⛽</div>
+                <div class="stat-label">דלק משוער</div>
+                <div class="stat-value">~11 gal</div>
+            </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="tags">
+            <span class="tag">חופי</span>
+            <span class="tag">scenic</span>
+            <span class="tag">מתחילים</span>
+        </div>
+
+        <!-- Overview -->
+        <section class="content-section">
+            <h2>סקירה</h2>
+            <p class="overview-text">טיסה קלה ומושלמת למתחילים לאורך חוף לונג איילנד עד למגדלור מונטאוק בקצה. חופים לבנים, אוקיינוס כחול, ונחיתה בשדה ליד החוף.</p>
+        </section>
+
+        <!-- Map -->
+        <section class="content-section">
+            <h2>מפת טיסה</h2>
+            <div id="map" class="map-container" role="img" aria-label="מפת המסלול"></div>
+        </section>
+
+        <!-- Flight Legs Accordion -->
+        <section class="content-section">
+            <h2>רגלי טיסה</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="leg-number">1</span>
+                        <span class="leg-route">KFRG → KJPX (Brookhaven)</span>
+                        <span class="leg-stats">30 NM • 16 דקות</span>
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="leg-details">
+                            <p><strong>מרחק:</strong> 30 NM</p>
+                            <p><strong>זמן:</strong> 16 דקות</p>
+                            <p><strong>גובה:</strong> 2,000 ft MSL</p>
+                            <p><strong>תדר:</strong> Brookhaven CTAF 123.75</p>
+                            <p><strong>תיאור:</strong> טיסה מזרחה לאורך החוף הדרומי.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="leg-number">2</span>
+                        <span class="leg-route">KJPX → KMTP (Montauk)</span>
+                        <span class="leg-stats">50 NM • 27 דקות</span>
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="leg-details">
+                            <p><strong>מרחק:</strong> 50 NM</p>
+                            <p><strong>זמן:</strong> 27 דקות</p>
+                            <p><strong>גובה:</strong> 2,000 ft MSL</p>
+                            <p><strong>תדר:</strong> Montauk CTAF 122.7</p>
+                            <p><strong>תיאור:</strong> The Hamptons מלמעלה! מגדלור מונטאוק.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header" aria-expanded="false">
+                        <span class="leg-number">3</span>
+                        <span class="leg-route">KMTP → KFRG (Return)</span>
+                        <span class="leg-stats">65 NM • 35 דקות</span>
+                        <svg class="accordion-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="leg-details">
+                            <p><strong>מרחק:</strong> 65 NM</p>
+                            <p><strong>זמן:</strong> 35 דקות</p>
+                            <p><strong>גובה:</strong> 2,500 ft MSL</p>
+                            <p><strong>תדר:</strong> Republic Tower 118.8</p>
+                            <p><strong>תיאור:</strong> חזרה לאורך חוף צפוני.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Airport Cards -->
+        <section class="content-section">
+            <h2>שדות תעופה</h2>
+            <div class="airport-grid">
+                <article class="airport-card">
+                    <h3>KFRG - Republic Airport</h3>
+                    <dl class="airport-info">
+                        <dt>Tower:</dt>
+                        <dd>118.8</dd>
+                        <dt>ATIS:</dt>
+                        <dd>126.65</dd>
+                        <dt>Runway:</dt>
+                        <dd>14/32 (6,833 × 150 ft)</dd>
+                        <dt>Elevation:</dt>
+                        <dd>82 ft</dd>
+                        <dt>Fuel:</dt>
+                        <dd>100LL, Jet-A</dd>
+                    </dl>
+                </article>
+
+                <article class="airport-card">
+                    <h3>KJPX - Brookhaven Calabro</h3>
+                    <dl class="airport-info">
+                        <dt>CTAF:</dt>
+                        <dd>123.75</dd>
+                        <dt>Runway:</dt>
+                        <dd>6/24 (4,225 × 150 ft)</dd>
+                        <dt>Elevation:</dt>
+                        <dd>81 ft</dd>
+                        <dt>Fuel:</dt>
+                        <dd>100LL</dd>
+                    </dl>
+                </article>
+
+                <article class="airport-card">
+                    <h3>KMTP - Montauk Airport</h3>
+                    <dl class="airport-info">
+                        <dt>CTAF:</dt>
+                        <dd>122.7</dd>
+                        <dt>Runway:</dt>
+                        <dd>6/24 (3,246 × 75 ft)</dd>
+                        <dt>Elevation:</dt>
+                        <dd>6 ft</dd>
+                        <dt>Fuel:</dt>
+                        <dd>100LL (seasonal)</dd>
+                    </dl>
+                </article>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section class="content-section">
+            <h2>גלריה</h2>
+            <div class="gallery-grid">
+                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800" alt="חוף לונג איילנד מהאוויר" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="חוף יפהפה" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="מגדלור" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1494548162494-384bba4ab999?w=800" alt="שקיעה באוקיינוס" loading="lazy">
+            </div>
+        </section>
+
+        <!-- Fuel Estimator -->
+        <section class="content-section">
+            <h2>מחשבון דלק</h2>
+            <div class="fuel-calculator">
+                <div class="calculator-inputs">
+                    <label for="fuel-burn">צריכת דלק (GPH):
+                        <input type="number" id="fuel-burn" value="9.0" step="0.1" min="7" max="12">
+                    </label>
+                    <label for="flight-time">זמן טיסה (שעות):
+                        <input type="number" id="flight-time" value="1.08" step="0.01" min="0" max="10">
+                    </label>
+                    <label for="reserve">רזרבה (דקות):
+                        <input type="number" id="reserve" value="45" step="5" min="30" max="90">
+                    </label>
+                </div>
+                <div class="calculator-result">
+                    <div class="result-label">דלק נדרש:</div>
+                    <div class="result-value" id="fuel-result">16.5 גלונים</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Print Button -->
+        <div class="action-buttons">
+            <button class="btn-primary" onclick="window.print()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                הדפס תכנית טיסה
+            </button>
+        </div>
+
+        <!-- Trip Navigation -->
+        <nav class="trip-navigation" aria-label="ניווט בין טיולים">
+            <a href="n4-manhattan-corridor.html" class="nav-prev">
+                <span class="nav-label">טיול קודם</span>
+                <span class="nav-title">מסדרון מנהטן/הדסון</span>
+            </a>
+            <a href="n2-hudson-valley.html" class="nav-next">
+                <span class="nav-label">טיול הבא</span>
+                <span class="nav-title">עמק ההדסון</span>
+            </a>
+        </nav>
+
+        <!-- Safety Note -->
+        <aside class="safety-note">
+            <h3>⚠️ הערת בטיחות</h3>
+            <p>תכנית טיסה זו מיועדת למטרות תכנון בלבד. יש לבצע תדריך מזג אויר מלא, לבדוק NOTAMs, לאשר מצב השדות, ולקבל אישור מדריך טיסה לפני כל טיסה. הטייס באחריות בלעדית לבטיחות הטיסה.</p>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p>&copy; 2026 C172 VFR Flight Plans. נוצר עבור טייסים ישראלים בארה"ב.</p>
+            <p class="disclaimer">אתר זה אינו תחליף לתדריך טיסה מקצועי או מכשור רשמי. השתמש בו באחריותך בלבד.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script>
+        // Initialize map for this trip
+        if (typeof initTripMap === 'function') {
+            initTripMap([
+                { lat: 40.7288, lng: -73.4134, name: 'KFRG' },
+                { lat: 40.8319, lng: -72.8719, name: 'KJPX' },
+                { lat: 41.0765, lng: -71.9208, name: 'KMTP' }
+            ]);
+        }
+    </script>
+</body>
+</html>

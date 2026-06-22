@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טיול M3: מערב מרילנד ודיפ קריק לייק - C172 VFR Flight Plan</title>
+    <meta name="description" content="חציית הרי האפלצ'ים מערבה לאגם דיפ קריק. טיסה מעל נופים הרריים ירוקים עם נחיתה ליד אגם הנופש.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="../index.html" class="logo">C172 VFR</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html" class="active">טיולים</a></li>
+                    <li><a href="../planning.html">תכנון</a></li>
+                    <li><a href="../resources.html">משאבים</a></li>
+                    <li><a href="../about.html">אודות</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="trip-detail">
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">טיולים</a></li>
+                    <li aria-current="page">מערב מרילנד ודיפ קריק לייק</li>
+                </ol>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1920" alt="אגם דיפ קריק מהאוויר" class="hero-image">
+            <div class="hero-overlay">
+                <div class="container">
+                    <h1>טיול M3: מערב מרילנד ודיפ קריק לייק</h1>
+                    <p class="hero-subtitle">KGAI → KFDK → KCBE → 2G4 → KGAI</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="trip-header">
+                <div class="share-buttons">
+                    <button class="btn-icon" aria-label="שתף בפייסבוק" title="שתף בפייסבוק">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" aria-label="שתף בטוויטר" title="שתף בטוויטר">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" aria-label="העתק קישור" title="העתק קישור">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="stat">
+                        <span class="stat-label">מרחק</span>
+                        <span class="stat-value">214 NM</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">זמן טיסה</span>
+                        <span class="stat-value">1:56</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">משך</span>
+                        <span class="stat-value">יום אחד</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">רגליים</span>
+                        <span class="stat-value">4</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">הרים</span>
+                    <span class="tag">אגמים</span>
+                    <span class="tag">יער</span>
+                    <span class="tag">גובה</span>
+                </div>
+            </section>
+
+            <section class="overview">
+                <h2>סקירה</h2>
+                <p class="lead">חציית הרי האפלצ'ים מערבה לאגם דיפ קריק. טיסה מעל נופים הרריים ירוקים עם נחיתה ליד אגם הנופש.</p>
+                <p>מסלול זה לוקח אותך מעבר להרי האפלצ'ים לפינת המערבית של מרילנד. תחווה טיסה בגובה רב מעל פסגות מיוערות, עמקים ירוקים, ועיירות קטנות מוקפות טבע. היעד - אגם דיפ קריק - הוא אגם נופש פופולרי המוקף בהרים, ונחיתה ב-2G4 היא חוויה מיוחדת בגובה של כמעט 3,000 רגל!</p>
+            </section>
+
+            <section class="map-section">
+                <h2>מפת מסלול</h2>
+                <div id="mapM3" class="trip-map" role="img" aria-label="מפת מסלול הטיסה"></div>
+            </section>
+
+            <section class="flight-legs">
+                <h2>רגלי טיסה</h2>
+                <div class="accordion">
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 1</span>
+                            <span class="leg-route">KGAI → KFDK (Frederick)</span>
+                            <span class="leg-stats">26 NM • 14 דקות • 3,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Frederick Tower 132.225 / CTAF 132.225</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">3,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">שדה גדול עם מגדל. שירותים מלאים, FBO איכותי, מקום מצוין לדלק אחרון לפני ההרים.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 2</span>
+                            <span class="leg-route">KFDK → KCBE (Cumberland)</span>
+                            <span class="leg-stats">68 NM • 37 דקות • 5,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">CTAF 123.0</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">5,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value"><strong>חציית ההרים!</strong> גובה גבוה חובה - פסגות מגיעות ל-3,000+ רגל. מזג אוויר הרים - בדוק רוחות וערפול בקפידה. נוף מדהים!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 3</span>
+                            <span class="leg-route">KCBE → 2G4 (Deep Creek Lake)</span>
+                            <span class="leg-stats">32 NM • 17 דקות • 4,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">CTAF 122.7</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">4,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value"><strong>Deep Creek Lake מלמעלה!</strong> נוף מרהיב של האגם. שים לב - 2G4 נמצא בגובה 2,933 רגל - ביצועי המטוס יושפעו! מסלול 3,098 רגל בלבד.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 4</span>
+                            <span class="leg-route">2G4 → KGAI (חזרה)</span>
+                            <span class="leg-stats">88 NM • 48 דקות • 5,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Potomac App 128.7</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">5,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">חזרה מזרחה מעל ההרים. גובה גבוה עד שחוצים את הרכס. כניסה ל-SFRA - תדרוך והגשת תוכנית טיסה חובה!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="airports">
+                <h2>שדות תעופה</h2>
+                <div class="airport-grid">
+                    <article class="airport-card">
+                        <h3>KFDK - Frederick Municipal</h3>
+                        <dl class="airport-info">
+                            <dt>Tower:</dt>
+                            <dd>132.225</dd>
+                            <dt>ATIS:</dt>
+                            <dd>125.925</dd>
+                            <dt>מסלול:</dt>
+                            <dd>5/23 - 5,220×100 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>303 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL + Jet A</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה בינוני עם מגדל ושירותים מלאים. FBO מצוין, מסעדות בשדה. תחנת דלק אחרונה לפני ההרים!</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card">
+                        <h3>KCBE - Greater Cumberland Regional</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>123.0</dd>
+                            <dt>מסלול:</dt>
+                            <dd>5/23 - 5,050×150 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>775 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה אזורי במערב מרילנד. שער כניסה להרים. Cumberland עיירה היסטורית מעניינת.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card highlight">
+                        <h3>2G4 - Garrett County Airport</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>122.7</dd>
+                            <dt>מסלול:</dt>
+                            <dd>9/27 - 3,098×60 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd><strong>2,933 רגל!</strong></dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL</dd>
+                            <dt>הערות:</dt>
+                            <dd><strong>שדה בגובה!</strong> ביצועי המטוס יושפעו. שים לב במיוחד בימים חמים ולחים. מסלול קצר יחסית. Deep Creek Lake צמוד לשדה - נוף מדהים!</dd>
+                        </dl>
+                    </article>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <h2>גלריה</h2>
+                <div class="photo-grid">
+                    <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800" alt="אגם הרים" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800" alt="הרים מהאוויר" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800" alt="יער הרים" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800" alt="שקיעה בהרים" loading="lazy">
+                </div>
+            </section>
+
+            <section class="fuel-estimator">
+                <h2>מחשבון דלק</h2>
+                <form class="fuel-form">
+                    <div class="form-group">
+                        <label for="fuelBurn">צריכת דלק (גלונים לשעה):</label>
+                        <input type="number" id="fuelBurn" value="8.5" min="6" max="12" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelPrice">מחיר דלק ($ לגלון):</label>
+                        <input type="number" id="fuelPrice" value="6.50" min="3" max="15" step="0.10">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="calculateFuel()">חשב</button>
+                </form>
+                <div class="fuel-result" id="fuelResult">
+                    <p>צריכה משוערת: <strong>16.5 גלון</strong></p>
+                    <p>עלות משוערת: <strong>$107</strong></p>
+                    <p class="note">הערה: צריכת הדלק תהיה גבוהה יותר בגובה רב ובטיסת הרים.</p>
+                </div>
+            </section>
+
+            <section class="safety-note">
+                <h2>הערת בטיחות</h2>
+                <div class="note-box warning">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="note-icon">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <div>
+                        <h3>אזהרת טיסת הרים!</h3>
+                        <ul>
+                            <li><strong>גובה:</strong> חייב לטוס בגובה 5,500+ רגל מעל ההרים. פסגות מגיעות ל-3,000 רגל ומעלה.</li>
+                            <li><strong>2G4 גובה שדה:</strong> 2,933 רגל! ביצועי המטוס יושפעו משמעותית. חשב מרחקי המראה ונחיתה בקפידה, במיוחד בימים חמים.</li>
+                            <li><strong>מסלול קצר:</strong> 2G4 מסלול 3,098 רגל בלבד. וודא שהמטוס יכול לעצור במרחק זה בגובה זה!</li>
+                            <li><strong>מזג אוויר הרים:</strong> רוחות, טורבולנציה, וערפול יכולים להשתנות במהירות. בדוק תחזית הרים מיוחדת.</li>
+                            <li><strong>דלק:</strong> מלא דלק ב-KFDK. אפשרויות דלק מוגבלות בהרים.</li>
+                            <li><strong>SFRA:</strong> כניסה חזרה ל-DC SFRA - תדרוך חובה!</li>
+                            <li><strong>חלופות חירום:</strong> אפשרויות נחיתת חירום מוגבלות בהרים. שמור על גובה בטוח ותכנן את המסלול בקפידה.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    הדפס
+                </button>
+                <button class="btn btn-primary">הוסף ליומן טיסה</button>
+            </div>
+
+            <nav class="trip-navigation" aria-label="ניווט בין טיולים">
+                <a href="m2-chesapeake.html" class="nav-prev">
+                    <span class="nav-label">← הקודם</span>
+                    <span class="nav-title">מפרץ צ'ספיק ואושן סיטי</span>
+                </a>
+                <a href="m4-niagara.html" class="nav-next">
+                    <span class="nav-label">הבא →</span>
+                    <span class="nav-title">ניאגרה ופינגר לייקס</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Plan</h3>
+                    <p>מדריך טיסה VFR לטייסים ישראלים בארה"ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../trips.html">טיולים</a></li>
+                        <li><a href="../planning.html">תכנון</a></li>
+                        <li><a href="../resources.html">משאבים</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.aviationweather.gov" target="_blank" rel="noopener">Aviation Weather</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Plan. לשימוש חינוכי בלבד.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

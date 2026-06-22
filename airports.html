@@ -1,63 +1,1014 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>שדות · תוכנית VFR C172</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/site.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>שדות תעופה - VFR Flight Planning</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html">ניו יורק↔וושינגטון</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html" class="active">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
-  </div>
-  <div class="search-bar">
-    <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
-    <div id="searchResults" class="search-dropdown" role="listbox"></div>
-  </div>
-</header>
-  <div class="wrap" id="top">
-    <h1>פרופיל שדות בתוכנית (VFR Ready)</h1>
-    <p class="lead">שדות המופיעים במסלולים. תמיד אמת תדרים/מסלולים/הערות מול Chart Supplement עדכני.</p>
-    <div class="airport-grid">
-      <div class="airport"><h3>KGAI</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> בתוך DC SFRA; נהלי Potomac חובה</p><p><b>תדרים:</b> CTAF 123.075, AWOS 128.275, CD 121.6</p></div>
-      <div class="airport"><h3>KFRG</h3><p><b>סוג:</b> ציבורי, Towered</p><p><b>מיוחד:</b> סביבה עמוסה תחת NY Class B</p><p><b>תדרים:</b> TWR 118.8, GND 121.6, ATIS 126.65</p></div>
-      <div class="airport"><h3>KFRR</h3><p><b>סוג:</b> GA לא מבוקר</p><p><b>מיוחד:</b> שדה מעבר מצוין לרכס/עמק</p><p><b>תדר:</b> CTAF 123.0</p></div>
-      <div class="airport"><h3>W45</h3><p><b>סוג:</b> שדה GA קטן</p><p><b>מיוחד:</b> עצירת נוף באזור Luray</p><p><b>הערה:</b> לבדוק תדר/תנאי שדה עדכניים</p></div>
-      <div class="airport"><h3>KSHD</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> מסלול ארוך ונוח באזור הררי</p><p><b>תדרים:</b> UNICOM 123.0, AWOS 124.925</p></div>
-      <div class="airport"><h3>W29</h3><p><b>סוג:</b> GA קטן</p><p><b>מיוחד:</b> גישה ישירה לנוף המפרץ</p><p><b>תדרים:</b> CTAF 122.725, AWOS 120.575</p></div>
-      <div class="airport"><h3>KESN</h3><p><b>סוג:</b> Towered (שעות מוגבלות)</p><p><b>מיוחד:</b> עצירה נוחה ב-Eastern Shore</p><p><b>תדרים:</b> TWR/CTAF 118.525, GND 119.075</p></div>
-      <div class="airport"><h3>KOXB</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> שדה גישה לאושן סיטי ולינה</p><p><b>תדרים:</b> CTAF 123.05, ASOS 119.025</p></div>
-      <div class="airport"><h3>KCGE</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שדה רגוע לחזרה ממסלול חוף</p><p><b>תדרים:</b> CTAF 122.7, AWOS 120.675</p></div>
-      <div class="airport"><h3>KFDK</h3><p><b>סוג:</b> Towered (שעות מוגבלות)</p><p><b>מיוחד:</b> שדה אימונים מרכזי במרילנד</p><p><b>תדרים:</b> TWR 132.4, GND 121.975</p></div>
-      <div class="airport"><h3>KCBE</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שטח הררי סביב השדה</p><p><b>תדרים:</b> CTAF 122.8, AWOS 128.625</p></div>
-      <div class="airport"><h3>2G4</h3><p><b>סוג:</b> שדה אזורי לא מבוקר</p><p><b>מיוחד:</b> קרוב ל-Deep Creek</p><p><b>תדרים:</b> CTAF 123.0, AWOS 120.125</p></div>
-      <div class="airport"><h3>KIPT</h3><p><b>סוג:</b> Towered</p><p><b>מיוחד:</b> עצירת ביניים טובה לציר צפונה</p><p><b>תדרים:</b> TWR/CTAF 119.1, GND 121.9</p></div>
-      <div class="airport"><h3>KIAG</h3><p><b>סוג:</b> בינלאומי, Towered</p><p><b>מיוחד:</b> קרבה לניאגרה ושדה ארוך</p><p><b>תדרים:</b> TWR 118.5, GND 125.3, ATIS 120.8</p></div>
-      <div class="airport"><h3>KITH</h3><p><b>סוג:</b> Towered</p><p><b>מיוחד:</b> שדה מרכזי באזור Finger Lakes</p><p><b>תדרים:</b> TWR/CTAF 119.6, ATIS 125.175</p></div>
-      <div class="airport"><h3>KART</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שער אווירי לאזור Thousand Islands</p><p><b>תדרים:</b> CTAF 123.0, CD 120.8</p></div>
-      <div class="airport"><h3>KJPX / KMTP / KBID / KMVY / KPVC</h3><p><b>סוג:</b> שדות חוף/איים (חלקם towered בשעות)</p><p><b>מיוחד:</b> דגש חזק על תנאי רוח/מים/ערפל ימי</p><p><b>המלצה:</b> לנהל מינימום מז"א שמרני יותר</p></div>
-      <div class="airport"><h3>KCDW</h3><p><b>סוג:</b> Towered (Class D)</p><p><b>מיוחד:</b> בסיס מצוין למסדרון ההדסון, מתחת ל-NY Class B</p><p><b>תדרים:</b> TWR/CTAF 119.8, GND 121.9, ATIS 135.5</p></div>
-      <div class="airport"><h3>KLNS</h3><p><b>סוג:</b> Towered (Class D)</p><p><b>מיוחד:</b> "ארץ האמיש" + מסעדת Fiorentino's בשדה</p><p><b>תדרים:</b> TWR/CTAF 120.9, GND 121.8, ATIS 125.675</p></div>
-      <div class="airport"><h3>26N</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> שדה על קצה האי, גישה ישירה ל-Boardwalk</p><p><b>תדרים:</b> CTAF 122.7, AWOS 119.775</p></div>
-      <div class="airport"><h3>N40</h3><p><b>סוג:</b> GA לא מבוקר</p><p><b>מיוחד:</b> Sky Café על המנחת (סגור שלישי)</p><p><b>תדרים:</b> CTAF 122.975, AWOS 121.725</p></div>
-      <div class="airport"><h3>KTGI</h3><p><b>סוג:</b> לא מבוקר (אי)</p><p><b>מיוחד:</b> מסלול 02/20 ~2,426'; כמעט מוקף Restricted Areas</p><p><b>תדרים:</b> CTAF 122.8, AWOS 119.8</p></div>
-    </div>
-  </div>
-<footer class="site-footer">
-  <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
-  </div>
-</footer>
-  
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2L4 14L16 10L28 14L16 2Z" fill="currentColor"/>
+                    <path d="M16 10L4 14V20L16 30L28 20V14L16 10Z" fill="currentColor" opacity="0.6"/>
+                </svg>
+                <span>VFR Planning</span>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">בית</a>
+                <a href="routes.html">מסלולים</a>
+                <a href="airports.html" class="active">שדות</a>
+                <a href="info.html">מידע ובטיחות</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn search-btn" aria-label="חיפוש">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                        <path d="M13 13L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <button class="icon-btn menu-btn" aria-label="תפריט">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 5H18M2 10H18M2 15H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>מאגר שדות תעופה</h1>
+            <p class="hero-subtitle">כל השדות שמופיעים במסלולים שלנו - תדרים, מסלולים, דלק ושירותים</p>
+        </div>
+    </section>
+
+    <!-- Search/Filter Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-bar">
+                <input type="text" id="airport-search" placeholder="חפש שדה תעופה לפי מזהה, שם או מיקום...">
+                <select id="region-filter">
+                    <option value="all">כל האזורים</option>
+                    <option value="maryland">Maryland Base (KGAI)</option>
+                    <option value="newyork">New York Base (KFRG)</option>
+                    <option value="extended">Extended/Niagara</option>
+                </select>
+                <select id="fuel-filter">
+                    <option value="all">כל השדות</option>
+                    <option value="has-fuel">עם דלק</option>
+                    <option value="no-fuel">ללא דלק</option>
+                </select>
+            </div>
+            <div class="legend">
+                <span class="legend-item"><span class="dot fuel-available"></span>דלק זמין</span>
+                <span class="legend-item"><span class="dot no-fuel"></span>ללא דלק</span>
+                <span class="legend-item"><span class="dot tower"></span>מגדל פעיל</span>
+                <span class="legend-item"><span class="dot special"></span>מגבלות מיוחדות</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Airport Cards Grid -->
+    <section class="airports-section">
+        <div class="container">
+            <div id="airports-grid" class="airports-grid">
+
+                <!-- Maryland Base (KGAI) -->
+                <div class="airport-card" data-region="maryland" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available special">KGAI</div>
+                        <div class="badges">
+                            <span class="badge special">DC SFRA!</span>
+                        </div>
+                    </div>
+                    <h3>Montgomery County Airpark</h3>
+                    <p class="location">Gaithersburg, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.075</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">AWOS:</span>
+                            <span class="value">128.275</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">14/32 - 4202×75 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">539 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL self-serve 24/7</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KGAI" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KFDK</div>
+                    </div>
+                    <h3>Frederick Municipal</h3>
+                    <p class="location">Frederick, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">132.225</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">AWOS:</span>
+                            <span class="value">125.57</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">5/23 - 5220×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">303 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KFDK" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KFRR</div>
+                    </div>
+                    <h3>Front Royal-Warren County</h3>
+                    <p class="location">Front Royal, VA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">10/28 - 3001×60 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">709 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KFRR" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="no" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id no-fuel special">W45</div>
+                        <div class="badges">
+                            <span class="badge warning">ללא דלק!</span>
+                        </div>
+                    </div>
+                    <h3>Luray Caverns</h3>
+                    <p class="location">Luray, VA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.9</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">4/22 - 3075×40 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">902 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">לא זמין</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/W45" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KSHD</div>
+                    </div>
+                    <h3>Shenandoah Valley Regional</h3>
+                    <p class="location">Weyers Cave, VA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">119.05</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">ATIS:</span>
+                            <span class="value">126.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">5/23 - 6002×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">1201 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KSHD" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KCBE</div>
+                    </div>
+                    <h3>Greater Cumberland Regional</h3>
+                    <p class="location">Cumberland, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">5/23 - 5050×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">775 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KCBE" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available special">2G4</div>
+                        <div class="badges">
+                            <span class="badge warning">גובה גבוה!</span>
+                        </div>
+                    </div>
+                    <h3>Garrett County</h3>
+                    <p class="location">Oakland, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.7</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">9/27 - 3098×60 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">2933 ft (!)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/2G4" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="no">
+                    <div class="card-header">
+                        <div class="airport-id no-fuel">W29</div>
+                    </div>
+                    <h3>Bay Bridge</h3>
+                    <p class="location">Stevensville, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">11/29 - 2940×35 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">58 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">לא זמין</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/W29" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KESN</div>
+                    </div>
+                    <h3>Easton/Newnam Field</h3>
+                    <p class="location">Easton, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.075</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">4/22 - 5500×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">72 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KESN" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KOXB</div>
+                    </div>
+                    <h3>Ocean City Municipal</h3>
+                    <p class="location">Ocean City, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.05</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">AWOS:</span>
+                            <span class="value">119.025</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">14/32 - 4074×75 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">16 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL 24hr</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KOXB" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KCGE</div>
+                    </div>
+                    <h3>Cambridge-Dorchester</h3>
+                    <p class="location">Cambridge, MD</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">16/34 - 4476×75 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">20 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KCGE" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="no" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id no-fuel special">KTGI</div>
+                        <div class="badges">
+                            <span class="badge warning">מסלול קצר!</span>
+                            <span class="badge warning">ללא דלק!</span>
+                        </div>
+                    </div>
+                    <h3>Tangier Island</h3>
+                    <p class="location">Tangier, VA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.9</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">2/20 - 2400×36 ft (!)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">5 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">לא זמין</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KTGI" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="maryland" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available special">KHSP</div>
+                        <div class="badges">
+                            <span class="badge warning">גובה גבוה מאוד!</span>
+                        </div>
+                    </div>
+                    <h3>Hot Springs/Ingalls Field</h3>
+                    <p class="location">Hot Springs, VA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.8</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">7/25 - 4456×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">3793 ft (!!)</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KHSP" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <!-- New York Base (KFRG) -->
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KFRG</div>
+                    </div>
+                    <h3>Republic Airport</h3>
+                    <p class="location">Farmingdale, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">118.8</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">ATIS:</span>
+                            <span class="value">126.65</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">14/32 - 6833×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">82 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KFRG" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KJPX</div>
+                    </div>
+                    <h3>Brookhaven Calabro</h3>
+                    <p class="location">Shirley, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.75</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">6/24 - 4225×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">81 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KJPX" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available special">KMTP</div>
+                        <div class="badges">
+                            <span class="badge info">דלק עונתי</span>
+                        </div>
+                    </div>
+                    <h3>Montauk</h3>
+                    <p class="location">Montauk, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.7</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">6/24 - 3246×75 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">6 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL seasonal</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KMTP" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available special">KBID</div>
+                        <div class="badges">
+                            <span class="badge info">דלק עונתי</span>
+                        </div>
+                    </div>
+                    <h3>Block Island State</h3>
+                    <p class="location">Block Island, RI</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">10/28 - 2501×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">108 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL seasonal</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KBID" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower special">KMVY</div>
+                        <div class="badges">
+                            <span class="badge warning">עוצר לילה!</span>
+                        </div>
+                    </div>
+                    <h3>Martha's Vineyard</h3>
+                    <p class="location">Martha's Vineyard, MA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">121.4</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">ATIS:</span>
+                            <span class="value">126.25</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">6/24 - 5504×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">67 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                        <div class="detail-row special-note">
+                            <span class="label">⚠️ Curfew:</span>
+                            <span class="value">2200-0600</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KMVY" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KPVC</div>
+                    </div>
+                    <h3>Provincetown</h3>
+                    <p class="location">Provincetown, MA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.8</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">AWOS:</span>
+                            <span class="value">119.275</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">7/25 - 3502×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">8 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KPVC" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KACK</div>
+                    </div>
+                    <h3>Nantucket Memorial</h3>
+                    <p class="location">Nantucket, MA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">118.3</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">ATIS:</span>
+                            <span class="value">127.5</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">6/24 - 6303×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">47 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KACK" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">20N</div>
+                    </div>
+                    <h3>Kingston-Ulster</h3>
+                    <p class="location">Kingston, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">122.8</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">15/33 - 3580×40 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">149 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/20N" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes" data-special="true">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available special">44N</div>
+                        <div class="badges">
+                            <span class="badge info">יש מסעדה!</span>
+                        </div>
+                    </div>
+                    <h3>Sky Acres</h3>
+                    <p class="location">Lagrangeville, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">17/35 - 3830×50 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">698 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/44N" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KPOU</div>
+                    </div>
+                    <h3>Hudson Valley Regional</h3>
+                    <p class="location">Poughkeepsie, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">120.6</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">6/24 - 5001×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">166 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KPOU" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="newyork" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KCDW</div>
+                    </div>
+                    <h3>Essex County/Caldwell</h3>
+                    <p class="location">Fairfield, NJ</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">119.85</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">4/22 - 4553×80 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">173 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KCDW" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <!-- Extended/Niagara -->
+                <div class="airport-card" data-region="extended" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KIPT</div>
+                    </div>
+                    <h3>Williamsport Regional</h3>
+                    <p class="location">Williamsport, PA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">120.7</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">9/27 - 6474×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">527 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KIPT" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="extended" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KIAG</div>
+                    </div>
+                    <h3>Niagara Falls International</h3>
+                    <p class="location">Niagara Falls, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">120.5</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">ATIS:</span>
+                            <span class="value">124.3</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">10R/28L - 9825×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">590 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KIAG" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="extended" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KITH</div>
+                    </div>
+                    <h3>Ithaca Tompkins</h3>
+                    <p class="location">Ithaca, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">14/32 - 6600×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">1099 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KITH" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="extended" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KART</div>
+                    </div>
+                    <h3>Watertown International</h3>
+                    <p class="location">Watertown, NY</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">118.4</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">7/25 - 5000×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">325 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KART" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="extended" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available tower">KLNS</div>
+                    </div>
+                    <h3>Lancaster</h3>
+                    <p class="location">Lancaster, PA</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">Tower:</span>
+                            <span class="value">120.9</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">ATIS:</span>
+                            <span class="value">124.15</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">8/26 - 6934×150 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">403 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KLNS" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+                <div class="airport-card" data-region="extended" data-fuel="yes">
+                    <div class="card-header">
+                        <div class="airport-id fuel-available">KBHB</div>
+                    </div>
+                    <h3>Bar Harbor/Hancock County</h3>
+                    <p class="location">Bar Harbor, ME</p>
+                    <div class="airport-details">
+                        <div class="detail-row">
+                            <span class="label">CTAF:</span>
+                            <span class="value">123.0</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">AWOS:</span>
+                            <span class="value">118.35</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">מסלול:</span>
+                            <span class="value">4/22 - 5200×100 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">גובה:</span>
+                            <span class="value">83 ft</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">דלק:</span>
+                            <span class="value">100LL + Jet-A</span>
+                        </div>
+                    </div>
+                    <a href="https://airnav.com/airport/KBHB" target="_blank" class="airnav-link">פרטים נוספים ב-AirNav ←</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>VFR Planning</h4>
+                <p>משאב לתכנון טיסות VFR לטייסי PPL ישראלים בארה"ב</p>
+            </div>
+            <div class="footer-section">
+                <h4>קישורים מהירים</h4>
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="routes.html">מסלולים</a></li>
+                    <li><a href="airports.html">שדות תעופה</a></li>
+                    <li><a href="info.html">מידע ובטיחות</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>משאבים חיצוניים</h4>
+                <ul>
+                    <li><a href="https://skyvector.com" target="_blank">SkyVector</a></li>
+                    <li><a href="https://airnav.com" target="_blank">AirNav</a></li>
+                    <li><a href="https://1800wxbrief.com" target="_blank">1800WxBrief</a></li>
+                    <li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aip_html/" target="_blank">FAA AIP</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>הצהרת אחריות</h4>
+                <p>אתר זה משמש לתכנון מוקדם בלבד. יש לוודא את כל הנתונים לפני הטיסה.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 VFR Planning. Built for Israeli pilots flying in the US.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
