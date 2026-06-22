@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="M1: טיסת שננדואה והרי בלו רידג' - מסלול VFR מ-KGAI מעל עמק שננדואה, 200 NM, יום אחד">
+    <title>M1: שננדואה והרי בלו רידג' | C172 VFR Flight Planning</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        /* Trip-specific styles */
+        .trip-hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920') center/cover;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .trip-badge {
+            background: var(--primary-color, #2c5282);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .trip-hero h1 {
+            font-size: 3rem;
+            margin: 0.5rem 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .trip-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0.5rem auto;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        }
+
+        .breadcrumbs {
+            padding: 1rem 2rem;
+            background: #f7fafc;
+            font-size: 0.95rem;
+        }
+
+        .breadcrumbs a {
+            color: var(--primary-color, #2c5282);
+            text-decoration: none;
+        }
+
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            padding: 1.5rem 0;
+        }
+
+        .share-btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .share-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .share-email {
+            background: #0066cc;
+            color: white;
+        }
+
+        .share-copy {
+            background: #718096;
+            color: white;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .stat-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color, #2c5282);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-card .label {
+            font-size: 0.9rem;
+            color: #718096;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            padding: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #edf2f7;
+            color: #2d3748;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+        }
+
+        .trip-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .overview-text {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 12px;
+            border-right: 4px solid var(--primary-color, #2c5282);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .trip-map {
+            width: 100%;
+            height: 500px;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .flight-legs {
+            margin: 3rem 0;
+        }
+
+        .leg-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .leg-header {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .leg-header:hover {
+            background: linear-gradient(135deg, #2a4365 0%, #2c5282 100%);
+        }
+
+        .leg-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .leg-summary {
+            font-size: 0.95rem;
+            opacity: 0.95;
+            margin-top: 0.3rem;
+        }
+
+        .leg-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .leg-item.open .leg-toggle {
+            transform: rotate(180deg);
+        }
+
+        .leg-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .leg-item.open .leg-content {
+            max-height: 2000px;
+        }
+
+        .leg-details {
+            padding: 2rem;
+        }
+
+        .leg-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .leg-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .leg-info-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .leg-info-item .info {
+            flex: 1;
+        }
+
+        .leg-info-item .info-label {
+            font-size: 0.85rem;
+            color: #718096;
+        }
+
+        .leg-info-item .info-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #2d3748;
+        }
+
+        .leg-section {
+            margin: 1.5rem 0;
+        }
+
+        .leg-section h4 {
+            color: var(--primary-color, #2c5282);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .leg-section p {
+            line-height: 1.7;
+            color: #2d3748;
+        }
+
+        .attraction-highlight {
+            background: #fef5e7;
+            border-right: 4px solid #f39c12;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+        }
+
+        .airports-section {
+            margin: 3rem 0;
+        }
+
+        .airports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .airport-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .airport-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .airport-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #edf2f7;
+        }
+
+        .airport-id {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color, #2c5282);
+        }
+
+        .airport-name {
+            font-size: 0.95rem;
+            color: #718096;
+            margin-top: 0.3rem;
+        }
+
+        .airport-icon {
+            font-size: 2rem;
+        }
+
+        .airport-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .airport-detail {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .airport-detail .label {
+            color: #718096;
+        }
+
+        .airport-detail .value {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .airport-note {
+            background: #fff5f5;
+            color: #c53030;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .gallery-section {
+            margin: 3rem 0;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-color, #2c5282);
+            margin: 2rem 0 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--primary-color, #2c5282);
+        }
+
+        .fuel-estimator {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .fuel-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .form-group input {
+            padding: 0.8rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color, #2c5282);
+        }
+
+        .fuel-result {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .fuel-result .total {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color, #2c5282);
+        }
+
+        .fuel-result .label {
+            font-size: 1rem;
+            color: #718096;
+            margin-top: 0.3rem;
+        }
+
+        .print-button {
+            background: var(--primary-color, #2c5282);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .print-button:hover {
+            background: #2a4365;
+            transform: translateY(-2px);
+        }
+
+        .trip-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            background: #f7fafc;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary-color, #2c5282);
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--primary-color, #2c5282);
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-color, #2c5282);
+            color: white;
+        }
+
+        .nav-center {
+            text-align: center;
+        }
+
+        .safety-note {
+            background: #fff5f5;
+            border-right: 4px solid #e53e3e;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .safety-note h4 {
+            color: #c53030;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .safety-note p {
+            color: #742a2a;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .trip-hero h1 {
+                font-size: 2rem;
+            }
+
+            .quick-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .trip-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media print {
+            .share-buttons,
+            .print-button,
+            .trip-navigation,
+            header,
+            footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <a href="../index.html">✈️ C172 VFR</a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html#regions">אזורי טיסה</a>
+                <a href="../index.html#about">אודות</a>
+                <a href="../index.html#resources">משאבים</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <a href="../index.html">בית</a> >
+        <a href="../index.html#maryland">מרילנד</a> >
+        <span>M1: שננדואה</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="trip-hero">
+        <div class="trip-badge">M1</div>
+        <h1>שננדואה והרי בלו רידג'</h1>
+        <p>טיסה נופית מעל עמק שננדואה והרי בלו רידג' בווירג'יניה</p>
+    </section>
+
+    <!-- Share Buttons -->
+    <div class="share-buttons">
+        <button class="share-btn share-whatsapp" onclick="shareWhatsApp()">
+            📱 שיתוף ב-WhatsApp
+        </button>
+        <button class="share-btn share-email" onclick="shareEmail()">
+            ✉️ שליחה במייל
+        </button>
+        <button class="share-btn share-copy" onclick="copyLink()">
+            🔗 העתקת קישור
+        </button>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="quick-stats">
+        <div class="stat-card">
+            <div class="icon">🛫</div>
+            <div class="value">KGAI</div>
+            <div class="label">Montgomery County</div>
+        </div>
+        <div class="stat-card">
+            <div class="icon">📏</div>
+            <div class="value">200 NM</div>
+            <div class="label">מרחק כולל</div>
+        </div>
+        <div class="stat-card">
+            <div class="icon">⏱️</div>
+            <div class="value">1:49</div>
+            <div class="label">זמן טיסה</div>
+        </div>
+        <div class="stat-card">
+            <div class="icon">📅</div>
+            <div class="value">יום אחד</div>
+            <div class="label">משך</div>
+        </div>
+        <div class="stat-card">
+            <div class="icon">🏔️</div>
+            <div class="value">3,500-5,500ft</div>
+            <div class="label">גובה</div>
+        </div>
+    </div>
+
+    <!-- Tags -->
+    <div class="tags">
+        <span class="tag">🏔️ הרים</span>
+        <span class="tag">📸 scenic</span>
+        <span class="tag">🎓 מתחילים</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="trip-content">
+        <!-- Overview -->
+        <div class="overview-text">
+            טיסה מושלמת לטייס PPL בתחילת הדרך. מסלול עגול מ-KGAI מעל עמק שננדואה, עם נחיתות בשדות קטנים ונופים מדהימים של הרי בלו רידג'. הטיסה עוברת מעל Skyline Drive ו-Shenandoah National Park.
+        </div>
+
+        <!-- Interactive Map -->
+        <h2 class="section-title">📍 מפת המסלול</h2>
+        <div id="mapM1" class="trip-map"></div>
+
+        <!-- Flight Legs -->
+        <h2 class="section-title">🛫 שלבי הטיסה</h2>
+        <div class="flight-legs">
+            <!-- Leg 1 -->
+            <div class="leg-item">
+                <div class="leg-header" onclick="toggleLeg(this)">
+                    <div>
+                        <div class="leg-title">שלב 1: KGAI → KFRR (Front Royal-Warren County)</div>
+                        <div class="leg-summary">48 NM • ~26 דקות • 3,500 ft</div>
+                    </div>
+                    <div class="leg-toggle">▼</div>
+                </div>
+                <div class="leg-content">
+                    <div class="leg-details">
+                        <div class="leg-info-grid">
+                            <div class="leg-info-item">
+                                <span class="icon">📏</span>
+                                <div class="info">
+                                    <div class="info-label">מרחק</div>
+                                    <div class="info-value">48 NM</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">⏱️</span>
+                                <div class="info">
+                                    <div class="info-label">זמן</div>
+                                    <div class="info-value">~26 דקות</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">📈</span>
+                                <div class="info">
+                                    <div class="info-label">גובה</div>
+                                    <div class="info-value">3,500 ft</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">🧭</span>
+                                <div class="info">
+                                    <div class="info-label">כיוון</div>
+                                    <div class="info-value">~250°</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📻 תדרים</h4>
+                            <p><strong>Potomac Approach:</strong> 128.7<br>
+                               <strong>KFRR CTAF:</strong> 123.0</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📝 הערות</h4>
+                            <p>צא מ-KGAI לכיוון מערב. שים לב ל-DC SFRA - יש צורך בהדרכה ואישור. לאחר יציאה מה-SFRA, טוס מערבה לאורך Route 66. הרים מתחילים להופיע.</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>👀 מה לראות</h4>
+                            <p>עמק שננדואה מתחיל להיפתח מימין. Skyline Drive נראה מהאוויר.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leg 2 -->
+            <div class="leg-item">
+                <div class="leg-header" onclick="toggleLeg(this)">
+                    <div>
+                        <div class="leg-title">שלב 2: KFRR → W45 (Luray Caverns)</div>
+                        <div class="leg-summary">22 NM • ~12 דקות • 3,500 ft</div>
+                    </div>
+                    <div class="leg-toggle">▼</div>
+                </div>
+                <div class="leg-content">
+                    <div class="leg-details">
+                        <div class="leg-info-grid">
+                            <div class="leg-info-item">
+                                <span class="icon">📏</span>
+                                <div class="info">
+                                    <div class="info-label">מרחק</div>
+                                    <div class="info-value">22 NM</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">⏱️</span>
+                                <div class="info">
+                                    <div class="info-label">זמן</div>
+                                    <div class="info-value">~12 דקות</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">📈</span>
+                                <div class="info">
+                                    <div class="info-label">גובה</div>
+                                    <div class="info-value">3,500 ft</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">🧭</span>
+                                <div class="info">
+                                    <div class="info-label">כיוון</div>
+                                    <div class="info-value">~210°</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📻 תדרים</h4>
+                            <p><strong>CTAF:</strong> 122.9</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📝 הערות</h4>
+                            <p>טיסה קצרה דרומה לאורך העמק. שדה W45 הוא שדה קטן ליד Luray Caverns.</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>👀 מה לראות</h4>
+                            <p>Luray Caverns (מערות), עמק שננדואה, הרי Blue Ridge משני הצדדים</p>
+                        </div>
+
+                        <div class="attraction-highlight">
+                            <strong>⭐ אטרקציה:</strong> Luray Caverns - מערות מדהימות, שווה ביקור קרקעי!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leg 3 -->
+            <div class="leg-item">
+                <div class="leg-header" onclick="toggleLeg(this)">
+                    <div>
+                        <div class="leg-title">שלב 3: W45 → KSHD (Shenandoah Valley Regional)</div>
+                        <div class="leg-summary">51 NM • ~28 דקות • 4,500 ft</div>
+                    </div>
+                    <div class="leg-toggle">▼</div>
+                </div>
+                <div class="leg-content">
+                    <div class="leg-details">
+                        <div class="leg-info-grid">
+                            <div class="leg-info-item">
+                                <span class="icon">📏</span>
+                                <div class="info">
+                                    <div class="info-label">מרחק</div>
+                                    <div class="info-value">51 NM</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">⏱️</span>
+                                <div class="info">
+                                    <div class="info-label">זמן</div>
+                                    <div class="info-value">~28 דקות</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">📈</span>
+                                <div class="info">
+                                    <div class="info-label">גובה</div>
+                                    <div class="info-value">4,500 ft</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">🧭</span>
+                                <div class="info">
+                                    <div class="info-label">כיוון</div>
+                                    <div class="info-value">~200°</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📻 תדרים</h4>
+                            <p><strong>KSHD Tower:</strong> 119.05 (or CTAF)</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📝 הערות</h4>
+                            <p>המשך דרומה מעל העמק. השדה גדול יותר עם שירותי דלק.</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>👀 מה לראות</h4>
+                            <p>Massanutten Mountain, Shenandoah National Park, George Washington National Forest</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leg 4 -->
+            <div class="leg-item">
+                <div class="leg-header" onclick="toggleLeg(this)">
+                    <div>
+                        <div class="leg-title">שלב 4: KSHD → KGAI (חזרה)</div>
+                        <div class="leg-summary">79 NM • ~43 דקות • 5,500 ft</div>
+                    </div>
+                    <div class="leg-toggle">▼</div>
+                </div>
+                <div class="leg-content">
+                    <div class="leg-details">
+                        <div class="leg-info-grid">
+                            <div class="leg-info-item">
+                                <span class="icon">📏</span>
+                                <div class="info">
+                                    <div class="info-label">מרחק</div>
+                                    <div class="info-value">79 NM</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">⏱️</span>
+                                <div class="info">
+                                    <div class="info-label">זמן</div>
+                                    <div class="info-value">~43 דקות</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">📈</span>
+                                <div class="info">
+                                    <div class="info-label">גובה</div>
+                                    <div class="info-value">5,500 ft</div>
+                                </div>
+                            </div>
+                            <div class="leg-info-item">
+                                <span class="icon">🧭</span>
+                                <div class="info">
+                                    <div class="info-label">כיוון</div>
+                                    <div class="info-value">~070°</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📻 תדרים</h4>
+                            <p><strong>Potomac Approach:</strong> 128.7<br>
+                               <strong>KGAI CTAF:</strong> 123.075</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>📝 הערות</h4>
+                            <p>חזרה מזרחה מעל ההרים. גובה גבוה יותר לחציית הרכסים. כניסה חזרה ל-SFRA - זכור להתקשר ל-Potomac Approach.</p>
+                        </div>
+
+                        <div class="leg-section">
+                            <h4>👀 מה לראות</h4>
+                            <p>נוף פנורמי של הרי Blue Ridge, Shenandoah National Park מלמעלה</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Airports Reference -->
+        <h2 class="section-title">🛬 שדות תעופה</h2>
+        <div class="airports-grid">
+            <!-- KGAI -->
+            <div class="airport-card">
+                <div class="airport-header">
+                    <div>
+                        <div class="airport-id">KGAI</div>
+                        <div class="airport-name">Montgomery County Airpark</div>
+                    </div>
+                    <div class="airport-icon">🛫</div>
+                </div>
+                <div class="airport-details">
+                    <div class="airport-detail">
+                        <span class="label">CTAF:</span>
+                        <span class="value">123.075</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">AWOS:</span>
+                        <span class="value">128.275</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Runway:</span>
+                        <span class="value">14/32, 4202x75ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Surface:</span>
+                        <span class="value">Asphalt</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Elevation:</span>
+                        <span class="value">539 ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Fuel:</span>
+                        <span class="value">100LL (24/7)</span>
+                    </div>
+                </div>
+                <div class="airport-note">
+                    ⚠️ DC SFRA - נדרשת הדרכה!
+                </div>
+            </div>
+
+            <!-- KFRR -->
+            <div class="airport-card">
+                <div class="airport-header">
+                    <div>
+                        <div class="airport-id">KFRR</div>
+                        <div class="airport-name">Front Royal-Warren County Airport</div>
+                    </div>
+                    <div class="airport-icon">🛬</div>
+                </div>
+                <div class="airport-details">
+                    <div class="airport-detail">
+                        <span class="label">CTAF:</span>
+                        <span class="value">123.0</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Runway:</span>
+                        <span class="value">10/28, 3001x60ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Surface:</span>
+                        <span class="value">Asphalt</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Elevation:</span>
+                        <span class="value">709 ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Fuel:</span>
+                        <span class="value">100LL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- W45 -->
+            <div class="airport-card">
+                <div class="airport-header">
+                    <div>
+                        <div class="airport-id">W45</div>
+                        <div class="airport-name">Luray Caverns Airport</div>
+                    </div>
+                    <div class="airport-icon">🛬</div>
+                </div>
+                <div class="airport-details">
+                    <div class="airport-detail">
+                        <span class="label">CTAF:</span>
+                        <span class="value">122.9</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Runway:</span>
+                        <span class="value">4/22, 3075x40ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Surface:</span>
+                        <span class="value">Asphalt (narrow!)</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Elevation:</span>
+                        <span class="value">902 ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Fuel:</span>
+                        <span class="value">None</span>
+                    </div>
+                </div>
+                <div class="airport-note">
+                    ⚠️ אין דלק - תכנן מראש!
+                </div>
+            </div>
+
+            <!-- KSHD -->
+            <div class="airport-card">
+                <div class="airport-header">
+                    <div>
+                        <div class="airport-id">KSHD</div>
+                        <div class="airport-name">Shenandoah Valley Regional</div>
+                    </div>
+                    <div class="airport-icon">🛬</div>
+                </div>
+                <div class="airport-details">
+                    <div class="airport-detail">
+                        <span class="label">Tower:</span>
+                        <span class="value">119.05</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">ATIS:</span>
+                        <span class="value">126.0</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Runway:</span>
+                        <span class="value">5/23, 6002x150ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Surface:</span>
+                        <span class="value">Asphalt</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Elevation:</span>
+                        <span class="value">1201 ft</span>
+                    </div>
+                    <div class="airport-detail">
+                        <span class="label">Fuel:</span>
+                        <span class="value">100LL, Jet-A</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <h2 class="section-title">📸 גלריית תמונות</h2>
+        <div class="photo-gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
+                     alt="Blue Ridge Mountains">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
+                     alt="Mountain Ridge">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800"
+                     alt="Shenandoah Valley">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=800"
+                     alt="Mountain Peaks">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800"
+                     alt="Aerial Mountain View">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800"
+                     alt="Mountain Sunset">
+            </div>
+        </div>
+
+        <!-- Fuel Cost Estimator -->
+        <h2 class="section-title">⛽ מחשבון עלות דלק</h2>
+        <div class="fuel-estimator">
+            <div class="fuel-form">
+                <div class="form-group">
+                    <label for="distance">מרחק (NM)</label>
+                    <input type="number" id="distance" value="200" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="fuelBurn">צריכת דלק (GPH)</label>
+                    <input type="number" id="fuelBurn" value="8.5" min="0" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="speed">מהירות (kts)</label>
+                    <input type="number" id="speed" value="110" min="0">
+                </div>
+                <div class="form-group">
+                    <label for="fuelPrice">מחיר דלק ($/gal)</label>
+                    <input type="number" id="fuelPrice" value="6.50" min="0" step="0.01">
+                </div>
+            </div>
+            <div class="fuel-result">
+                <div class="total" id="fuelTotal">$99.86</div>
+                <div class="label">עלות דלק משוערת</div>
+            </div>
+        </div>
+
+        <!-- Print Button -->
+        <button class="print-button" onclick="window.print()">
+            🖨️ הדפסת Kneeboard
+        </button>
+
+        <!-- Safety Note -->
+        <div class="safety-note">
+            <h4>⚠️ הערת בטיחות</h4>
+            <p>זהו מסמך תכנון בלבד. חובה לבצע אימות מול Chart Supplement, NOTAMs, מזג אוויר ו-TFRs לפני כל טיסה.</p>
+        </div>
+
+        <!-- Trip Navigation -->
+        <div class="trip-navigation">
+            <a href="#" class="nav-link">← M2: מפרץ צ'ספיק</a>
+            <div class="nav-center">
+                <a href="../index.html#maryland" class="nav-link">חזרה למרילנד</a>
+            </div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 C172 VFR Flight Planning. נוצר עבור טייסי PPL בארה"ב.</p>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">
+                אתר זה הוא כלי תכנון בלבד ואינו מהווה תחליף לתדריך טיסה רשמי.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+
+    <!-- Site JS -->
+    <script src="../assets/js/app.js"></script>
+
+    <script>
+        // Initialize Map for M1 Trip
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = L.map('mapM1').setView([38.9, -78.5], 9);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 18
+            }).addTo(map);
+
+            // Airport coordinates (approximate)
+            const airports = {
+                KGAI: [39.1683, -77.166],
+                KFRR: [38.9167, -78.2533],
+                W45: [38.6667, -78.5000],
+                KSHD: [38.2639, -78.8964]
+            };
+
+            // Add airport markers
+            Object.keys(airports).forEach(function(code) {
+                const icon = L.divIcon({
+                    className: 'airport-marker',
+                    html: '<div style="background: #2c5282; color: white; padding: 5px 10px; border-radius: 5px; font-weight: bold; white-space: nowrap;">' + code + '</div>',
+                    iconSize: [60, 30]
+                });
+
+                L.marker(airports[code], {icon: icon})
+                    .addTo(map)
+                    .bindPopup('<strong>' + code + '</strong>');
+            });
+
+            // Draw flight path
+            const flightPath = [
+                airports.KGAI,
+                airports.KFRR,
+                airports.W45,
+                airports.KSHD,
+                airports.KGAI
+            ];
+
+            L.polyline(flightPath, {
+                color: '#e53e3e',
+                weight: 3,
+                opacity: 0.8,
+                dashArray: '10, 10'
+            }).addTo(map);
+
+            // Add direction arrows
+            for (let i = 0; i < flightPath.length - 1; i++) {
+                const midLat = (flightPath[i][0] + flightPath[i+1][0]) / 2;
+                const midLng = (flightPath[i][1] + flightPath[i+1][1]) / 2;
+
+                const arrowIcon = L.divIcon({
+                    className: 'arrow-marker',
+                    html: '→',
+                    iconSize: [20, 20]
+                });
+
+                L.marker([midLat, midLng], {icon: arrowIcon}).addTo(map);
+            }
+        });
+
+        // Toggle leg accordion
+        function toggleLeg(header) {
+            const legItem = header.closest('.leg-item');
+            legItem.classList.toggle('open');
+        }
+
+        // Share functions
+        function shareWhatsApp() {
+            const url = window.location.href;
+            const text = 'M1: טיסת שננדואה והרי בלו רידג׳ - מסלול VFR מדהים!';
+            window.open('https://wa.me/?text=' + encodeURIComponent(text + ' ' + url), '_blank');
+        }
+
+        function shareEmail() {
+            const url = window.location.href;
+            const subject = 'M1: טיסת שננדואה והרי בלו רידג׳';
+            const body = 'מצאתי מסלול טיסה מעניין:\n\n' + url;
+            window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                alert('הקישור הועתק ללוח!');
+            });
+        }
+
+        // Fuel calculator
+        function calculateFuel() {
+            const distance = parseFloat(document.getElementById('distance').value) || 0;
+            const fuelBurn = parseFloat(document.getElementById('fuelBurn').value) || 0;
+            const speed = parseFloat(document.getElementById('speed').value) || 1;
+            const fuelPrice = parseFloat(document.getElementById('fuelPrice').value) || 0;
+
+            const flightTime = distance / speed; // hours
+            const fuelUsed = flightTime * fuelBurn; // gallons
+            const totalCost = fuelUsed * fuelPrice;
+
+            document.getElementById('fuelTotal').textContent = '$' + totalCost.toFixed(2);
+        }
+
+        // Update fuel calculation on input change
+        document.querySelectorAll('.fuel-form input').forEach(function(input) {
+            input.addEventListener('input', calculateFuel);
+        });
+
+        // Initial calculation
+        calculateFuel();
+    </script>
+</body>
+</html>

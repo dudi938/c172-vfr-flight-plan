@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טיול M4: ניאגרה ופינגר לייקס - C172 VFR Flight Plan</title>
+    <meta name="description" content="הרפתקה של 4 ימים עד למפלי ניאגרה ואזור פינגר לייקס. טיסה ארוכה אך שווה כל רגע - מפלי ניאגרה מהאוויר זה חוויה בלתי נשכחת.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="../index.html" class="logo">C172 VFR</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html" class="active">טיולים</a></li>
+                    <li><a href="../planning.html">תכנון</a></li>
+                    <li><a href="../resources.html">משאבים</a></li>
+                    <li><a href="../about.html">אודות</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="trip-detail">
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">טיולים</a></li>
+                    <li aria-current="page">ניאגרה ופינגר לייקס</li>
+                </ol>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <img src="https://images.unsplash.com/photo-1489447068241-b3490214e879?w=1920" alt="מפלי ניאגרה מהאוויר" class="hero-image">
+            <div class="hero-overlay">
+                <div class="container">
+                    <h1>טיול M4: ניאגרה ופינגר לייקס</h1>
+                    <p class="hero-subtitle">KGAI → KIPT → KIAG → KITH → KART → KGAI</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="trip-header">
+                <div class="share-buttons">
+                    <button class="btn-icon" aria-label="שתף בפייסבוק" title="שתף בפייסבוק">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" aria-label="שתף בטוויטר" title="שתף בטוויטר">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" aria-label="העתק קישור" title="העתק קישור">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="stat">
+                        <span class="stat-label">מרחק</span>
+                        <span class="stat-value">771 NM</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">זמן טיסה</span>
+                        <span class="stat-value">7:01</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">משך</span>
+                        <span class="stat-value">4 ימים</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">רגליים</span>
+                        <span class="stat-value">5</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">multi-day</span>
+                    <span class="tag">מפלים</span>
+                    <span class="tag">אגמים</span>
+                    <span class="tag">הרפתקה</span>
+                    <span class="tag">טיול ארוך</span>
+                </div>
+            </section>
+
+            <section class="overview">
+                <h2>סקירה</h2>
+                <p class="lead">הרפתקה של 4 ימים עד למפלי ניאגרה ואזור פינגר לייקס. טיסה ארוכה אך שווה כל רגע - מפלי ניאגרה מהאוויר זה חוויה בלתי נשכחת.</p>
+                <p>זהו טיול המשולב הארוך ביותר במדריך זה, והוא מציע חוויה מדהימה של טיסה לאורך החוף המזרחי צפונה. תחצה את פנסילבניה, תראה את מפלי ניאגרה המפורסמים מהאוויר (חוויה שאי אפשר לתאר!), תטוס מעל אזור פינגר לייקס המרהיב, ותחווה את צפון מדינת ניו יורק הכפרית.</p>
+                <p>הטיול דורש תכנון קפדני - 4 ימים, 5 רגלים, טיסה מעל שטח מגוון. אבל התגמול? חוויה בלתי נשכחת שתזכור לכל החיים.</p>
+            </section>
+
+            <section class="map-section">
+                <h2>מפת מסלול</h2>
+                <div id="mapM4" class="trip-map" role="img" aria-label="מפת מסלול הטיסה"></div>
+            </section>
+
+            <section class="flight-legs">
+                <h2>רגלי טיסה</h2>
+                <div class="accordion">
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 1</span>
+                            <span class="leg-route">KGAI → KIPT (Williamsport, PA)</span>
+                            <span class="leg-stats">130 NM • 71 דקות • 5,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Williamsport App 126.1 → CTAF 120.7</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">5,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">חציית צפון מרילנד ופנסילבניה. SFRA exit - תדרוך חובה! נוף הררי יפה. Williamsport עיר נחמדה על נהר Susquehanna.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 2</span>
+                            <span class="leg-route">KIPT → KIAG (Niagara Falls)</span>
+                            <span class="leg-stats">180 NM • 98 דקות • 5,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Buffalo App 126.15 → Niagara Tower 120.5</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">ATIS:</span>
+                                    <span class="detail-value">124.3</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">5,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value"><strong>מפלי ניאגרה!</strong> הטיסה מעל המפלים היא הרגע הגדול של הטיול. שדה בינלאומי עם מגדל - professional operation. Customs available אם רוצים לקפוץ לקנדה!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 3</span>
+                            <span class="leg-route">KIAG → KITH (Ithaca/Finger Lakes)</span>
+                            <span class="leg-stats">135 NM • 74 דקות • 4,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">CTAF 123.0</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">4,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value"><strong>Finger Lakes מלמעלה - מדהים!</strong> סדרת אגמים ארוכים וצרים מוקפים גבעות. Ithaca עיר אוניברסיטאית נחמדה (Cornell University). מסלולים איכותיים.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 4</span>
+                            <span class="leg-route">KITH → KART (Watertown)</span>
+                            <span class="leg-stats">142 NM • 77 דקות • 5,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">CTAF 118.4</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">5,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">צפון מזרח ניו יורק. Thousand Islands region - אזור מרהיב של נהר St. Lawrence ואלפי איים קטנים. Watertown עיירה שקטה.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 5</span>
+                            <span class="leg-route">KART → KGAI (חזרה הביתה)</span>
+                            <span class="leg-stats">184 NM • 100 דקות • 7,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Potomac App 128.7</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">7,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">רגל חזרה ארוכה - כמעט 2 שעות. גובה גבוה ליעילות. כניסה ל-SFRA - תדרוך והגשת תוכנית טיסה חובה! מנוחה במהלך הטיול חשובה לרגל זו.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="airports">
+                <h2>שדות תעופה</h2>
+                <div class="airport-grid">
+                    <article class="airport-card">
+                        <h3>KIPT - Williamsport Regional</h3>
+                        <dl class="airport-info">
+                            <dt>Tower:</dt>
+                            <dd>120.7</dd>
+                            <dt>Ground:</dt>
+                            <dd>121.9</dd>
+                            <dt>ATIS:</dt>
+                            <dd>126.5</dd>
+                            <dt>מסלול:</dt>
+                            <dd>9/27 - 6,474×150 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>527 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL + Jet A</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה אזורי מצוין. תחנת דרך נוחה בפנסילבניה. העיר על נהר Susquehanna.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card highlight">
+                        <h3>KIAG - Niagara Falls International</h3>
+                        <dl class="airport-info">
+                            <dt>Tower:</dt>
+                            <dd>120.5</dd>
+                            <dt>Ground:</dt>
+                            <dd>121.9</dd>
+                            <dt>ATIS:</dt>
+                            <dd>124.3</dd>
+                            <dt>מסלול:</dt>
+                            <dd>10R/28L - 9,825×150 רגל (ועוד)</dd>
+                            <dt>גובה:</dt>
+                            <dd>590 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL + Jet A</dd>
+                            <dt>הערות:</dt>
+                            <dd><strong>שדה בינלאומי!</strong> Customs available. מסלולים ארוכים מאוד. המפלים במרחק קצר. יכול להיות busy - שמע ATIS וקבל briefing טוב.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card">
+                        <h3>KITH - Ithaca Tompkins International</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>123.0</dd>
+                            <dt>ASOS:</dt>
+                            <dd>135.175</dd>
+                            <dt>מסלול:</dt>
+                            <dd>14/32 - 6,600×150 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>1,099 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL + Jet A</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה מצוין באזור Finger Lakes. עיר אוניברסיטאית תוססת (Cornell). מסעדות ומלונות רבים.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card">
+                        <h3>KART - Watertown International</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>118.4</dd>
+                            <dt>ASOS:</dt>
+                            <dd>128.375</dd>
+                            <dt>מסלול:</dt>
+                            <dd>7/25 - 5,000×150 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>325 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה שקט בצפון ניו יורק. קרוב ל-Thousand Islands. בסיס צבאי בקרבת מקום - שים לב לחללים אוויריים.</dd>
+                        </dl>
+                    </article>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <h2>גלריה</h2>
+                <div class="photo-grid">
+                    <img src="https://images.unsplash.com/photo-1489447068241-b3490214e879?w=800" alt="מפלי ניאגרה" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?w=800" alt="מפלי ניאגרה מקרוב" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800" alt="Finger Lakes" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1470770841497-7b43a5029e52?w=800" alt="אגם בשקיעה" loading="lazy">
+                </div>
+            </section>
+
+            <section class="fuel-estimator">
+                <h2>מחשבון דלק</h2>
+                <form class="fuel-form">
+                    <div class="form-group">
+                        <label for="fuelBurn">צריכת דלק (גלונים לשעה):</label>
+                        <input type="number" id="fuelBurn" value="8.5" min="6" max="12" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelPrice">מחיר דלק ($ לגלון):</label>
+                        <input type="number" id="fuelPrice" value="6.50" min="3" max="15" step="0.10">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="calculateFuel()">חשב</button>
+                </form>
+                <div class="fuel-result" id="fuelResult">
+                    <p>צריכה משוערת כוללת: <strong>60 גלון</strong></p>
+                    <p>עלות משוערת כוללת: <strong>$390</strong></p>
+                    <p class="note">הערה: זהו טיול ארוך מאוד. תכנן תדלוקים בכל שדה. מחירי דלק משתנים - בדוק מראש.</p>
+                </div>
+            </section>
+
+            <section class="safety-note">
+                <h2>הערת בטיחות</h2>
+                <div class="note-box warning">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="note-icon">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <div>
+                        <h3>טיול ארוך - תכנון קפדני נדרש!</h3>
+                        <ul>
+                            <li><strong>משך:</strong> 4 ימים, 771 NM, 7+ שעות טיסה נטו. זה טיול רציני - תכנן מנוחה בין הרגליים!</li>
+                            <li><strong>SFRA:</strong> יציאה וכניסה ל-DC SFRA. תדרוך והגשת תוכנית טיסה חובה בשני הצדדים!</li>
+                            <li><strong>מזג אוויר:</strong> טיסה מעל 3 מדינות ומזג אוויר משתנה. בדוק תחזית לכל המסלול לפני היציאה ועדכן יום יום.</li>
+                            <li><strong>דלק:</strong> תדלק בכל שדה! אל תסתמך על קפיצות. מחירי דלק משתנים - קח בחשבון בתקציב.</li>
+                            <li><strong>רגל 5 ארוכה:</strong> כמעט 2 שעות טיסה חזרה. וודא שאתה רענן ומנוח לרגל זו!</li>
+                            <li><strong>חללים אוויריים:</strong> טיסה מעל אזורים רבים עם Class B/C/D airspace. תכנן את המסלול בקפידה!</li>
+                            <li><strong>KIAG:</strong> שדה בינלאומי busy. היה מוכן לתנועה רבה ותקשורת professional.</li>
+                            <li><strong>חלופות:</strong> תכנן שדות חלופה לכל רגל. טיול ארוך = יותר סיכון למזג אוויר משתנה.</li>
+                            <li><strong>ציוד חירום:</strong> וודא שיש לך ציוד חירום מלא, מפות גיבוי, וטלפונים טעונים.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="trip-planning">
+                <h2>תכנון מומלץ</h2>
+                <div class="planning-timeline">
+                    <div class="timeline-item">
+                        <div class="day-badge">יום 1</div>
+                        <div class="day-content">
+                            <h3>KGAI → KIPT → KIAG</h3>
+                            <p>התחל מוקדם בבוקר. שתי רגלים ארוכות (130 + 180 NM). אחר צהריים/ערב ב-Niagara Falls - סייר את המפלים מהקרקע!</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="day-badge">יום 2</div>
+                        <div class="day-content">
+                            <h3>יום מנוחה ב-Niagara</h3>
+                            <p>תייר את Niagara Falls, קנדה (אם יש פספורט), או פשוט תנוח. טיסה מחר תהיה ארוכה.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="day-badge">יום 3</div>
+                        <div class="day-content">
+                            <h3>KIAG → KITH → KART</h3>
+                            <p>Finger Lakes בבוקר (135 NM), אז צפונה ל-Watertown (142 NM). Ithaca מקום נהדר לארוחת צהריים.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="day-badge">יום 4</div>
+                        <div class="day-content">
+                            <h3>KART → KGAI</h3>
+                            <p>רגל חזרה ארוכה (184 NM, 100 דקות). התחל מוקדם, תכנן הפסקה אם צריך. כניסה ל-SFRA!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    הדפס
+                </button>
+                <button class="btn btn-primary">הוסף ליומן טיסה</button>
+            </div>
+
+            <nav class="trip-navigation" aria-label="ניווט בין טיולים">
+                <a href="m3-deep-creek.html" class="nav-prev">
+                    <span class="nav-label">← הקודם</span>
+                    <span class="nav-title">מערב מרילנד ודיפ קריק</span>
+                </a>
+                <a href="m5-atlantic-city.html" class="nav-next">
+                    <span class="nav-label">הבא →</span>
+                    <span class="nav-title">אטלנטיק סיטי</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Plan</h3>
+                    <p>מדריך טיסה VFR לטייסים ישראלים בארה"ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../trips.html">טיולים</a></li>
+                        <li><a href="../planning.html">תכנון</a></li>
+                        <li><a href="../resources.html">משאבים</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.aviationweather.gov" target="_blank" rel="noopener">Aviation Weather</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Plan. לשימוש חינוכי בלבד.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

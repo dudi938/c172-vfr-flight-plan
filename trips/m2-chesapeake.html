@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טיול M2: מפרץ צ'ספיק ואושן סיטי - C172 VFR Flight Plan</title>
+    <meta name="description" content="טיול דו-יומי מעל מפרץ צ'ספיק ועד לחופי אושן סיטי. שילוב של טיסה מעל מים, חופים, וערי נופש.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="../index.html" class="logo">C172 VFR</a>
+                <ul class="nav-links">
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html" class="active">טיולים</a></li>
+                    <li><a href="../planning.html">תכנון</a></li>
+                    <li><a href="../resources.html">משאבים</a></li>
+                    <li><a href="../about.html">אודות</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="trip-detail">
+        <nav class="breadcrumbs" aria-label="breadcrumb">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">טיולים</a></li>
+                    <li aria-current="page">מפרץ צ'ספיק ואושן סיטי</li>
+                </ol>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920" alt="מפרץ צ'ספיק מהאוויר" class="hero-image">
+            <div class="hero-overlay">
+                <div class="container">
+                    <h1>טיול M2: מפרץ צ'ספיק ואושן סיטי</h1>
+                    <p class="hero-subtitle">KGAI → W29 → KESN → KOXB → KCGE → KGAI</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="trip-header">
+                <div class="share-buttons">
+                    <button class="btn-icon" aria-label="שתף בפייסבוק" title="שתף בפייסבוק">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" aria-label="שתף בטוויטר" title="שתף בטוויטר">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </button>
+                    <button class="btn-icon" aria-label="העתק קישור" title="העתק קישור">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="stat">
+                        <span class="stat-label">מרחק</span>
+                        <span class="stat-value">220 NM</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">זמן טיסה</span>
+                        <span class="stat-value">2:00</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">משך</span>
+                        <span class="stat-value">יומיים</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">רגליים</span>
+                        <span class="stat-value">5</span>
+                    </div>
+                </div>
+
+                <div class="tags">
+                    <span class="tag">חופי</span>
+                    <span class="tag">multi-day</span>
+                    <span class="tag">מים</span>
+                    <span class="tag">חופים</span>
+                </div>
+            </section>
+
+            <section class="overview">
+                <h2>סקירה</h2>
+                <p class="lead">טיול דו-יומי מעל מפרץ צ'ספיק ועד לחופי אושן סיטי. שילוב של טיסה מעל מים, חופים, וערי נופש.</p>
+                <p>מסלול זה מציע שילוב מרהיב של נופים חופיים, טיסה מעל מפרץ צ'ספיק, ונחיתות בשדות תעופה מעניינים לאורך החוף המזרחי של מרילנד. תעבור מעל גשר המפרץ המפורסם, תטוס לאורך חצי האי המזרחי, ותגיע לחופי האוקיינוס האטלנטי באושן סיטי.</p>
+            </section>
+
+            <section class="map-section">
+                <h2>מפת מסלול</h2>
+                <div id="mapM2" class="trip-map" role="img" aria-label="מפת מסלול הטיסה"></div>
+            </section>
+
+            <section class="flight-legs">
+                <h2>רגלי טיסה</h2>
+                <div class="accordion">
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 1</span>
+                            <span class="leg-route">KGAI → W29 (Bay Bridge)</span>
+                            <span class="leg-stats">35 NM • 19 דקות • 2,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Potomac App 128.7 → CTAF 123.0</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">2,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">Bay Bridge נראה מרחוק. טיסה מעל צפון המפרץ.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 2</span>
+                            <span class="leg-route">W29 → KESN (Easton)</span>
+                            <span class="leg-stats">32 NM • 17 דקות • 2,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">CTAF 123.075</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">2,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">טיסה מעל חצי האי המזרחי. נוף חקלאי ועיירות קטנות.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 3</span>
+                            <span class="leg-route">KESN → KOXB (Ocean City)</span>
+                            <span class="leg-stats">48 NM • 26 דקות • 2,000 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Patuxent App 127.95 → CTAF 123.05</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">2,000 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">חוף האוקיינוס! נוף מדהים של החוף והעיר. גובה נמוך יותר ליהנות מהנוף.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 4</span>
+                            <span class="leg-route">KOXB → KCGE (Cambridge)</span>
+                            <span class="leg-stats">33 NM • 18 דקות • 2,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">CTAF 123.0</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">2,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">חזרה מערבה לעבר המפרץ. Cambridge עיירה נחמדה למנוחה.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+
+                    <details class="accordion-item">
+                        <summary class="accordion-header">
+                            <span class="leg-number">רגל 5</span>
+                            <span class="leg-route">KCGE → KGAI (חזרה)</span>
+                            <span class="leg-stats">72 NM • 39 דקות • 3,500 רגל</span>
+                        </summary>
+                        <div class="accordion-content">
+                            <div class="leg-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">תדרים:</span>
+                                    <span class="detail-value">Potomac App 128.7 → CTAF 123.075</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">גובה שיוט:</span>
+                                    <span class="detail-value">3,500 רגל</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label">הערות:</span>
+                                    <span class="detail-value">כניסה ל-SFRA - תדרוך חובה! צור קשר עם Potomac בזמן.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section class="airports">
+                <h2>שדות תעופה</h2>
+                <div class="airport-grid">
+                    <article class="airport-card">
+                        <h3>W29 - Bay Bridge Airport</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>123.0</dd>
+                            <dt>מסלול:</dt>
+                            <dd>11/29 - 2,940×35 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>58 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>אין דלק בשדה</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה קטן ציורי ליד גשר המפרץ. מסלול קצר - שים לב לביצועים.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card">
+                        <h3>KESN - Easton/Newnam Field</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>123.075</dd>
+                            <dt>מסלול:</dt>
+                            <dd>4/22 - 5,500×100 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>72 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL + Jet A</dd>
+                            <dt>הערות:</dt>
+                            <dd>שדה מצוין עם שירותים מלאים. FBO איכותי, מסעדות בקרבת מקום.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card">
+                        <h3>KOXB - Ocean City Municipal</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>123.05</dd>
+                            <dt>מסלול:</dt>
+                            <dd>14/32 - 4,074×75 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>16 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL זמין 24/7 (self-serve)</dd>
+                            <dt>הערות:</dt>
+                            <dd>ליד חוף האוקיינוס! עיר נופש תוססת, מסעדות ומלונות רבים.</dd>
+                        </dl>
+                    </article>
+
+                    <article class="airport-card">
+                        <h3>KCGE - Cambridge-Dorchester</h3>
+                        <dl class="airport-info">
+                            <dt>CTAF:</dt>
+                            <dd>123.0</dd>
+                            <dt>מסלול:</dt>
+                            <dd>16/34 - 4,476×75 רגל</dd>
+                            <dt>גובה:</dt>
+                            <dd>20 רגל</dd>
+                            <dt>דלק:</dt>
+                            <dd>100LL</dd>
+                            <dt>הערות:</dt>
+                            <dd>עיירה שקטה וידידותית. מקום נהדר לנופש במהלך הטיול.</dd>
+                        </dl>
+                    </article>
+                </div>
+            </section>
+
+            <section class="gallery">
+                <h2>גלריה</h2>
+                <div class="photo-grid">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="חוף מהאוויר" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="מפרץ צ'ספיק" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800" alt="חוף שקיעה" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800" alt="אושן סיטי" loading="lazy">
+                </div>
+            </section>
+
+            <section class="fuel-estimator">
+                <h2>מחשבון דלק</h2>
+                <form class="fuel-form">
+                    <div class="form-group">
+                        <label for="fuelBurn">צריכת דלק (גלונים לשעה):</label>
+                        <input type="number" id="fuelBurn" value="8.5" min="6" max="12" step="0.5">
+                    </div>
+                    <div class="form-group">
+                        <label for="fuelPrice">מחיר דלק ($ לגלון):</label>
+                        <input type="number" id="fuelPrice" value="6.50" min="3" max="15" step="0.10">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="calculateFuel()">חשב</button>
+                </form>
+                <div class="fuel-result" id="fuelResult">
+                    <p>צריכה משוערת: <strong>17 גלון</strong></p>
+                    <p>עלות משוערת: <strong>$110</strong></p>
+                </div>
+            </section>
+
+            <section class="safety-note">
+                <h2>הערת בטיחות</h2>
+                <div class="note-box warning">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="note-icon">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <div>
+                        <h3>שים לב!</h3>
+                        <ul>
+                            <li><strong>SFRA:</strong> מסלול זה חוצה ונכנס ל-DC SFRA. תדרוך חובה והגשת תוכנית טיסה!</li>
+                            <li><strong>טיסה מעל מים:</strong> רוב המסלול מעל מפרץ צ'ספיק. וודא שיש לך אפוד הצלה וציוד חירום מתאים.</li>
+                            <li><strong>מזג אוויר:</strong> מפרץ צ'ספיק יכול ליצור מזג אוויר משתנה. בדוק תחזית ימית לפני הטיסה.</li>
+                            <li><strong>W29:</strong> מסלול קצר (2,940 רגל) - וודא ביצועי המטוס בחום ולחות גבוהים.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="action-buttons">
+                <button class="btn btn-secondary" onclick="window.print()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"/>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+                        <rect x="6" y="14" width="12" height="8"/>
+                    </svg>
+                    הדפס
+                </button>
+                <button class="btn btn-primary">הוסף ליומן טיסה</button>
+            </div>
+
+            <nav class="trip-navigation" aria-label="ניווט בין טיולים">
+                <a href="m1-shenandoah.html" class="nav-prev">
+                    <span class="nav-label">← הקודם</span>
+                    <span class="nav-title">עמק שננדואה</span>
+                </a>
+                <a href="m3-deep-creek.html" class="nav-next">
+                    <span class="nav-label">הבא →</span>
+                    <span class="nav-title">מערב מרילנד ודיפ קריק</span>
+                </a>
+            </nav>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Plan</h3>
+                    <p>מדריך טיסה VFR לטייסים ישראלים בארה"ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../trips.html">טיולים</a></li>
+                        <li><a href="../planning.html">תכנון</a></li>
+                        <li><a href="../resources.html">משאבים</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.aviationweather.gov" target="_blank" rel="noopener">Aviation Weather</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Plan. לשימוש חינוכי בלבד.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

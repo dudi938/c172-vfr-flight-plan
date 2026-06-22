@@ -1,84 +1,896 @@
 <!doctype html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>תוכנית VFR נופית · C172 · יולי-אוגוסט</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/site.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyRoute · מסלולי VFR נופיים בארה"ב</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="description" content="תכנון טיסות VFR מפורט לטייסי PPL ישראלים בארה״ב - מסלולים נופיים, מפות אינטראקטיביות, תדרים וגבהים">
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html" class="active">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html">ניו יורק↔וושינגטון</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
-  </div>
-  <div class="search-bar">
-    <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
-    <div id="searchResults" class="search-dropdown" role="listbox"></div>
-  </div>
-</header>
-  <div class="wrap" id="top">
-    <section class="hero">
-      <h1>תוכנית VFR נופית · בניית שעות · C172</h1>
-      <p class="lead">מסלולי VFR יפים ומפורטים ליולי-אוגוסט עבור טייס PPL בתחילת הדרך — תחנות, לגים, גבהים, תדרים, נקודות עניין, מפות ותמונות. שני בסיסים: מרילנד (KGAI) וניו יורק (KFRG).</p>
-      <div class="hero-cta">
-        <a class="btn-primary" href="maryland.html">התחל ממרילנד</a>
-        <a class="btn-ghost" href="info.html">מידע ובטיחות</a>
-      </div>
-    </section>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
-    <h2>בחר אזור</h2>
-    <div class="overview-grid">
-      <a class="ov-card" href="maryland.html">
-        <div class="ov-top"><span class="ov-badge">M1–M4</span><span class="ov-count">4 טיולים</span></div>
-        <h3>מרילנד</h3>
-        <p>מבסיס KGAI · שננדואה, צ'ספיק, הרי מערב מרילנד, ניאגרה</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-      <a class="ov-card" href="new-york.html">
-        <div class="ov-top"><span class="ov-badge">N1–N4</span><span class="ov-count">4 טיולים</span></div>
-        <h3>ניו יורק</h3>
-        <p>מבסיס KFRG · קצה לונג איילנד, עמק ההדסון, איים, מסדרון מנהטן</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-      <a class="ov-card" href="nyc-dc.html">
-        <div class="ov-top"><span class="ov-badge">D1–D5</span><span class="ov-count">5 טיולים</span></div>
-        <h3>ניו יורק↔וושינגטון</h3>
-        <p>יעדי קהילת ה-GA · Ocean City, Lancaster, מסדרון הדסון, Block Island, Tangier</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-      <a class="ov-card" href="bonus.html">
-        <div class="ov-top"><span class="ov-badge">R1–R6</span><span class="ov-count">6 טיולים</span></div>
-        <h3>טיולי בונוס</h3>
-        <p>מסלולים מומלצים נוספים שחקרנו ברשת</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-    </div>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="brand" aria-label="דף הבית SkyRoute">
+                    <span class="brand-icon" aria-hidden="true">✈️</span>
+                    <span class="brand-text">SkyRoute</span>
+                </a>
 
-    <h2>איך משתמשים באתר</h2>
-    <div class="grid">
-      <div class="card"><h3>🔎 חיפוש חכם</h3><p>תיבת החיפוש למעלה מחפשת בכל הדפים — טיול, שדה או מילת מפתח — ולוחצת ישר לאזור הרלוונטי.</p></div>
-      <div class="card"><h3>🗺️ מפות אינטראקטיביות</h3><p>בכל טיול יש מפת מסלול. לחיצה על המפה פותחת תצוגת מסך מלא עם זום.</p></div>
-      <div class="card"><h3>📱 מותאם למובייל</h3><p>הכל עובד חלק בנייד — תפריט, חיפוש, טבלאות נגללות ותמונות.</p></div>
-    </div>
+                <nav class="nav" role="navigation" aria-label="ניווט ראשי">
+                    <ul class="nav-list">
+                        <li><a href="index.html" class="nav-link active" aria-current="page">בית</a></li>
+                        <li><a href="#trips" class="nav-link">מסלולים</a></li>
+                        <li><a href="#airports" class="nav-link">שדות</a></li>
+                        <li><a href="#safety" class="nav-link">מידע ובטיחות</a></li>
+                    </ul>
+                </nav>
 
-    <div class="note">
-          <b>חשוב:</b> זהו מסמך תכנון והכנה. לפני כל טיסה חובה לבצע אימות עדכני ב־Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים, משקל/איזון, ותדרים עדכניים.
+                <div class="header-actions">
+                    <button class="search-btn" aria-label="פתח חיפוש" data-search-open>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button class="mobile-menu-btn" aria-label="תפריט" aria-expanded="false" data-mobile-menu>
+                        <span class="hamburger" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
         </div>
-  </div>
-<footer class="site-footer">
-  <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
-  </div>
-</footer>
-  
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+    </header>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" role="dialog" aria-modal="true" aria-label="חיפוש" data-search-overlay>
+        <div class="search-overlay-content">
+            <button class="search-close" aria-label="סגור חיפוש" data-search-close>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="search-box">
+                <input type="search"
+                       class="search-input"
+                       placeholder="חפש מסלול, שדה, אטרקציה..."
+                       aria-label="שדה חיפוש"
+                       data-search-input>
+            </div>
+            <div class="search-results" data-search-results></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" role="banner">
+            <div class="hero-background">
+                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1920&q=80&fit=crop"
+                     alt="מטוס צסנה 172 בטיסה מעל נוף אמריקאי"
+                     class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">מסלולי VFR נופיים · Cessna 172</h1>
+                    <p class="hero-subtitle">
+                        תכנון טיסות VFR מפורט עם מפות, תדרים, גבהים, אטרקציות ותמונות.<br>
+                        שני בסיסים: מרילנד (KGAI) וניו יורק (KFRG).
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#trips" class="btn btn-primary">גלה מסלולים</a>
+                        <a href="#safety" class="btn btn-secondary">מידע ובטיחות</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <section class="stats-bar">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">19+</div>
+                        <div class="stat-label">מסלולים</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">50+</div>
+                        <div class="stat-label">שדות</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2</div>
+                        <div class="stat-label">בסיסים</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2024</div>
+                        <div class="stat-label">מעודכן</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tags Filter Section -->
+        <section class="tags-section">
+            <div class="container">
+                <h2 class="section-title">סנן לפי נושא</h2>
+                <div class="tags-filter" role="group" aria-label="סינון מסלולים">
+                    <button class="tag-pill active" data-filter="all">הכל</button>
+                    <button class="tag-pill" data-filter="חופי">חופי</button>
+                    <button class="tag-pill" data-filter="הרים">הרים</button>
+                    <button class="tag-pill" data-filter="איים">איים</button>
+                    <button class="tag-pill" data-filter="עירוני">עירוני</button>
+                    <button class="tag-pill" data-filter="multi-day">multi-day</button>
+                    <button class="tag-pill" data-filter="מתחילים">מתחילים</button>
+                    <button class="tag-pill" data-filter="scenic">scenic</button>
+                    <button class="tag-pill" data-filter="Hudson">Hudson</button>
+                    <button class="tag-pill" data-filter="Chesapeake">Chesapeake</button>
+                    <button class="tag-pill" data-filter="Niagara">Niagara</button>
+                    <button class="tag-pill" data-filter="Cape Cod">Cape Cod</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trip Cards Grid -->
+        <section id="trips" class="trips-section">
+            <div class="container">
+                <h2 class="section-title">כל המסלולים</h2>
+
+                <!-- Maryland Base -->
+                <h3 class="region-header">מרילנד (KGAI)</h3>
+                <div class="trips-grid">
+                    <!-- M1 -->
+                    <article class="trip-card" data-tags="הרים scenic מתחילים">
+                        <a href="trips/m1-shenandoah.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80&fit=crop"
+                                     alt="נוף הרי בלו רידג׳" loading="lazy">
+                                <span class="trip-badge">M1</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">שננדואה והרי בלו רידג׳</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">200 NM</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">1:49</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">הרים</span>
+                                    <span class="tag">scenic</span>
+                                    <span class="tag">מתחילים</span>
+                                </div>
+                                <span class="trip-region">מרילנד</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- M2 -->
+                    <article class="trip-card" data-tags="חופי multi-day Chesapeake">
+                        <a href="trips/m2-chesapeake.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&fit=crop"
+                                     alt="חוף אושן סיטי" loading="lazy">
+                                <span class="trip-badge">M2</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">מפרץ צ׳ספיק ואושן סיטי</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">220 NM</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">2:00</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">2 ימים</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">multi-day</span>
+                                    <span class="tag">Chesapeake</span>
+                                </div>
+                                <span class="trip-region">מרילנד</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- M3 -->
+                    <article class="trip-card" data-tags="הרים אגמים scenic">
+                        <a href="trips/m3-deep-creek.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=600&q=80&fit=crop"
+                                     alt="אגם דיפ קריק" loading="lazy">
+                                <span class="trip-badge">M3</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">מערב מרילנד ודיפ קריק לייק</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">214 NM</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">1:56</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">הרים</span>
+                                    <span class="tag">אגמים</span>
+                                </div>
+                                <span class="trip-region">מרילנד</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- M4 -->
+                    <article class="trip-card" data-tags="multi-day מפלים אגמים Niagara">
+                        <a href="trips/m4-niagara.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1489447068241-b3490214e879?w=600&q=80&fit=crop"
+                                     alt="מפלי ניאגרה" loading="lazy">
+                                <span class="trip-badge">M4</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">ניאגרה ופינגר לייקס</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">771 NM</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">7:01</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">4 ימים</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">multi-day</span>
+                                    <span class="tag">מפלים</span>
+                                    <span class="tag">אגמים</span>
+                                    <span class="tag">Niagara</span>
+                                </div>
+                                <span class="trip-region">מרילנד</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- New York Base -->
+                <h3 class="region-header">ניו יורק (KFRG)</h3>
+                <div class="trips-grid">
+                    <!-- N1 -->
+                    <article class="trip-card" data-tags="חופי scenic מתחילים">
+                        <a href="trips/n1-montauk.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=600&q=80&fit=crop"
+                                     alt="חוף מונטאוק" loading="lazy">
+                                <span class="trip-badge">N1</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">קצה לונג איילנד ומונטאוק</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">scenic</span>
+                                    <span class="tag">מתחילים</span>
+                                </div>
+                                <span class="trip-region">ניו יורק</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- N2 -->
+                    <article class="trip-card" data-tags="הרים scenic עירוני Hudson">
+                        <a href="trips/n2-hudson-valley.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=600&q=80&fit=crop"
+                                     alt="עמק ההדסון" loading="lazy">
+                                <span class="trip-badge">N2</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">עמק ההדסון</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">הרים</span>
+                                    <span class="tag">scenic</span>
+                                    <span class="tag">עירוני</span>
+                                    <span class="tag">Hudson</span>
+                                </div>
+                                <span class="trip-region">ניו יורק</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- N3 -->
+                    <article class="trip-card" data-tags="איים חופי multi-day">
+                        <a href="trips/n3-new-england-islands.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600&q=80&fit=crop"
+                                     alt="איי ניו אינגלנד" loading="lazy">
+                                <span class="trip-badge">N3</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">איי ניו אינגלנד</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">2 ימים</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">איים</span>
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">multi-day</span>
+                                </div>
+                                <span class="trip-region">ניו יורק</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- N4 -->
+                    <article class="trip-card" data-tags="עירוני Hudson iconic">
+                        <a href="trips/n4-manhattan-corridor.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80&fit=crop"
+                                     alt="סקיילין מנהטן" loading="lazy">
+                                <span class="trip-badge">N4</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">מסדרון מנהטן/הדסון</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">חצי יום</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">עירוני</span>
+                                    <span class="tag">Hudson</span>
+                                    <span class="tag">iconic</span>
+                                </div>
+                                <span class="trip-region">ניו יורק</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- NYC-DC Corridor -->
+                <h3 class="region-header">מסדרון NYC-DC</h3>
+                <div class="trips-grid">
+                    <!-- D1 -->
+                    <article class="trip-card" data-tags="חופי fly-in">
+                        <a href="trips/d1-ocean-city-flyin.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80&fit=crop"
+                                     alt="אירוע Fly-In באושן סיטי" loading="lazy">
+                                <span class="trip-badge">D1</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">Ocean City Fly-In</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">fly-in</span>
+                                </div>
+                                <span class="trip-region">מסדרון NYC-DC</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- D2 -->
+                    <article class="trip-card" data-tags="scenic כפרי">
+                        <a href="trips/d2-lancaster-pa.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80&fit=crop"
+                                     alt="שדות לנקסטר" loading="lazy">
+                                <span class="trip-badge">D2</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">לנקסטר Pennsylvania Dutch</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">scenic</span>
+                                    <span class="tag">כפרי</span>
+                                </div>
+                                <span class="trip-region">מסדרון NYC-DC</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- D3 -->
+                    <article class="trip-card" data-tags="עירוני Hudson iconic">
+                        <a href="trips/d3-extended-hudson.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80&fit=crop"
+                                     alt="מסדרון ההדסון המורחב" loading="lazy">
+                                <span class="trip-badge">D3</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">מסדרון ההדסון המורחב</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">חצי יום</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">עירוני</span>
+                                    <span class="tag">Hudson</span>
+                                    <span class="tag">iconic</span>
+                                </div>
+                                <span class="trip-region">מסדרון NYC-DC</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- D4 -->
+                    <article class="trip-card" data-tags="איים חופי">
+                        <a href="trips/d4-block-island.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80&fit=crop"
+                                     alt="בלוק איילנד" loading="lazy">
+                                <span class="trip-badge">D4</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">Block Island</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">איים</span>
+                                    <span class="tag">חופי</span>
+                                </div>
+                                <span class="trip-region">מסדרון NYC-DC</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- D5 -->
+                    <article class="trip-card" data-tags="איים חופי Chesapeake">
+                        <a href="trips/d5-tangier-island.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&q=80&fit=crop"
+                                     alt="טנג׳יר איילנד" loading="lazy">
+                                <span class="trip-badge">D5</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">Tangier Island</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">איים</span>
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">Chesapeake</span>
+                                </div>
+                                <span class="trip-region">מסדרון NYC-DC</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+
+                <!-- Bonus Routes -->
+                <h3 class="region-header">מסלולים נוספים</h3>
+                <div class="trips-grid">
+                    <!-- R1 -->
+                    <article class="trip-card" data-tags="חופי scenic Cape Cod">
+                        <a href="trips/r1-cape-cod.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1502933691298-84fc14542831?w=600&q=80&fit=crop"
+                                     alt="קייפ קוד" loading="lazy">
+                                <span class="trip-badge">R1</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">סיבוב קייפ קוד ואיי הכורמים</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">scenic</span>
+                                    <span class="tag">Cape Cod</span>
+                                </div>
+                                <span class="trip-region">בונוס</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- R2 -->
+                    <article class="trip-card" data-tags="הרים scenic">
+                        <a href="trips/r2-berkshires.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&q=80&fit=crop"
+                                     alt="הרי ברקשייר" loading="lazy">
+                                <span class="trip-badge">R2</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">הרי ברקשייר ומסצ׳וסטס</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">הרים</span>
+                                    <span class="tag">scenic</span>
+                                </div>
+                                <span class="trip-region">בונוס</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- R3 -->
+                    <article class="trip-card" data-tags="עירוני historic">
+                        <a href="trips/r3-philadelphia.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1467769204611-f39c48d82a3d?w=600&q=80&fit=crop"
+                                     alt="פילדלפיה" loading="lazy">
+                                <span class="trip-badge">R3</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">פילדלפיה ההיסטורית</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">חצי יום</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">עירוני</span>
+                                    <span class="tag">historic</span>
+                                </div>
+                                <span class="trip-region">בונוס</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- R4 -->
+                    <article class="trip-card" data-tags="חופי איים">
+                        <a href="trips/r4-nantucket.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=600&q=80&fit=crop"
+                                     alt="ננטקט" loading="lazy">
+                                <span class="trip-badge">R4</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">ננטקט ומרתא׳ס וינירד</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">חופי</span>
+                                    <span class="tag">איים</span>
+                                </div>
+                                <span class="trip-region">בונוס</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- R5 -->
+                    <article class="trip-card" data-tags="הרים scenic">
+                        <a href="trips/r5-catskills.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&q=80&fit=crop"
+                                     alt="הרי קטסקיל" loading="lazy">
+                                <span class="trip-badge">R5</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">הרי קטסקיל ואגמי האצבע</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">יום אחד</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">הרים</span>
+                                    <span class="tag">scenic</span>
+                                </div>
+                                <span class="trip-region">בונוס</span>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- R6 -->
+                    <article class="trip-card" data-tags="עירוני historic">
+                        <a href="trips/r6-washington-dc.html" class="trip-card-link">
+                            <div class="trip-card-image">
+                                <img src="https://images.unsplash.com/photo-1617581629397-a72507c3de9e?w=600&q=80&fit=crop"
+                                     alt="וושינגטון די.סי." loading="lazy">
+                                <span class="trip-badge">R6</span>
+                                <button class="favorite-btn" aria-label="הוסף למועדפים" data-favorite>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M10 17.5l-5.878 3.09 1.123-6.545L.49 9.455l6.572-.955L10 2.5l2.938 6 6.572.955-4.755 4.59 1.123 6.545z"
+                                              stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="trip-card-content">
+                                <h4 class="trip-title">סיור וושינגטון די.סי. Special Flight Rules</h4>
+                                <div class="trip-meta">
+                                    <span class="meta-item">משתנה</span>
+                                    <span class="meta-divider">·</span>
+                                    <span class="meta-item">חצי יום</span>
+                                </div>
+                                <div class="trip-tags">
+                                    <span class="tag">עירוני</span>
+                                    <span class="tag">historic</span>
+                                </div>
+                                <span class="trip-region">בונוס</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section id="how-it-works" class="how-section">
+            <div class="container">
+                <h2 class="section-title">איך זה עובד</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="24" cy="20" r="3" fill="currentColor"/>
+                                <path d="M24 26v8" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">חיפוש חכם</h3>
+                        <p class="feature-description">חיפוש מהיר לפי שדה תעופה, אטרקציה, מרחק, או נושא. מנוע חיפוש מתקדם עם אוטומטיק-קומפליט.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="8" width="32" height="32" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 18l8 8 8-8" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">מפות אינטראקטיביות</h3>
+                        <p class="feature-description">מפות Leaflet עם ציוני דרך, גבהי שיוט מומלצים, TFRs, ואזורי אוויר מיוחדים.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="10" y="6" width="28" height="36" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 14h16M16 22h16M16 30h10" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <h3 class="feature-title">מותאם למובייל + הדפסה</h3>
+                        <p class="feature-description">עיצוב רספונסיבי לתכנון בנייד, ותבניות הדפסה מוכנות ל-Kneeboard.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety Banner -->
+        <section id="safety" class="safety-banner" role="alert">
+            <div class="container">
+                <div class="safety-content">
+                    <div class="safety-icon" aria-hidden="true">⚠️</div>
+                    <p class="safety-text">
+                        אתר זה מיועד לתכנון בלבד. לפני כל טיסה חובה לאמת NOTAMs, TFRs, מזג אוויר, ביצועים ומשקל/איזון.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand">
+                        <span class="brand-icon" aria-hidden="true">✈️</span>
+                        <span class="brand-text">SkyRoute</span>
+                    </a>
+                    <p class="footer-tagline">מסלולי VFR נופיים בארה״ב</p>
+                </div>
+                <nav class="footer-nav" aria-label="ניווט תחתון">
+                    <div class="footer-links">
+                        <h4 class="footer-links-title">קישורים מהירים</h4>
+                        <ul>
+                            <li><a href="index.html">בית</a></li>
+                            <li><a href="#trips">מסלולים</a></li>
+                            <li><a href="#airports">שדות</a></li>
+                            <li><a href="#safety">בטיחות</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4 class="footer-links-title">משאבים</h4>
+                        <ul>
+                            <li><a href="https://www.faa.gov/air_traffic/flight_info/aeronav/" target="_blank" rel="noopener">FAA Charts</a></li>
+                            <li><a href="https://www.aviationweather.gov/" target="_blank" rel="noopener">Aviation Weather</a></li>
+                            <li><a href="https://tfr.faa.gov/tfr2/list.html" target="_blank" rel="noopener">TFR List</a></li>
+                            <li><a href="https://notams.aim.faa.gov/" target="_blank" rel="noopener">NOTAMs</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p>נבנה באהבה לקהילת הטייסים הישראלית ✈️</p>
+                <p class="footer-disclaimer">
+                    <strong>Disclaimer:</strong> All information provided is for flight planning purposes only.
+                    Pilots are responsible for verifying all data before flight.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency FAB -->
+    <button class="emergency-fab" aria-label="מידע חירום" data-emergency-toggle>
+        🆘
+    </button>
+
+    <!-- Emergency Panel -->
+    <aside class="emergency-panel" role="complementary" aria-label="פאנל חירום" data-emergency-panel>
+        <div class="emergency-panel-header">
+            <h3>מידע חירום</h3>
+            <button class="emergency-close" aria-label="סגור" data-emergency-close>×</button>
+        </div>
+        <div class="emergency-panel-content">
+            <div class="emergency-item">
+                <h4>121.5 MHz</h4>
+                <p>Emergency Frequency</p>
+            </div>
+            <div class="emergency-item">
+                <h4>7700</h4>
+                <p>Emergency Squawk</p>
+            </div>
+            <div class="emergency-item">
+                <h4>7600</h4>
+                <p>Radio Failure</p>
+            </div>
+            <div class="emergency-item">
+                <h4>7500</h4>
+                <p>Hijack</p>
+            </div>
+            <div class="emergency-item">
+                <h4>Flight Service</h4>
+                <p>1-800-WX-BRIEF</p>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <script src="assets/js/search-index.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מסלול R6: Grand Tour - מרילנד לניו יורק | C172 VFR Flight Planning</title>
+    <meta name="description" content="מסע גדול מ-KGAI לאורך כל החוף המזרחי עד ניו יורק. Ocean City, Long Island, Connecticut - כל הטוב של החוף המזרחי בטיול אחד.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">✈️</span>
+                    <span class="logo-text">C172 VFR</span>
+                </a>
+                <nav class="main-nav" role="navigation" aria-label="ניווט ראשי">
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html" class="active">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="ניווט מיקום">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">מסלולים</a></li>
+                    <li aria-current="page">Grand Tour - מרילנד לניו יורק</li>
+                </ol>
+            </div>
+        </nav>
+
+        <article class="trip-detail">
+            <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=1920');">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>מסלול R6: Grand Tour - מרילנד לניו יורק</h1>
+                        <p class="hero-subtitle">KGAI → KOXB → KISP → KGON → KFRG</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="trip-header">
+                    <div class="share-buttons">
+                        <button class="share-btn" aria-label="שתף בפייסבוק">
+                            <span>📘</span>
+                        </button>
+                        <button class="share-btn" aria-label="שתף בטוויטר">
+                            <span>🐦</span>
+                        </button>
+                        <button class="share-btn" aria-label="העתק קישור">
+                            <span>🔗</span>
+                        </button>
+                    </div>
+
+                    <div class="trip-stats">
+                        <div class="stat">
+                            <span class="stat-label">מרחק</span>
+                            <span class="stat-value">~420 NM</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">זמן טיסה</span>
+                            <span class="stat-value">~3:49</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">משך</span>
+                            <span class="stat-value">2-3 ימים</span>
+                        </div>
+                    </div>
+
+                    <div class="trip-tags">
+                        <span class="tag">multi-day</span>
+                        <span class="tag">חופי</span>
+                        <span class="tag">scenic</span>
+                        <span class="tag">מתקדמים</span>
+                    </div>
+                </div>
+
+                <section class="trip-overview">
+                    <h2>סקירה כללית</h2>
+                    <p>מסע גדול מ-KGAI לאורך כל החוף המזרחי עד ניו יורק. Ocean City, Long Island, Connecticut - כל הטוב של החוף המזרחי בטיול אחד. זהו מסלול מאתגר המיועד לטייסים עם ניסיון, המשלב טיסות ארוכות, חציית מפרצים וים, מגוון שדות תעופה מסוגים שונים, ותכנון דלק קפדני. המסלול עובר דרך מרילנד, דלאוור, ניו ג'רזי, ניו יורק וקונטיקט - מסע אמיתי לאורך החוף!</p>
+                </section>
+
+                <section class="trip-map">
+                    <h2>מפת המסלול</h2>
+                    <div id="map" class="map-container" role="application" aria-label="מפת מסלול הטיסה"></div>
+                </section>
+
+                <section class="trip-legs">
+                    <h2>רגלי הטיסה</h2>
+                    <div class="accordion">
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 1</span>
+                                <span class="leg-route">KGAI → KOXB</span>
+                                <span class="leg-distance">95 NM · 52 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>3000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>Patuxent Approach 127.95 → CTAF 123.05</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>יציאה מזרחה מ-Montgomery County Airpark לכיוון החוף. חציית מפרץ צ'ספיק והמשך ל-Ocean City במרילנד. עיירת חוף פופולרית עם חופים יפים. תכנן עצירה ראשונה כאן - מסעדות פירות ים מצוינות!</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 2</span>
+                                <span class="leg-route">KOXB → KISP</span>
+                                <span class="leg-distance">160 NM · 87 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>5500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>NY Approach → Islip Tower 119.65</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>הרגל הארוכה ביותר! טיסה צפונה-מזרחה לאורך החוף של דלאוור וניו ג'רזי. חציית Delaware Bay ולאחר מכן המשך מעל האוקיינוס או מעל היבשה (לפי העדפה ומזג אוויר). ההגעה ל-Long Island MacArthur - שדה גדול עם מגדל. <strong>תדלוק חובה!</strong></dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 3</span>
+                                <span class="leg-route">KISP → KGON</span>
+                                <span class="leg-distance">60 NM · 33 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>3500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 121.3</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>המשך מזרחה-צפונה לאורך Long Island Sound ל-Groton/New London בקונטיקט. חוף קונטיקט יפהפה - עיירות נמל היסטוריות. Groton היא עיר צוללות (USS Nautilus!) ומקום מצוין ללון.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 4</span>
+                                <span class="leg-route">KGON → KFRG</span>
+                                <span class="leg-distance">65 NM · 35 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>3000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>Republic Tower 118.8</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>הרגל האחרונה - חזרה מערבה-דרומה לאורך החוף הצפוני של Long Island ל-Republic Airport. סיום המסע הגדול! ניווט זהיר באזור התנועה העמוס של ניו יורק.</dd>
+                                </dl>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="trip-airports">
+                    <h2>שדות תעופה</h2>
+                    <div class="airport-cards">
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KGAI - Montgomery County Airpark</h3>
+                                <span class="airport-type">Origin</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.075</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>14/32 - 4200×75 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>539 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KOXB - Ocean City Municipal</h3>
+                                <span class="airport-type">First Stop</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.05</dd>
+
+                                <dt>ASOS:</dt>
+                                <dd>119.025</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>14/32 - 4074×75 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>12 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+
+                                <dt>הערות:</dt>
+                                <dd>עיירת חוף מעולה! Boardwalk, חופים, מסעדות פירות ים.</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KISP - Long Island MacArthur</h3>
+                                <span class="airport-type">Major Hub - Fuel Stop</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>מגדל:</dt>
+                                <dd>119.65</dd>
+
+                                <dt>ATIS:</dt>
+                                <dd>120.9</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>6/24 - 7006×150 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>99 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL, Jet A</dd>
+
+                                <dt>הערות:</dt>
+                                <dd>שדה גדול עם כל השירותים. <strong>תדלוק חובה לפני המשך!</strong></dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KGON - Groton-New London</h3>
+                                <span class="airport-type">Connecticut Coast</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>121.3</dd>
+
+                                <dt>ASOS:</dt>
+                                <dd>118.075</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>5/23 - 5000×150 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>9 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL, Jet A</dd>
+
+                                <dt>הערות:</dt>
+                                <dd>עיר צוללות היסטורית. USS Nautilus, Mystic Seaport באזור.</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KFRG - Republic Airport</h3>
+                                <span class="airport-type">Final Destination</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>מגדל:</dt>
+                                <dd>118.8</dd>
+
+                                <dt>ATIS:</dt>
+                                <dd>126.65</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>14/32 - 6833×150 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>82 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL, Jet A</dd>
+                            </dl>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="trip-itinerary">
+                    <h2>הצעת לוח זמנים</h2>
+                    <div class="itinerary-timeline">
+                        <div class="itinerary-day">
+                            <h3>יום 1</h3>
+                            <ul>
+                                <li><strong>בוקר:</strong> יציאה מוקדמת מ-KGAI ל-KOXB (95 NM)</li>
+                                <li><strong>צהריים:</strong> ארוחת צהריים ב-Ocean City, טיול ב-Boardwalk</li>
+                                <li><strong>אחר הצהריים:</strong> טיסה ל-KISP (160 NM) - הרגל הארוכה!</li>
+                                <li><strong>ערב:</strong> לינה ב-Long Island או המשך ל-KGON ללינה</li>
+                            </ul>
+                        </div>
+                        <div class="itinerary-day">
+                            <h3>יום 2</h3>
+                            <ul>
+                                <li><strong>בוקר:</strong> (אם לנתם ב-KISP) טיסה ל-KGON (60 NM)</li>
+                                <li><strong>צהריים:</strong> סיור ב-Groton/Mystic - USS Nautilus, Mystic Seaport</li>
+                                <li><strong>אחר הצהריים:</strong> טיסה סיום ל-KFRG (65 NM)</li>
+                                <li><strong>ערב:</strong> חגיגת סיום!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="trip-gallery">
+                    <h2>גלריית תמונות</h2>
+                    <div class="gallery-grid">
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=800" alt="חוף אוקיינוס" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" alt="חוף ים בשקיעה" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?w=800" alt="נוף חופי אווירי" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?w=800" alt="חוף וגלים" loading="lazy">
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="fuel-calculator">
+                    <h2>מחשבון דלק</h2>
+                    <form class="fuel-form">
+                        <div class="form-group">
+                            <label for="fuel-burn">צריכת דלק (GPH):</label>
+                            <input type="number" id="fuel-burn" value="8.5" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-time">זמן טיסה (שעות):</label>
+                            <input type="number" id="flight-time" value="3.82" step="0.05" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="reserve">רזרבה (גלונים):</label>
+                            <input type="number" id="reserve" value="7" step="1" min="0">
+                        </div>
+                        <div class="fuel-result">
+                            <strong>דלק נדרש:</strong> <span id="fuel-required">39.5</span> גלון
+                        </div>
+                    </form>
+                    <p class="fuel-note"><strong>שים לב:</strong> זה החישוב הכולל. תדלק ב-KOXB ו/או ב-KISP במהלך המסלול!</p>
+                </section>
+
+                <aside class="safety-notice" role="complementary">
+                    <h2>⚠️ הערות בטיחות</h2>
+                    <ul>
+                        <li><strong>תכנון דלק קריטי!</strong> הרגל השנייה 160 NM - תדלק ב-KOXB או תכנן טנק מלא מ-KGAI</li>
+                        <li><strong>חובה לתדלק ב-KISP</strong> לפני המשך ל-KGON ו-KFRG</li>
+                        <li>טיסות ארוכות מעל מים - ודא רזרבות גדולות ותכנן מסלולי חילופין</li>
+                        <li>בדוק מזג אוויר לאורך כל המסלול - ערפל חופי נפוץ בבוקר</li>
+                        <li>ניווט מעל מים - GPS חובה, שמור על מודעות למיקום תמיד</li>
+                        <li>KISP שדה עמוס עם תנועת מסחרית - היה מוכן למרחקים ארוכים בתנועה</li>
+                        <li>אזור ניו יורק מורכב - למד היטב את המסדרונות והאזורים המוגבלים</li>
+                        <li>שקול life vests לטיסות מעל המים</li>
+                        <li>תכנון פיזי - זה יום טיסה ארוך! התחל מוקדם, קח הפסקות</li>
+                    </ul>
+                </aside>
+
+                <div class="trip-actions">
+                    <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס תכנון טיסה</button>
+                    <a href="../trips.html" class="btn btn-secondary">← חזרה למסלולים</a>
+                </div>
+
+                <nav class="trip-navigation" aria-label="ניווט בין מסלולים">
+                    <a href="r5-nyc-hudson-deluxe.html" class="trip-nav-link trip-nav-prev">
+                        <span class="trip-nav-label">← קודם</span>
+                        <span class="trip-nav-title">NYC Hudson Deluxe</span>
+                    </a>
+                    <a href="r1-hudson-skyline.html" class="trip-nav-link trip-nav-next">
+                        <span class="trip-nav-label">הבא →</span>
+                        <span class="trip-nav-title">Hudson Skyline Classic</span>
+                    </a>
+                </nav>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Planning</h3>
+                    <p>מסלולי טיסה VFR לטייסים ישראלים בארה״ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.airnav.com" target="_blank" rel="noopener">AirNav</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Planning. כל הזכויות שמורות.</p>
+                <p class="disclaimer">לתכנון בלבד. ודא מידע עדכני לפני כל טיסה.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

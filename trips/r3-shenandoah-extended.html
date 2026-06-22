@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מסלול R3: שננדואה המורחב | C172 VFR Flight Planning</title>
+    <meta name="description" content="גרסה מורחבת של M1 עם המשך דרומה ל-Hot Springs - עיירת ספא היסטורית בעמק. Omni Homestead Resort שווה לינה.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">✈️</span>
+                    <span class="logo-text">C172 VFR</span>
+                </a>
+                <nav class="main-nav" role="navigation" aria-label="ניווט ראשי">
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html" class="active">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="ניווט מיקום">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">מסלולים</a></li>
+                    <li aria-current="page">שננדואה המורחב</li>
+                </ol>
+            </div>
+        </nav>
+
+        <article class="trip-detail">
+            <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1920');">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>מסלול R3: שננדואה המורחב</h1>
+                        <p class="hero-subtitle">KGAI → KFRR → W45 → KSHD → KHSP → KGAI</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="trip-header">
+                    <div class="share-buttons">
+                        <button class="share-btn" aria-label="שתף בפייסבוק">
+                            <span>📘</span>
+                        </button>
+                        <button class="share-btn" aria-label="שתף בטוויטר">
+                            <span>🐦</span>
+                        </button>
+                        <button class="share-btn" aria-label="העתק קישור">
+                            <span>🔗</span>
+                        </button>
+                    </div>
+
+                    <div class="trip-stats">
+                        <div class="stat">
+                            <span class="stat-label">מרחק</span>
+                            <span class="stat-value">~270 NM</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">זמן טיסה</span>
+                            <span class="stat-value">~2:27</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">משך</span>
+                            <span class="stat-value">1-2 ימים</span>
+                        </div>
+                    </div>
+
+                    <div class="trip-tags">
+                        <span class="tag">הרים</span>
+                        <span class="tag">scenic</span>
+                        <span class="tag">ספא</span>
+                    </div>
+                </div>
+
+                <section class="trip-overview">
+                    <h2>סקירה כללית</h2>
+                    <p>גרסה מורחבת של M1 עם המשך דרומה ל-Hot Springs - עיירת ספא היסטורית בעמק. Omni Homestead Resort שווה לינה. המסלול מוביל דרך הרי שננדואה המרהיבים, עם נופים של עמקים ירוקים, פסגות מכוסות יער, ועיירות היסטוריות. Hot Springs ידועה במעיינותיה החמים ובאתר הנופש ההיסטורי מהמאה ה-18.</p>
+                </section>
+
+                <section class="trip-map">
+                    <h2>מפת המסלול</h2>
+                    <div id="map" class="map-container" role="application" aria-label="מפת מסלול הטיסה"></div>
+                </section>
+
+                <section class="trip-legs">
+                    <h2>רגלי הטיסה</h2>
+                    <div class="accordion">
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 1</span>
+                                <span class="leg-route">KGAI → KFRR</span>
+                                <span class="leg-distance">48 NM · 26 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>3500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>Potomac Approach 128.7 → CTAF 123.05</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>יציאה מערבה מ-KGAI ל-Front Royal. תחילת הכניסה לאזור ההרים. נופים יפים של Shenandoah National Park מצד שמאל.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 2</span>
+                                <span class="leg-route">KFRR → W45</span>
+                                <span class="leg-distance">22 NM · 12 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>3500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 122.8</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>המשך דרומה לאורך העמק ל-Luray. המופע המרהיב של Skyline Drive נראה מצד ימין.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 3</span>
+                                <span class="leg-route">W45 → KSHD</span>
+                                <span class="leg-distance">51 NM · 28 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>4500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 123.0</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>המשך דרומה ל-Shenandoah Valley Airport. גובה יותר גבוה לחציית הרכסים. נופים פנורמיים של העמק.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 4</span>
+                                <span class="leg-route">KSHD → KHSP</span>
+                                <span class="leg-distance">38 NM · 21 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>5500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 122.8</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>המשך דרומה-מערבה ל-Hot Springs. <strong>שדה הרים!</strong> גובה 3793 רגל. דורש ביצועי גובה טובים וטכניקות mountain flying. העיירה נמצאת ממש ליד השדה, Omni Homestead Resort במרחק הליכה.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 5</span>
+                                <span class="leg-route">KHSP → KGAI</span>
+                                <span class="leg-distance">111 NM · 60 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>6500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>Potomac Approach 128.7 → CTAF 123.075</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>חזרה ארוכה מעל ההרים צפונה-מזרחה. גובה 6500 רגל מספק clearance בטוח מעל הפסגות. נוף מרהיב של כל רכס האפלצ'ים. תכנן דלק בקפידה!</dd>
+                                </dl>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="trip-airports">
+                    <h2>שדות תעופה</h2>
+                    <div class="airport-cards">
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KGAI - Montgomery County Airpark</h3>
+                                <span class="airport-type">Origin/Destination</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.075</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>14/32 - 4200×75 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>539 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KFRR - Front Royal</h3>
+                                <span class="airport-type">Waypoint</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.05</dd>
+
+                                <dt>AWOS:</dt>
+                                <dd>118.325</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>10/28 - 3998×75 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>709 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>W45 - Luray Caverns</h3>
+                                <span class="airport-type">Waypoint</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>122.8</dd>
+
+                                <dt>AWOS:</dt>
+                                <dd>118.375</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>4/22 - 3498×60 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>1005 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+
+                                <dt>הערות:</dt>
+                                <dd>Luray Caverns במרחק הליכה!</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KSHD - Shenandoah Valley</h3>
+                                <span class="airport-type">Waypoint</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.0</dd>
+
+                                <dt>ASOS:</dt>
+                                <dd>118.275</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>5/23 - 6001×100 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>1201 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL, Jet A</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card airport-card-warning">
+                            <header class="airport-header">
+                                <h3>KHSP - Ingalls Field/Hot Springs</h3>
+                                <span class="airport-type">Mountain Airport</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>122.8</dd>
+
+                                <dt>AWOS:</dt>
+                                <dd>118.275</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>7/25 - 4456×100 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>⚠️ 3793 רגל!</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+
+                                <dt>הערות:</dt>
+                                <dd><strong>Mountain airport!</strong> density altitude בקיץ יכול להיות גבוה מאוד. תכנן ביצועים בקפידה. הרים מכל הכיוונים.</dd>
+                            </dl>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="trip-gallery">
+                    <h2>גלריית תמונות</h2>
+                    <div class="gallery-grid">
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800" alt="נוף הרי שננדואה" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="עמק ירוק בהרים" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800" alt="הרים בערפל" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?w=800" alt="כביש הרים ביער" loading="lazy">
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="fuel-calculator">
+                    <h2>מחשבון דלק</h2>
+                    <form class="fuel-form">
+                        <div class="form-group">
+                            <label for="fuel-burn">צריכת דלק (GPH):</label>
+                            <input type="number" id="fuel-burn" value="8.5" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-time">זמן טיסה (שעות):</label>
+                            <input type="number" id="flight-time" value="2.45" step="0.05" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="reserve">רזרבה (גלונים):</label>
+                            <input type="number" id="reserve" value="7" step="1" min="0">
+                        </div>
+                        <div class="fuel-result">
+                            <strong>דלק נדרש:</strong> <span id="fuel-required">27.8</span> גלון
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="safety-notice" role="complementary">
+                    <h2>⚠️ הערות בטיחות</h2>
+                    <ul>
+                        <li><strong>KHSP הוא שדה הרים!</strong> גובה 3793 רגל - חשב density altitude בקפידה</li>
+                        <li>טיסת הרים דורשת הכשרה מתאימה - אל תנסה בלי ניסיון</li>
+                        <li>שמור על גובה בטוח מעל הרכסים - לפחות 2000 רגל AGL</li>
+                        <li>הימנע מטיסה בתנאי רוח חזקה - turbulence חזק אפשרי</li>
+                        <li>בדוק ביצועי המטוס בגובה - האם יש לך כוח מספיק?</li>
+                        <li>תכנן דלק עם מרווח גדול - רוח נגדית בחזרה עלולה להאריך את הטיסה</li>
+                        <li>היכרות עם נהלי mountain flying חובה</li>
+                        <li>בקיץ - התחל מוקדם בבוקר להימנע מ-density altitude גבוה</li>
+                    </ul>
+                </aside>
+
+                <div class="trip-actions">
+                    <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס תכנון טיסה</button>
+                    <a href="../trips.html" class="btn btn-secondary">← חזרה למסלולים</a>
+                </div>
+
+                <nav class="trip-navigation" aria-label="ניווט בין מסלולים">
+                    <a href="r2-chesapeake-tangier.html" class="trip-nav-link trip-nav-prev">
+                        <span class="trip-nav-label">← קודם</span>
+                        <span class="trip-nav-title">Chesapeake Bay</span>
+                    </a>
+                    <a href="r4-island-hopping.html" class="trip-nav-link trip-nav-next">
+                        <span class="trip-nav-label">הבא →</span>
+                        <span class="trip-nav-title">Island Hopping</span>
+                    </a>
+                </nav>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Planning</h3>
+                    <p>מסלולי טיסה VFR לטייסים ישראלים בארה״ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.airnav.com" target="_blank" rel="noopener">AirNav</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Planning. כל הזכויות שמורות.</p>
+                <p class="disclaimer">לתכנון בלבד. ודא מידע עדכני לפני כל טיסה.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

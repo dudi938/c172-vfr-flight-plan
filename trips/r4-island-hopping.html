@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מסלול R4: Island Hopping - ניו אינגלנד | C172 VFR Flight Planning</title>
+    <meta name="description" content="דילוג איים לאורך חוף ניו אינגלנד: מונטאוק ← Block Island ← חזרה. שילוב חופים, מגדלורות וים.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">✈️</span>
+                    <span class="logo-text">C172 VFR</span>
+                </a>
+                <nav class="main-nav" role="navigation" aria-label="ניווט ראשי">
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html" class="active">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="ניווט מיקום">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">מסלולים</a></li>
+                    <li aria-current="page">Island Hopping - ניו אינגלנד</li>
+                </ol>
+            </div>
+        </nav>
+
+        <article class="trip-detail">
+            <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=1920');">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>מסלול R4: Island Hopping - ניו אינגלנד</h1>
+                        <p class="hero-subtitle">KFRG → KJPX → KMTP → KBID → KFRG</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="trip-header">
+                    <div class="share-buttons">
+                        <button class="share-btn" aria-label="שתף בפייסבוק">
+                            <span>📘</span>
+                        </button>
+                        <button class="share-btn" aria-label="שתף בטוויטר">
+                            <span>🐦</span>
+                        </button>
+                        <button class="share-btn" aria-label="העתק קישור">
+                            <span>🔗</span>
+                        </button>
+                    </div>
+
+                    <div class="trip-stats">
+                        <div class="stat">
+                            <span class="stat-label">מרחק</span>
+                            <span class="stat-value">~250 NM</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">זמן טיסה</span>
+                            <span class="stat-value">~2:16</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">משך</span>
+                            <span class="stat-value">1-2 ימים</span>
+                        </div>
+                    </div>
+
+                    <div class="trip-tags">
+                        <span class="tag">איים</span>
+                        <span class="tag">חופי</span>
+                        <span class="tag">multi-day</span>
+                    </div>
+                </div>
+
+                <section class="trip-overview">
+                    <h2>סקירה כללית</h2>
+                    <p>דילוג איים לאורך חוף ניו אינגלנד: מונטאוק ← Block Island ← חזרה. שילוב חופים, מגדלורות וים. טיסה מושלמת לקיץ, עם שילוב של חוף Long Island, האי המפורסם Montauk Point עם המגדלור ההיסטורי שלו, וBlock Island - אי קטן וקסום עם חופים מהממים ואווירה רגועה. מומלץ מאוד ללינה ב-Block Island.</p>
+                </section>
+
+                <section class="trip-map">
+                    <h2>מפת המסלול</h2>
+                    <div id="map" class="map-container" role="application" aria-label="מפת מסלול הטיסה"></div>
+                </section>
+
+                <section class="trip-legs">
+                    <h2>רגלי הטיסה</h2>
+                    <div class="accordion">
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 1</span>
+                                <span class="leg-route">KFRG → KJPX</span>
+                                <span class="leg-distance">30 NM · 16 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>2000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 123.75</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>יציאה מזרחה מ-Republic Airport ל-Brookhaven. טיסה מעל Long Island. Brookhaven הוא שדה נוח לעצירה ראשונה.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 2</span>
+                                <span class="leg-route">KJPX → KMTP</span>
+                                <span class="leg-distance">50 NM · 27 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>2000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 122.7</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>המשך מזרחה לקצה Long Island - Montauk Point! מגדלור מונטאוק המפורסם נראה היטב מהאוויר. חוף יפהפה ועיירת נופש. <strong>דלק עונתי!</strong> בדוק זמינות לפני.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 3</span>
+                                <span class="leg-route">KMTP → KBID</span>
+                                <span class="leg-distance">22 NM · 12 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>2500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>CTAF 123.0</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>טיסה צפונה-מזרחה מעל האוקיינוס האטלנטי ל-Block Island! האי מופיע כנקודה ירוקה באוקיינוס. טיסה יפהפייה מעל מים כחולים. ודא VFR טוב וגלאי דלק מספיק.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 4</span>
+                                <span class="leg-route">KBID → KFRG</span>
+                                <span class="leg-distance">68 NM · 37 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>3500 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>NY Approach → Republic Tower 118.8</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>חזרה מערבה-דרומה מעל האוקיינוס וחזרה ל-Long Island. קריאה ל-NY Approach לכניסה חזרה לאזור התנועה של ניו יורק.</dd>
+                                </dl>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="trip-airports">
+                    <h2>שדות תעופה</h2>
+                    <div class="airport-cards">
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KFRG - Republic Airport</h3>
+                                <span class="airport-type">Origin/Destination</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>מגדל:</dt>
+                                <dd>118.8</dd>
+
+                                <dt>ATIS:</dt>
+                                <dd>126.65</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>14/32 - 6833×150 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>82 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL, Jet A</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KJPX - Brookhaven</h3>
+                                <span class="airport-type">Waypoint</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.75</dd>
+
+                                <dt>AWOS:</dt>
+                                <dd>119.275</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>6/24 - 4225×150 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>83 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card airport-card-warning">
+                            <header class="airport-header">
+                                <h3>KMTP - Montauk</h3>
+                                <span class="airport-type">Seasonal Fuel</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>122.7</dd>
+
+                                <dt>AWOS:</dt>
+                                <dd>119.925</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>6/24 - 3246×75 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>6 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>⚠️ 100LL עונתי!</dd>
+
+                                <dt>הערות:</dt>
+                                <dd>מגדלור מונטאוק במרחק הליכה. דלק זמין בעיקר בקיץ - בדוק לפני!</dd>
+                            </dl>
+                        </article>
+
+                        <article class="airport-card airport-card-warning">
+                            <header class="airport-header">
+                                <h3>KBID - Block Island State</h3>
+                                <span class="airport-type">Island Destination</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>CTAF:</dt>
+                                <dd>123.0</dd>
+
+                                <dt>AWOS:</dt>
+                                <dd>135.025</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>10/28 - 2501×100 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>108 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>⚠️ 100LL עונתי!</dd>
+
+                                <dt>הערות:</dt>
+                                <dd>אי מדהים! מסעדות, חופים, מלונות. מסלול קצר יחסית - תכנן נחיתה. דלק עונתי - בדוק זמינות!</dd>
+                            </dl>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="trip-gallery">
+                    <h2>גלריית תמונות</h2>
+                    <div class="gallery-grid">
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?w=800" alt="חוף Block Island" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800" alt="מגדלור Montauk" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800" alt="נוף אווירי של האיים" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1496128858413-b36217c2ce36?w=800" alt="חוף ניו אינגלנד" loading="lazy">
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="fuel-calculator">
+                    <h2>מחשבון דלק</h2>
+                    <form class="fuel-form">
+                        <div class="form-group">
+                            <label for="fuel-burn">צריכת דלק (GPH):</label>
+                            <input type="number" id="fuel-burn" value="8.5" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-time">זמן טיסה (שעות):</label>
+                            <input type="number" id="flight-time" value="2.27" step="0.05" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="reserve">רזרבה (גלונים):</label>
+                            <input type="number" id="reserve" value="7" step="1" min="0">
+                        </div>
+                        <div class="fuel-result">
+                            <strong>דלק נדרש:</strong> <span id="fuel-required">26.3</span> גלון
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="safety-notice" role="complementary">
+                    <h2>⚠️ הערות בטיחות</h2>
+                    <ul>
+                        <li><strong>דלק עונתי!</strong> ב-KMTP וב-KBID הדלק זמין בעיקר בקיץ - בדוק לפני הטיסה!</li>
+                        <li>טיסה מעל מים - ודא רזרבות דלק מספיקות ותכנן מסלולי חילופין</li>
+                        <li>בדוק מזג אוויר בקפידה - ערפל ימי נפוץ באזור</li>
+                        <li>מסלולים קצרים יחסית (2500-3200 רגל) - תכנן נחיתות בדיוק</li>
+                        <li>רוח צד חזקה נפוצה באיים - היה מוכן</li>
+                        <li>Block Island פופולרי מאוד בקיץ - תנועה צפופה בשדה</li>
+                        <li>שמור על קשר עם Flight Service במהלך הטיסה מעל המים</li>
+                        <li>אופציה: הוסף life vests לטיסה מעל המים</li>
+                    </ul>
+                </aside>
+
+                <div class="trip-actions">
+                    <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס תכנון טיסה</button>
+                    <a href="../trips.html" class="btn btn-secondary">← חזרה למסלולים</a>
+                </div>
+
+                <nav class="trip-navigation" aria-label="ניווט בין מסלולים">
+                    <a href="r3-shenandoah-extended.html" class="trip-nav-link trip-nav-prev">
+                        <span class="trip-nav-label">← קודם</span>
+                        <span class="trip-nav-title">שננדואה המורחב</span>
+                    </a>
+                    <a href="r5-nyc-hudson-deluxe.html" class="trip-nav-link trip-nav-next">
+                        <span class="trip-nav-label">הבא →</span>
+                        <span class="trip-nav-title">NYC Hudson Deluxe</span>
+                    </a>
+                </nav>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Planning</h3>
+                    <p>מסלולי טיסה VFR לטייסים ישראלים בארה״ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.airnav.com" target="_blank" rel="noopener">AirNav</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Planning. כל הזכויות שמורות.</p>
+                <p class="disclaimer">לתכנון בלבד. ודא מידע עדכני לפני כל טיסה.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>

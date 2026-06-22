@@ -1,170 +1,514 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>מידע ובטיחות · תוכנית VFR C172</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="assets/site.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מידע ובטיחות - VFR Flight Planning</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html">ניו יורק↔וושינגטון</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html" class="active">מידע ובטיחות</a></nav>
-  </div>
-  <div class="search-bar">
-    <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
-    <div id="searchResults" class="search-dropdown" role="listbox"></div>
-  </div>
-</header>
-  <div class="wrap" id="top">
-    <h1>מידע ובטיחות</h1>
-    <p class="lead">עקרונות הטיסה הנופית, אזהרות בטיחות, ומקורות מומלצים מטייסים.</p>
-    <div class="note">
-          <b>חשוב:</b> זהו מסמך תכנון והכנה. לפני כל טיסה חובה לבצע אימות עדכני ב־Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים, משקל/איזון, ותדרים עדכניים.
+    <!-- Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 2L4 14L16 10L28 14L16 2Z" fill="currentColor"/>
+                    <path d="M16 10L4 14V20L16 30L28 20V14L16 10Z" fill="currentColor" opacity="0.6"/>
+                </svg>
+                <span>VFR Planning</span>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html">בית</a>
+                <a href="routes.html">מסלולים</a>
+                <a href="airports.html">שדות</a>
+                <a href="info.html" class="active">מידע ובטיחות</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn search-btn" aria-label="חיפוש">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+                        <path d="M13 13L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <button class="icon-btn menu-btn" aria-label="תפריט">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 5H18M2 10H18M2 15H18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
         </div>
+    </header>
 
-    <h2 id="vfr-principles">עקרונות VFR לגרסה זו</h2>
-    <div class="grid">
-          <div class="card">
-            <h3>VFR בנוף ובהנאה</h3>
-            <ul>
-              <li>יציאות מוקדמות 07:00-09:30 כדי להימנע מקונבקציה אחה"צ.</li>
-              <li>לגים קצרים יחסית, מרחב החלטה לכל תחנה, חלופה ברורה.</li>
-              <li>העדפה לנתיבים לאורך נהרות/חופים/רכסים שקל לזהות חזותית.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>סיכונים מיוחדים במסלולים שלך</h3>
-            <ul>
-              <li>KGAI בתוך SFRA - נהלי Potomac ו-DC SFRA חובה.</li>
-              <li>KFRG בסביבה צפופה תחת Class B של ניו יורק.</li>
-              <li>לגים מעל מים (N3 וחלק מ-N1) - ציוד ציפה ו-no-go ברור.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>תדרים בסיסיים</h3>
-            <ul>
-              <li>KGAI: CTAF 123.075 | AWOS 128.275 | CD 121.6</li>
-              <li>KFRG: ATIS 126.65 | TWR 118.8 | GND 121.6 | CD 128.25</li>
-              <li>Hudson Corridor: CTAF 123.05 ודיווח נקודות חובה</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>מרחב SFRA/FRZ של וושינגטון</h3>
-            <ul>
-              <li>חובה לעבור הדרכת FAA מקוונת (חינמית) לפני טיסה ברדיוס 60NM מ-DCA.</li>
-              <li>אין להיכנס ל-FRZ (Flight Restriction Zone) ללא אישור מראש וקוד טרנספונדר ייעודי.</li>
-              <li>KGAI נמצא בתוך ה-SFRA - נהלי Potomac חובה בכל המראה/נחיתה.</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>עומס אווירי NYC↔DC</h3>
-            <ul>
-              <li>מהמרחבים הצפופים בעולם: JFK, LGA, EWR, BWI, DCA, IAD (Class Bravo).</li>
-              <li>מומלץ מאוד לעבוד עם Flight Following (ליווי מכ"ם) בכל טיסת VFR באזור.</li>
-              <li>תכנן נתיב מתחת/מסביב ל-Class B עם נקודות דיווח חזותיות ברורות.</li>
-            </ul>
-          </div>
+    <!-- Hero Section -->
+    <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=1920');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>מידע ובטיחות</h1>
+            <p class="hero-subtitle">כל מה שצריך לדעת לפני שמתחילים לתכנן</p>
         </div>
+    </section>
 
-    <h2 id="recommended-vfr">טיולי VFR מומלצים מטייסים (מחקר רשת)</h2>
-    <div class="grid">
-          <div class="card">
-            <h3>1) Hudson River Corridor - ניו יורק</h3>
-            <p><b>למה טייסים אוהבים:</b> נחשב לאחד מנתיבי ה־VFR האיקוניים בארה"ב - קו רקיע מנהטן, פסל החירות וגשרים מרכזיים.</p>
-            <ul>
-              <li>טווח גבהים נפוץ במסדרון: 1,000-1,300 רגל.</li>
-              <li>דיווחים עצמיים ב-CTAF 123.05 בנקודות חובה.</li>
-              <li>מתאים רק במז"א טוב ועם הכנה מוקדמת לנהלים.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.aopa.org/news-and-media/all-news/2017/march/flight-training-magazine/road-trip-hudson-river-corridor" target="_blank">AOPA - Hudson River Corridor</a>
-              <a href="https://www.aopa.org/news-and-media/all-news/2026/june/pilot/musings-sailing-over-manhattan" target="_blank">AOPA - Sailing over Manhattan</a>
-              <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">FAA Safety - NYC Kneeboard</a>
+    <!-- Info Sections -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-grid">
+
+                <!-- Section 1: DC SFRA -->
+                <div class="info-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 14V24L30 30" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>DC SFRA (Special Flight Rules Area)</h2>
+                    <div class="info-content">
+                        <h3>מהו ה-SFRA?</h3>
+                        <p>אזור מוגבל מיוחד סביב וושינגטון די.סי. הכניסה לאזור מחייבת הכנה מיוחדת ואישורים.</p>
+
+                        <h3>דרישות:</h3>
+                        <ul>
+                            <li>הדרכה אונליין חובה (FAA SFRA training)</li>
+                            <li>אישור מוקדם (בדרך כלל כחלק מתדריך הטיסה)</li>
+                            <li>Transponder code נדרש</li>
+                            <li>קשר רדיו עם Potomac Approach: <strong>128.7</strong></li>
+                        </ul>
+
+                        <h3>שדות בתוך ה-SFRA:</h3>
+                        <ul>
+                            <li><strong>KGAI</strong> - Montgomery County Airpark</li>
+                            <li>שדות נוספים ב-FRZ (Flight Restricted Zone) - דורשים אישורים נוספים</li>
+                        </ul>
+
+                        <div class="info-links">
+                            <a href="https://www.faasafety.gov/gslac/ALC/course_content.aspx?cID=42" target="_blank" class="btn-link">
+                                הדרכת SFRA באתר FAA ←
+                            </a>
+                            <a href="https://www.faa.gov/air_traffic/publications/atpubs/fs_html/appendix_b.html" target="_blank" class="btn-link">
+                                מפת SFRA ופרטים ←
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Hudson River Corridor -->
+                <div class="info-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M10 38C10 38 14 30 24 30C34 30 38 38 38 38" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 26C10 26 14 18 24 18C34 18 38 26 38 26" stroke="currentColor" stroke-width="2"/>
+                            <path d="M10 14C10 14 14 6 24 6C34 6 38 14 38 14" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h2>Hudson River VFR Corridor</h2>
+                    <div class="info-content">
+                        <h3>חוקי הטיסה במסדרון:</h3>
+                        <ul>
+                            <li><strong>גובה:</strong> מתחת ל-1,300 ft MSL</li>
+                            <li><strong>תדר:</strong> 123.05 (self-announce)</li>
+                            <li><strong>כיוון צפון:</strong> חוף מערבי (NJ side)</li>
+                            <li><strong>כיוון דרום:</strong> חוף מזרחי (Manhattan side)</li>
+                            <li><strong>אורות:</strong> Anti-collision lights ON</li>
+                        </ul>
+
+                        <h3>נקודות דיווח חשובות:</h3>
+                        <ol>
+                            <li><strong>VZ Bridge</strong> - גשר ורזנו</li>
+                            <li><strong>Statue of Liberty</strong> - פסל החירות</li>
+                            <li><strong>Intrepid Museum</strong> - מוזיאון האוויר והחלל</li>
+                            <li><strong>GW Bridge</strong> - גשר ג'ורג' וושינגטון</li>
+                            <li><strong>Alpine Tower</strong> - מגדל רדיו ב-Alpine, NJ</li>
+                        </ol>
+
+                        <div class="warning-box">
+                            <strong>⚠️ שימו לב:</strong> תעבורה צפופה! סובבו ראש כל הזמן. המסדרון פתוח רק ב-VFR.
+                        </div>
+
+                        <div class="info-links">
+                            <a href="https://www.faa.gov/air_traffic/publications/atpubs/fs_html/chap18_section_7.html" target="_blank" class="btn-link">
+                                מפה ופרטים באתר FAA ←
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 3: Over-Water Flying -->
+                <div class="info-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M8 28C8 28 12 24 24 24C36 24 40 28 40 28" stroke="currentColor" stroke-width="2"/>
+                            <path d="M6 34C6 34 10 30 24 30C38 30 42 34 42 34" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="24" cy="14" r="4" fill="currentColor"/>
+                            <path d="M16 14L20 18L28 10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>טיסה מעל מים</h2>
+                    <div class="info-content">
+                        <h3>עקרונות בסיסיים:</h3>
+                        <ul>
+                            <li><strong>אפודי הצלה:</strong> מומלץ בחום לנוסעים בטיסות מעל מים</li>
+                            <li><strong>גובה:</strong> שמרו על גובה שמאפשר גלישה לחוף במקרה חירום</li>
+                            <li><strong>מרחקים:</strong> בדקו מרחקי גלישה לפני היציאה ממקום מוגן</li>
+                        </ul>
+
+                        <h3>שדות הדורשים חציית מים:</h3>
+                        <ul>
+                            <li><strong>KBID</strong> - Block Island (חציית Long Island Sound)</li>
+                            <li><strong>KTGI</strong> - Tangier Island (חציית Chesapeake Bay)</li>
+                            <li><strong>KMVY</strong> - Martha's Vineyard (חציית Vineyard Sound)</li>
+                            <li><strong>KACK</strong> - Nantucket (חציית Nantucket Sound)</li>
+                            <li><strong>KMTP</strong> - Montauk (קרוב למים)</li>
+                        </ul>
+
+                        <h3>Glide Ratio של C172:</h3>
+                        <p>בגובה 3,000 ft AGL, C172 יכול לגלוש כ-5-6 nm (עם רוח שקטה). תכננו בהתאם!</p>
+
+                        <div class="info-box">
+                            <strong>💡 טיפ:</strong> בטיסות לאיים, שקלו להיצמד למסלולי מעבורות - יש סירות במקרה חירום.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Mountain Flying -->
+                <div class="info-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M4 38L14 18L24 28L34 8L44 38H4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h2>טיסה בהרים</h2>
+                    <div class="info-content">
+                        <h3>Density Altitude - הסכנה הבלתי נראית:</h3>
+                        <p>ביום חם, הביצועים של המטוס יורדים משמעותית. שדות בגובה:</p>
+                        <ul>
+                            <li><strong>2G4</strong> (Garrett County) - 2,933 ft</li>
+                            <li><strong>KHSP</strong> (Hot Springs) - 3,793 ft (!)</li>
+                        </ul>
+
+                        <h3>חישובי ביצועים:</h3>
+                        <ul>
+                            <li>השתמשו ב-POH לחישוב מרחקי המראה ונחיתה</li>
+                            <li>הוסיפו 50% לפחות למרחקים המחושבים</li>
+                            <li>שקלו להמריא מוקדם בבוקר (אוויר קר יותר)</li>
+                            <li>היזהרו מעומסי יתר - דלק, נוסעים, מטען</li>
+                        </ul>
+
+                        <h3>טכניקת חציית רכס:</h3>
+                        <ul>
+                            <li>חצו את הרכס ב-45° - מאפשר פנייה מהירה במקרה downdraft</li>
+                            <li>עברו את הרכס בגובה של לפחות 2,000 ft מעל הפסגה</li>
+                            <li>היזהרו מ-updrafts/downdrafts ליד מדרונות</li>
+                            <li>עקבו אחר עננים - עדות לתנועת אוויר אנכית</li>
+                        </ul>
+
+                        <h3>תבניות מזג אוויר באפלצ'ים:</h3>
+                        <ul>
+                            <li>ערפל בבקרים, במיוחד בעמקים</li>
+                            <li>סופות רעמים אחר הצהריים בקיץ</li>
+                            <li>רוחות משתנות בין עמקים לפסגות</li>
+                            <li>טמפרטורה יורדת ~3°C לכל 1,000 ft גובה</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>⚠️ אזהרה:</strong> אל תטוסו בהרים ללא הכנה מתאימה והדרכה ספציפית!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Weather Considerations -->
+                <div class="info-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="18" cy="18" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M30 24L36 18M36 30L30 24M24 30L30 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>שיקולי מזג אוויר (יולי-אוגוסט)</h2>
+                    <div class="info-content">
+                        <h3>סופות רעמים:</h3>
+                        <ul>
+                            <li><strong>שעות:</strong> נפוצות בשעות אחר הצהריים (14:00-19:00)</li>
+                            <li><strong>זמן מומלץ:</strong> טיסות מוקדמות בבוקר (06:00-11:00)</li>
+                            <li><strong>סימנים:</strong> עננים מתפתחים (Cumulus → Cumulonimbus)</li>
+                            <li><strong>כלל:</strong> אל תטוסו לתוך או מתחת לסופת רעמים!</li>
+                        </ul>
+
+                        <h3>רוח ים (Sea Breeze):</h3>
+                        <ul>
+                            <li>משפיעה על מסלולים חופיים אחר הצהריים</li>
+                            <li>יכולה לשנות כיוון רוח ב-90-180°</li>
+                            <li>מתחילה כ-2-3 שעות אחרי הצהריים</li>
+                        </ul>
+
+                        <h3>ערפל באיים:</h3>
+                        <ul>
+                            <li><strong>Block Island</strong> - ערפל בוקר נפוץ</li>
+                            <li><strong>Martha's Vineyard</strong> - ערפל עד השעות המוקדמות</li>
+                            <li><strong>Nantucket</strong> - ערפל ים יכול לבוא במהירות</li>
+                        </ul>
+
+                        <h3>משאבי מזג אוויר:</h3>
+                        <div class="resource-list">
+                            <a href="https://www.1800wxbrief.com" target="_blank" class="resource-link">
+                                <strong>1800WxBrief</strong> - תדריך רשמי FAA
+                            </a>
+                            <a href="https://www.aviationweather.gov" target="_blank" class="resource-link">
+                                <strong>Aviation Weather</strong> - מזג אוויר תעופתי
+                            </a>
+                            <a href="https://www.weather.gov" target="_blank" class="resource-link">
+                                <strong>Weather.gov</strong> - תחזית כללית NOAA
+                            </a>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>💡 טיפ:</strong> התקשרו ל-1-800-WX-BRIEF לפני כל טיסה - זה חינם וחובה!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 6: Flight Planning Checklist -->
+                <div class="info-card checklist-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <rect x="8" y="6" width="32" height="36" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 16H32M16 24H32M16 32H26" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>רשימת בדיקות לתכנון טיסה VFR</h2>
+                    <div class="info-content">
+                        <div class="checklist">
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>תדריך מזג אוויר (1-800-WX-BRIEF)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>בדיקת NOTAMs</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>בדיקת TFRs (Temporary Flight Restrictions)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>חישוב Weight & Balance</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>חישובי ביצועים (takeoff/landing distances)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>תכנון דלק (+ 45 דקות רזרבה)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>רשימת תדרים לאורך המסלול</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>סקירת Chart Supplement (A/FD)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>הגשת flight plan (מומלץ ל-VFR)</span>
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox">
+                                <span>אישור SFRA עדכני (אם רלוונטי)</span>
+                            </label>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>💡 PAVE checklist:</strong><br>
+                            <strong>P</strong>ilot - כשירות האוחז<br>
+                            <strong>A</strong>ircraft - מצב המטוס<br>
+                            <strong>en</strong>V<strong>ironment - </strong>מזג אוויר וסביבה<br>
+                            <strong>E</strong>xternal Pressures - לחצים חיצוניים
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 7: Emergency Procedures -->
+                <div class="info-card emergency-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 14V26M24 32V34" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>נהלי חירום - Quick Reference</h2>
+                    <div class="info-content">
+                        <div class="emergency-grid">
+                            <div class="emergency-item">
+                                <strong>121.5 MHz</strong>
+                                <span>תדר חירום</span>
+                            </div>
+                            <div class="emergency-item">
+                                <strong>7700</strong>
+                                <span>Squawk Emergency</span>
+                            </div>
+                            <div class="emergency-item">
+                                <strong>7600</strong>
+                                <span>Squawk Comm Failure</span>
+                            </div>
+                            <div class="emergency-item">
+                                <strong>7500</strong>
+                                <span>Squawk Hijack</span>
+                            </div>
+                        </div>
+
+                        <h3>מטריצת החלטה - שדה קרוב ביותר:</h3>
+                        <ol>
+                            <li><strong>Engine failure:</strong> שדה הכי קרוב, גם ללא דלק</li>
+                            <li><strong>מזג אוויר מדרדר:</strong> שדה עם מגדל/FBO פעיל</li>
+                            <li><strong>חירום רפואי:</strong> שדה הכי קרוב עם ambulance access</li>
+                            <li><strong>בעיה מכנית:</strong> שדה עם maintenance facilities</li>
+                        </ol>
+
+                        <h3>עקרונות בסיסיים:</h3>
+                        <div class="principle-box">
+                            <h4>Aviate, Navigate, Communicate</h4>
+                            <ol>
+                                <li><strong>Aviate</strong> - טוסו את המטוס קודם כל</li>
+                                <li><strong>Navigate</strong> - מצאו את הדרך הבטוחה</li>
+                                <li><strong>Communicate</strong> - דווחו רק אחרי 1+2</li>
+                            </ol>
+                        </div>
+
+                        <div class="warning-box">
+                            <strong>⚠️ זכרו:</strong> המטוס תמיד לפני הרדיו. אל תתעסקו בתקשורת אם אתם עסוקים בטיסה!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 8: Useful Links -->
+                <div class="info-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <path d="M20 8H12C9.79086 8 8 9.79086 8 12V36C8 38.2091 9.79086 40 12 40H36C38.2091 40 40 38.2091 40 36V28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M28 8H40V20M40 8L24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>קישורים שימושיים</h2>
+                    <div class="info-content">
+                        <div class="links-grid">
+                            <a href="https://skyvector.com" target="_blank" class="link-card">
+                                <strong>SkyVector</strong>
+                                <span>מפות תעופה ותכנון מסלול</span>
+                            </a>
+                            <a href="https://airnav.com" target="_blank" class="link-card">
+                                <strong>AirNav</strong>
+                                <span>מידע על שדות תעופה</span>
+                            </a>
+                            <a href="https://www.1800wxbrief.com" target="_blank" class="link-card">
+                                <strong>1800WxBrief</strong>
+                                <span>תדריכי מזג אוויר רשמיים</span>
+                            </a>
+                            <a href="https://tfr.faa.gov" target="_blank" class="link-card">
+                                <strong>FAA TFRs</strong>
+                                <span>אזורי טיסה מוגבלים זמניים</span>
+                            </a>
+                            <a href="https://www.foreflight.com" target="_blank" class="link-card">
+                                <strong>ForeFlight</strong>
+                                <span>אפליקציית ניווט מובילה</span>
+                            </a>
+                            <a href="https://www.aopa.org" target="_blank" class="link-card">
+                                <strong>AOPA</strong>
+                                <span>ארגון טייסי מטוסים קלים</span>
+                            </a>
+                            <a href="https://www.liveatc.net" target="_blank" class="link-card">
+                                <strong>LiveATC</strong>
+                                <span>האזנה חיה לתקשורת ATC</span>
+                            </a>
+                            <a href="https://www.faa.gov/air_traffic/publications/" target="_blank" class="link-card">
+                                <strong>FAA Publications</strong>
+                                <span>פרסומי FAA - AIM, Chart Supplements</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 9: About -->
+                <div class="info-card about-card">
+                    <div class="card-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 20V24M24 28H24.02" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h2>אודות האתר</h2>
+                    <div class="info-content">
+                        <p class="about-text">
+                            אתר זה נבנה כמשאב לתכנון מוקדם לטייסי PPL ישראלים שבונים שעות בארה"ב.
+                        </p>
+                        <p class="about-text">
+                            המסלולים והמידע נבחרו בקפידה עבור טיסות ב-Cessna 172 מבסיסים ב-Maryland ו-New York,
+                            ומכסים מסלולים נופיים, חוויות ייחודיות ואתגרים טכניים מגוונים.
+                        </p>
+
+                        <div class="disclaimer-box">
+                            <h3>⚠️ הצהרת אחריות חשובה</h3>
+                            <p>
+                                <strong>אתר זה משמש לתכנון מוקדם ולהשראה בלבד.</strong>
+                            </p>
+                            <ul>
+                                <li>יש לוודא את כל הנתונים לפני כל טיסה מול מקורות רשמיים</li>
+                                <li>תדרים, נתוני שדות ונהלים עשויים להשתנות</li>
+                                <li>התייעצו עם מדריך או טייס מנוסה לפני טיסה למקום חדש</li>
+                                <li>קבלו תדריך מזג אוויר רשמי לפני כל טיסה</li>
+                                <li>האחריות לבטיחות הטיסה היא על ה-PIC בלבד</li>
+                            </ul>
+                        </div>
+
+                        <div class="info-box">
+                            <strong>💡 משוב וצור קשר:</strong><br>
+                            מצאתם טעות? יש הצעה לשיפור? נשמח לשמוע!
+                        </div>
+                    </div>
+                </div>
+
             </div>
-          </div>
-          <div class="card">
-            <h3>2) Chesapeake Bay Loop - מרילנד/וירג'יניה</h3>
-            <p><b>למה טייסים אוהבים:</b> נתיב חוף/מפרץ יפה, הרבה נקודות נחיתה ואטרקציות היסטוריות לאורך המפרץ.</p>
-            <ul>
-              <li>שילוב מצוין בין נוף מים לניווט קל לפי קו חוף.</li>
-              <li>יעדים פופולריים: Bay Bridge, Havre de Grace, Tangier Island.</li>
-              <li>דורש תשומת לב לאזורי אוויר מורכבים סביב DC/BWI.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.aopa.org/news-and-media/all-news/2024/march/pilot/destinations-in-captain-smiths-footsteps" target="_blank">AOPA - Chesapeake destinations</a>
-              <a href="https://youcanfly.aopa.org/flying-clubs/flying-club-newsletter/2024/may/15/event-spotlight" target="_blank">AOPA You Can Fly - Tangier Island</a>
-              <a href="https://www.aopa.org/news-and-media/all-news/2022/february/08/threading-the-needle-between-baltimore-and-washington" target="_blank">AOPA - DC/Baltimore transit</a>
-            </div>
-          </div>
-          <div class="card">
-            <h3>3) Shenandoah + Blue Ridge Scenic</h3>
-            <p><b>למה טייסים אוהבים:</b> נתיב הרים ועמקים קלאסי עם נוף מרשים לכל אורך הרכס.</p>
-            <ul>
-              <li>מתאים מאוד לבניית שעות VFR בשטח הררי.</li>
-              <li>נקודות ייחוס טבעיות טובות לניווט חזותי.</li>
-              <li>להקפיד על מרווחי גובה ורוח רכס.</li>
-            </ul>
-            <div class="links">
-              <a href="https://aopa.org/news-and-media/all-news/2021/july/pilot/flying-the-at" target="_blank">AOPA - Flying the Appalachian Trail</a>
-              <a href="https://garrettfisher.me/flights-nc-va-shenandoah-national-park-blue-ridge-parkway/" target="_blank">Pilot blog - Shenandoah / Blue Ridge</a>
-            </div>
-          </div>
-          <div class="card">
-            <h3>4) Long Island → Montauk → Block Island</h3>
-            <p><b>למה טייסים אוהבים:</b> אחת מטיסות ה־VFR הפופולריות באזור ניו יורק - חופים, מגדלור, וגישת אי.</p>
-            <ul>
-              <li>Montauk ו-Block Island נחשבים יעדים אהובים מאוד על טייסי GA.</li>
-              <li>מעברי מים קצרים עם נוף חזק מאוד.</li>
-              <li>תכנון רוח/ראות ימית הכרחי.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.flyingmag.com/flying-to-block-island-and-six-things-you-have-to-see-after-you-land/" target="_blank">Flying Magazine - Block Island</a>
-              <a href="https://planeandpilotmag.com/the-scenic-route/" target="_blank">Plane & Pilot - Scenic route to Montauk</a>
-              <a href="https://vfrmap.com/fe?q=KMTP&req=get_afd" target="_blank">VFRMap / AFD - KMTP details</a>
-            </div>
-          </div>
-          <div class="card">
-            <h3>5) NYC East River / Skyline (למתקדמים)</h3>
-            <p><b>למה טייסים אוהבים:</b> מסלול עירוני נדיר עם זוויות על גשרים, Central Park וקו רקיע.</p>
-            <ul>
-              <li>דורש בדרך כלל Clearance ב-Class B (תלוי בנתיב ובנהלים עדכניים).</li>
-              <li>מומלץ לבצע רק אחרי היכרות טובה עם Hudson.</li>
-              <li>להחזיק TAC/Helicopter chart עדכני.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">FAA Safety - NYC SFRA procedures</a>
-              <a href="https://vansairforce.net/threads/east-river-exclusion-go-fly-it.148951/" target="_blank">Pilot community discussion (East River)</a>
-            </div>
-          </div>
-          <div class="card">
-            <h3>6) Coastal Roadtrip צפונה (MD/DE/CT/RI)</h3>
-            <p><b>למה טייסים אוהבים:</b> נתיב חוף ארוך עם עצירות רבות, נוף ים רציף ותחושת "trip" אמיתית.</p>
-            <ul>
-              <li>חוויית XC מעולה לבניית שעות משמעותית.</li>
-              <li>מומלץ עם Flight Following באזורים צפופים.</li>
-              <li>לתכנן היטב תחנות תדלוק ושעות מז"א ימי.</li>
-            </ul>
-            <div class="links">
-              <a href="https://airfactsjournal.com/2024/08/my-first-and-last-flying-road-trip/" target="_blank">Air Facts - East Coast flying road trip</a>
-            </div>
-          </div>
         </div>
-  </div>
-<footer class="site-footer">
-  <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
-  </div>
-</footer>
-  
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>VFR Planning</h4>
+                <p>משאב לתכנון טיסות VFR לטייסי PPL ישראלים בארה"ב</p>
+            </div>
+            <div class="footer-section">
+                <h4>קישורים מהירים</h4>
+                <ul>
+                    <li><a href="index.html">בית</a></li>
+                    <li><a href="routes.html">מסלולים</a></li>
+                    <li><a href="airports.html">שדות תעופה</a></li>
+                    <li><a href="info.html">מידע ובטיחות</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>משאבים חיצוניים</h4>
+                <ul>
+                    <li><a href="https://skyvector.com" target="_blank">SkyVector</a></li>
+                    <li><a href="https://airnav.com" target="_blank">AirNav</a></li>
+                    <li><a href="https://1800wxbrief.com" target="_blank">1800WxBrief</a></li>
+                    <li><a href="https://www.faa.gov/air_traffic/publications/atpubs/aip_html/" target="_blank">FAA AIP</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>הצהרת אחריות</h4>
+                <p>אתר זה משמש לתכנון מוקדם בלבד. יש לוודא את כל הנתונים לפני הטיסה.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 VFR Planning. Built for Israeli pilots flying in the US.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>

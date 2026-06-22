@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מסלול R5: NYC Hudson Deluxe | C172 VFR Flight Planning</title>
+    <meta name="description" content="גרסת הדלוקס של טיסת ההדסון - כוללת גם את East River VFR route. כל הנקודות האייקוניות של ניו יורק ממעוף הציפור.">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html" class="logo">
+                    <span class="logo-icon">✈️</span>
+                    <span class="logo-text">C172 VFR</span>
+                </a>
+                <nav class="main-nav" role="navigation" aria-label="ניווט ראשי">
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html" class="active">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav class="breadcrumbs" aria-label="ניווט מיקום">
+            <div class="container">
+                <ol>
+                    <li><a href="../index.html">בית</a></li>
+                    <li><a href="../trips.html">מסלולים</a></li>
+                    <li aria-current="page">NYC Hudson Deluxe</li>
+                </ol>
+            </div>
+        </nav>
+
+        <article class="trip-detail">
+            <section class="hero" style="background-image: url('https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=1920');">
+                <div class="hero-overlay"></div>
+                <div class="container">
+                    <div class="hero-content">
+                        <h1>מסלול R5: NYC Hudson Deluxe</h1>
+                        <p class="hero-subtitle">KFRG → VZ → Statue → East River → Hudson → Alpine → KFRG</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="trip-header">
+                    <div class="share-buttons">
+                        <button class="share-btn" aria-label="שתף בפייסבוק">
+                            <span>📘</span>
+                        </button>
+                        <button class="share-btn" aria-label="שתף בטוויטר">
+                            <span>🐦</span>
+                        </button>
+                        <button class="share-btn" aria-label="העתק קישור">
+                            <span>🔗</span>
+                        </button>
+                    </div>
+
+                    <div class="trip-stats">
+                        <div class="stat">
+                            <span class="stat-label">מרחק</span>
+                            <span class="stat-value">~85 NM</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">זמן טיסה</span>
+                            <span class="stat-value">~0:50</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-label">משך</span>
+                            <span class="stat-value">חצי יום</span>
+                        </div>
+                    </div>
+
+                    <div class="trip-tags">
+                        <span class="tag">עירוני</span>
+                        <span class="tag">Hudson</span>
+                        <span class="tag">iconic</span>
+                        <span class="tag">צילום</span>
+                    </div>
+                </div>
+
+                <section class="trip-overview">
+                    <h2>סקירה כללית</h2>
+                    <p>גרסת הדלוקס של טיסת ההדסון - כוללת גם את East River VFR route. כל הנקודות האייקוניות של ניו יורק ממעוף הציפור. מושלם לצילום! הטיסה כוללת את שני המסדרונות של ניו יורק - Hudson River ו-East River - ומאפשרת לראות את פסל החירות, Governor's Island, גשר ברוקלין, גשר וויליאמסבורג, סנטרל פארק, מוזיאון Intrepid, גשר ג'ורג' וושינגטון ועוד. זו הטיסה האולטימטיבית של ניו יורק!</p>
+                </section>
+
+                <section class="trip-map">
+                    <h2>מפת המסלול</h2>
+                    <div id="map" class="map-container" role="application" aria-label="מפת מסלול הטיסה"></div>
+                </section>
+
+                <section class="trip-legs">
+                    <h2>רגלי הטיסה</h2>
+                    <div class="accordion">
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 1</span>
+                                <span class="leg-route">KFRG → VZ (Verrazzano Bridge)</span>
+                                <span class="leg-distance">35 NM · 19 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>1500 רגל → 1100 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>NY Approach 125.7 → 123.05</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>יציאה מ-Republic דרומה. ירידה הדרגתית ל-1100 רגל להכנה לכניסה למסדרונות. גשר Verrazzano נקודת הכניסה למסדרון.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 2</span>
+                                <span class="leg-route">VZ → Statue of Liberty → Governor's Island</span>
+                                <span class="leg-distance">~3 NM · visual</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>1000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>123.05 (self-announce)</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>הכניסה למסדרון ההדסון. עבור ליד פסל החירות (מצד מערב!) ו-Governor's Island. נוף מדהים! הכרז על מיקום.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 3</span>
+                                <span class="leg-route">East River Option (אופציונלי)</span>
+                                <span class="leg-distance">~5 NM · visual</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>1000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>123.075 (East River)</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd><strong>אופציונלי:</strong> במקום להמשיך ישר צפונה בהדסון, אפשר לעשות לולאה מזרחה ל-East River. עבור מעל Brooklyn Bridge, Manhattan Bridge, Williamsburg Bridge. תדר נפרד! חזור מערבה להדסון אחרי.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 4</span>
+                                <span class="leg-route">Hudson Corridor צפונה</span>
+                                <span class="leg-distance">~17 NM · visual</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>1000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>123.05</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>המשך צפונה במסדרון ההדסון. עבור מעל Intrepid Museum, Chelsea Piers, סנטרל פארק (מצד מזרח), George Washington Bridge. ב-Alpine Tower מסיים את המסדרון.</dd>
+                                </dl>
+                            </div>
+                        </details>
+
+                        <details class="accordion-item">
+                            <summary class="accordion-header">
+                                <span class="leg-number">רגל 5</span>
+                                <span class="leg-route">Alpine → KFRG</span>
+                                <span class="leg-distance">25 NM · 14 דק׳</span>
+                            </summary>
+                            <div class="accordion-content">
+                                <dl class="leg-details">
+                                    <dt>גובה:</dt>
+                                    <dd>2000 רגל</dd>
+
+                                    <dt>תדרים:</dt>
+                                    <dd>Republic Tower 118.8</dd>
+
+                                    <dt>הערות:</dt>
+                                    <dd>יציאה ממסדרון צפונה, פנייה מזרחה וטיפוס ל-2000 רגל. קריאה ל-Republic Tower לכניסה לתנועת השדה.</dd>
+                                </dl>
+                            </div>
+                        </details>
+                    </div>
+                </section>
+
+                <section class="trip-airports">
+                    <h2>שדות תעופה</h2>
+                    <div class="airport-cards">
+                        <article class="airport-card">
+                            <header class="airport-header">
+                                <h3>KFRG - Republic Airport</h3>
+                                <span class="airport-type">Origin/Destination</span>
+                            </header>
+                            <dl class="airport-details">
+                                <dt>מגדל:</dt>
+                                <dd>118.8</dd>
+
+                                <dt>ATIS:</dt>
+                                <dd>126.65</dd>
+
+                                <dt>מסלול:</dt>
+                                <dd>14/32 - 6833×150 רגל</dd>
+
+                                <dt>גובה:</dt>
+                                <dd>82 רגל</dd>
+
+                                <dt>דלק:</dt>
+                                <dd>100LL, Jet A</dd>
+                            </dl>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="trip-highlights">
+                    <h2>נקודות עניין בולטות</h2>
+                    <div class="highlights-grid">
+                        <div class="highlight-card">
+                            <h3>🗽 Statue of Liberty</h3>
+                            <p>פסל החירות - סמל אמריקה. עבור מצד מערב בגובה 1000 רגל.</p>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>🏝️ Governor's Island</h3>
+                            <p>אי היסטורי ממש מול מנהטן התחתית.</p>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>🌉 Brooklyn Bridge</h3>
+                            <p>הגשר האייקוני - East River route.</p>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>⚓ Intrepid Museum</h3>
+                            <p>נושאת מטוסים הפכה למוזיאון - מערב מנהטן.</p>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>🌳 Central Park</h3>
+                            <p>הריאות הירוקות של מנהטן - נראה מעולה מ-1000 רגל.</p>
+                        </div>
+                        <div class="highlight-card">
+                            <h3>🌉 George Washington Bridge</h3>
+                            <p>גשר ענק חוצה את ההדסון - נקודת סיום המסדרון.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="trip-gallery">
+                    <h2>גלריית תמונות</h2>
+                    <div class="gallery-grid">
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1485738422979-f5c462d49f04?w=800" alt="קו הרקיע של מנהטן" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800" alt="פסל החירות" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=800" alt="מנהטן מהאוויר" loading="lazy">
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1492666673288-3c4b4f1a8a80?w=800" alt="ניו יורק בשקיעה" loading="lazy">
+                        </figure>
+                    </div>
+                </section>
+
+                <section class="fuel-calculator">
+                    <h2>מחשבון דלק</h2>
+                    <form class="fuel-form">
+                        <div class="form-group">
+                            <label for="fuel-burn">צריכת דלק (GPH):</label>
+                            <input type="number" id="fuel-burn" value="8.5" step="0.1" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="flight-time">זמן טיסה (שעות):</label>
+                            <input type="number" id="flight-time" value="0.83" step="0.05" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="reserve">רזרבה (גלונים):</label>
+                            <input type="number" id="reserve" value="7" step="1" min="0">
+                        </div>
+                        <div class="fuel-result">
+                            <strong>דלק נדרש:</strong> <span id="fuel-required">14.1</span> גלון
+                        </div>
+                    </form>
+                </section>
+
+                <aside class="safety-notice" role="complementary">
+                    <h2>⚠️ הערות בטיחות</h2>
+                    <ul>
+                        <li><strong>קרא בעיון את Hudson River SFRA chart!</strong> זה אזור מיוחד עם כללים מדויקים</li>
+                        <li>שמור על גובה מדויק 1000 רגל במסדרונות - לא יותר, לא פחות!</li>
+                        <li>הכרז על מיקום כל 1-2 דקות - "Northbound/Southbound over [landmark]"</li>
+                        <li>תנועה צפופה מאוד - ראש על ציר, היזהר מטיסות אחרות</li>
+                        <li>East River תדר נפרד (123.075) - אל תשכח לעבור!</li>
+                        <li>ודא מזג אוויר VFR טוב - visibility 3SM מינימום</li>
+                        <li>עקוב אחרי המסלול בדיוק - אל תסטה מהמסדרון!</li>
+                        <li>לא לטוס מעל בניינים - רק מעל המים!</li>
+                        <li>היה מוכן ל-go-around אם התנועה צפופה מדי</li>
+                    </ul>
+                </aside>
+
+                <div class="trip-actions">
+                    <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס תכנון טיסה</button>
+                    <a href="../trips.html" class="btn btn-secondary">← חזרה למסלולים</a>
+                </div>
+
+                <nav class="trip-navigation" aria-label="ניווט בין מסלולים">
+                    <a href="r4-island-hopping.html" class="trip-nav-link trip-nav-prev">
+                        <span class="trip-nav-label">← קודם</span>
+                        <span class="trip-nav-title">Island Hopping</span>
+                    </a>
+                    <a href="r6-grand-tour.html" class="trip-nav-link trip-nav-next">
+                        <span class="trip-nav-label">הבא →</span>
+                        <span class="trip-nav-title">Grand Tour</span>
+                    </a>
+                </nav>
+            </div>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>C172 VFR Flight Planning</h3>
+                    <p>מסלולי טיסה VFR לטייסים ישראלים בארה״ב</p>
+                </div>
+                <div class="footer-section">
+                    <h4>קישורים</h4>
+                    <ul>
+                        <li><a href="../index.html">בית</a></li>
+                        <li><a href="../trips.html">מסלולים</a></li>
+                        <li><a href="../airports.html">שדות</a></li>
+                        <li><a href="../info.html">מידע ובטיחות</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>משאבים</h4>
+                    <ul>
+                        <li><a href="https://skyvector.com" target="_blank" rel="noopener">SkyVector</a></li>
+                        <li><a href="https://www.airnav.com" target="_blank" rel="noopener">AirNav</a></li>
+                        <li><a href="https://www.faa.gov" target="_blank" rel="noopener">FAA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 C172 VFR Flight Planning. כל הזכויות שמורות.</p>
+                <p class="disclaimer">לתכנון בלבד. ודא מידע עדכני לפני כל טיסה.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/app.js"></script>
+</body>
+</html>
