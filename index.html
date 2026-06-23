@@ -3,82 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>תוכנית VFR נופית · C172 · יולי-אוגוסט</title>
+  <title>VFR Flight Plan · C172 · מסלולי טיסה נופיים בארה"ב</title>
+  <meta name="description" content="מסלולי VFR מפורטים לטיסות נופיות בארה"ב - מרילנד, ניו יורק, Hudson Corridor, Niagara ועוד. תכנון לטייסי PPL.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html" class="active">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html">ניו יורק↔וושינגטון</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
+    <a class="brand" href="index.html">✈ VFR Flight Plan</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰</button>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html" class="active">בית</a>
+      <a href="maryland.html">מרילנד</a>
+      <a href="new-york.html">ניו יורק</a>
+      <a href="nyc-dc.html">NYC↔DC</a>
+      <a href="bonus.html">בונוס</a>
+      <a href="airports.html">שדות</a>
+      <a href="info.html">מידע</a>
+    </nav>
   </div>
   <div class="search-bar">
     <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
+      placeholder="חפש מסלול, שדה, או נקודת עניין..." />
     <div id="searchResults" class="search-dropdown" role="listbox"></div>
   </div>
 </header>
-  <div class="wrap" id="top">
-    <section class="hero">
-      <h1>תוכנית VFR נופית · בניית שעות · C172</h1>
-      <p class="lead">מסלולי VFR יפים ומפורטים ליולי-אוגוסט עבור טייס PPL בתחילת הדרך — תחנות, לגים, גבהים, תדרים, נקודות עניין, מפות ותמונות. שני בסיסים: מרילנד (KGAI) וניו יורק (KFRG).</p>
-      <div class="hero-cta">
-        <a class="btn-primary" href="maryland.html">התחל ממרילנד</a>
-        <a class="btn-ghost" href="info.html">מידע ובטיחות</a>
+
+<div class="wrap" id="top">
+  <section class="hero">
+    <h1>טס, גלה, התרשם.</h1>
+    <p class="lead">מסלולי VFR נופיים מפורטים לטייסי PPL — כולל תחנות, לגים, גבהים, תדרים, נקודות עניין, מפות אינטראקטיביות ותמונות אמיתיות. מבסיסים במרילנד וניו יורק.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="maryland.html">התחל ממרילנד →</a>
+      <a class="btn-ghost" href="info.html">מידע ובטיחות</a>
+    </div>
+  </section>
+
+  <h2>בחר אזור טיסה</h2>
+  <div class="overview-grid">
+    <a class="ov-card" href="maryland.html">
+      <div class="ov-top">
+        <span class="ov-badge">M1–M4</span>
+        <span class="ov-count">4 מסלולים</span>
       </div>
-    </section>
-
-    <h2>בחר אזור</h2>
-    <div class="overview-grid">
-      <a class="ov-card" href="maryland.html">
-        <div class="ov-top"><span class="ov-badge">M1–M4</span><span class="ov-count">4 טיולים</span></div>
-        <h3>מרילנד</h3>
-        <p>מבסיס KGAI · שננדואה, צ'ספיק, הרי מערב מרילנד, ניאגרה</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-      <a class="ov-card" href="new-york.html">
-        <div class="ov-top"><span class="ov-badge">N1–N4</span><span class="ov-count">4 טיולים</span></div>
-        <h3>ניו יורק</h3>
-        <p>מבסיס KFRG · קצה לונג איילנד, עמק ההדסון, איים, מסדרון מנהטן</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-      <a class="ov-card" href="nyc-dc.html">
-        <div class="ov-top"><span class="ov-badge">D1–D5</span><span class="ov-count">5 טיולים</span></div>
-        <h3>ניו יורק↔וושינגטון</h3>
-        <p>יעדי קהילת ה-GA · Ocean City, Lancaster, מסדרון הדסון, Block Island, Tangier</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-      <a class="ov-card" href="bonus.html">
-        <div class="ov-top"><span class="ov-badge">R1–R6</span><span class="ov-count">6 טיולים</span></div>
-        <h3>טיולי בונוס</h3>
-        <p>מסלולים מומלצים נוספים שחקרנו ברשת</p>
-        <span class="ov-go">לצפייה במסלולים ←</span>
-      </a>
-    </div>
-
-    <h2>איך משתמשים באתר</h2>
-    <div class="grid">
-      <div class="card"><h3>🔎 חיפוש חכם</h3><p>תיבת החיפוש למעלה מחפשת בכל הדפים — טיול, שדה או מילת מפתח — ולוחצת ישר לאזור הרלוונטי.</p></div>
-      <div class="card"><h3>🗺️ מפות אינטראקטיביות</h3><p>בכל טיול יש מפת מסלול. לחיצה על המפה פותחת תצוגת מסך מלא עם זום.</p></div>
-      <div class="card"><h3>📱 מותאם למובייל</h3><p>הכל עובד חלק בנייד — תפריט, חיפוש, טבלאות נגללות ותמונות.</p></div>
-    </div>
-
-    <div class="note">
-          <b>חשוב:</b> זהו מסמך תכנון והכנה. לפני כל טיסה חובה לבצע אימות עדכני ב־Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים, משקל/איזון, ותדרים עדכניים.
-        </div>
+      <h3>מרילנד</h3>
+      <p>מבסיס KGAI · שננדואה, צ'ספיק, הרי מערב מרילנד, ניאגרה</p>
+      <span class="ov-go">צפה במסלולים ←</span>
+    </a>
+    <a class="ov-card" href="new-york.html">
+      <div class="ov-top">
+        <span class="ov-badge">N1–N4</span>
+        <span class="ov-count">4 מסלולים</span>
+      </div>
+      <h3>ניו יורק</h3>
+      <p>מבסיס KFRG · לונג איילנד, עמק ההדסון, איים, מסדרון מנהטן</p>
+      <span class="ov-go">צפה במסלולים ←</span>
+    </a>
+    <a class="ov-card" href="nyc-dc.html">
+      <div class="ov-top">
+        <span class="ov-badge">D1–D5</span>
+        <span class="ov-count">5 מסלולים</span>
+      </div>
+      <h3>NYC ↔ Washington</h3>
+      <p>Ocean City, Lancaster, מסדרון הדסון, Block Island, Tangier Island</p>
+      <span class="ov-go">צפה במסלולים ←</span>
+    </a>
+    <a class="ov-card" href="bonus.html">
+      <div class="ov-top">
+        <span class="ov-badge">R1–R6</span>
+        <span class="ov-count">6 מסלולים</span>
+      </div>
+      <h3>טיולי בונוס</h3>
+      <p>מסלולים מומלצים נוספים שנחקרו מקהילת הטייסים</p>
+      <span class="ov-go">צפה במסלולים ←</span>
+    </a>
   </div>
+
+  <h2>מה תמצא באתר</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>חיפוש מיידי</h3>
+      <p>תיבת חיפוש גלובלית שמחפשת בכל הדפים — טיול, שדה תעופה, תדר, או מילת מפתח. לוחצים ומגיעים ישר למקום הנכון.</p>
+    </div>
+    <div class="card">
+      <h3>מפות אינטראקטיביות</h3>
+      <p>כל מסלול מציג מפה עם נתיב הטיסה. לחיצה פותחת תצוגת מסך מלא עם זום חופשי.</p>
+    </div>
+    <div class="card">
+      <h3>מותאם לכל מסך</h3>
+      <p>עובד חלק בנייד, טאבלט ודסקטופ. תפריט, חיפוש, טבלאות ותמונות — הכל רספונסיבי.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>שים לב:</b> זהו כלי תכנון בלבד. לפני כל טיסה חובה לבצע אימות עדכני מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים, ומשקל/איזון.
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
+    VFR Flight Plan · C172 · כלי תכנון בלבד.<br>
+    לפני כל טיסה יש לאמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
   </div>
 </footer>
-  
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+
+<script src="assets/search-index.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

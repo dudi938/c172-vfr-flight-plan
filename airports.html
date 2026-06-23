@@ -3,61 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>שדות · תוכנית VFR C172</title>
+  <title>שדות תעופה · VFR Flight Plan</title>
+  <meta name="description" content="פרופיל שדות תעופה במסלולי VFR - תדרים, מסלולים, הערות">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html">ניו יורק↔וושינגטון</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html" class="active">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
+    <a class="brand" href="index.html">✈ VFR Flight Plan</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰</button>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">בית</a>
+      <a href="maryland.html">מרילנד</a>
+      <a href="new-york.html">ניו יורק</a>
+      <a href="nyc-dc.html">NYC↔DC</a>
+      <a href="bonus.html">בונוס</a>
+      <a href="airports.html" class="active">שדות</a>
+      <a href="info.html">מידע</a>
+    </nav>
   </div>
   <div class="search-bar">
     <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
+      placeholder="חפש מסלול, שדה, או נקודת עניין..." />
     <div id="searchResults" class="search-dropdown" role="listbox"></div>
   </div>
 </header>
-  <div class="wrap" id="top">
-    <h1>פרופיל שדות בתוכנית (VFR Ready)</h1>
-    <p class="lead">שדות המופיעים במסלולים. תמיד אמת תדרים/מסלולים/הערות מול Chart Supplement עדכני.</p>
-    <div class="airport-grid">
-      <div class="airport"><h3>KGAI</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> בתוך DC SFRA; נהלי Potomac חובה</p><p><b>תדרים:</b> CTAF 123.075, AWOS 128.275, CD 121.6</p></div>
-      <div class="airport"><h3>KFRG</h3><p><b>סוג:</b> ציבורי, Towered</p><p><b>מיוחד:</b> סביבה עמוסה תחת NY Class B</p><p><b>תדרים:</b> TWR 118.8, GND 121.6, ATIS 126.65</p></div>
-      <div class="airport"><h3>KFRR</h3><p><b>סוג:</b> GA לא מבוקר</p><p><b>מיוחד:</b> שדה מעבר מצוין לרכס/עמק</p><p><b>תדר:</b> CTAF 123.0</p></div>
-      <div class="airport"><h3>W45</h3><p><b>סוג:</b> שדה GA קטן</p><p><b>מיוחד:</b> עצירת נוף באזור Luray</p><p><b>הערה:</b> לבדוק תדר/תנאי שדה עדכניים</p></div>
-      <div class="airport"><h3>KSHD</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> מסלול ארוך ונוח באזור הררי</p><p><b>תדרים:</b> UNICOM 123.0, AWOS 124.925</p></div>
-      <div class="airport"><h3>W29</h3><p><b>סוג:</b> GA קטן</p><p><b>מיוחד:</b> גישה ישירה לנוף המפרץ</p><p><b>תדרים:</b> CTAF 122.725, AWOS 120.575</p></div>
-      <div class="airport"><h3>KESN</h3><p><b>סוג:</b> Towered (שעות מוגבלות)</p><p><b>מיוחד:</b> עצירה נוחה ב-Eastern Shore</p><p><b>תדרים:</b> TWR/CTAF 118.525, GND 119.075</p></div>
-      <div class="airport"><h3>KOXB</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> שדה גישה לאושן סיטי ולינה</p><p><b>תדרים:</b> CTAF 123.05, ASOS 119.025</p></div>
-      <div class="airport"><h3>KCGE</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שדה רגוע לחזרה ממסלול חוף</p><p><b>תדרים:</b> CTAF 122.7, AWOS 120.675</p></div>
-      <div class="airport"><h3>KFDK</h3><p><b>סוג:</b> Towered (שעות מוגבלות)</p><p><b>מיוחד:</b> שדה אימונים מרכזי במרילנד</p><p><b>תדרים:</b> TWR 132.4, GND 121.975</p></div>
-      <div class="airport"><h3>KCBE</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שטח הררי סביב השדה</p><p><b>תדרים:</b> CTAF 122.8, AWOS 128.625</p></div>
-      <div class="airport"><h3>2G4</h3><p><b>סוג:</b> שדה אזורי לא מבוקר</p><p><b>מיוחד:</b> קרוב ל-Deep Creek</p><p><b>תדרים:</b> CTAF 123.0, AWOS 120.125</p></div>
-      <div class="airport"><h3>KIPT</h3><p><b>סוג:</b> Towered</p><p><b>מיוחד:</b> עצירת ביניים טובה לציר צפונה</p><p><b>תדרים:</b> TWR/CTAF 119.1, GND 121.9</p></div>
-      <div class="airport"><h3>KIAG</h3><p><b>סוג:</b> בינלאומי, Towered</p><p><b>מיוחד:</b> קרבה לניאגרה ושדה ארוך</p><p><b>תדרים:</b> TWR 118.5, GND 125.3, ATIS 120.8</p></div>
-      <div class="airport"><h3>KITH</h3><p><b>סוג:</b> Towered</p><p><b>מיוחד:</b> שדה מרכזי באזור Finger Lakes</p><p><b>תדרים:</b> TWR/CTAF 119.6, ATIS 125.175</p></div>
-      <div class="airport"><h3>KART</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שער אווירי לאזור Thousand Islands</p><p><b>תדרים:</b> CTAF 123.0, CD 120.8</p></div>
-      <div class="airport"><h3>KJPX / KMTP / KBID / KMVY / KPVC</h3><p><b>סוג:</b> שדות חוף/איים (חלקם towered בשעות)</p><p><b>מיוחד:</b> דגש חזק על תנאי רוח/מים/ערפל ימי</p><p><b>המלצה:</b> לנהל מינימום מז"א שמרני יותר</p></div>
-      <div class="airport"><h3>KCDW</h3><p><b>סוג:</b> Towered (Class D)</p><p><b>מיוחד:</b> בסיס מצוין למסדרון ההדסון, מתחת ל-NY Class B</p><p><b>תדרים:</b> TWR/CTAF 119.8, GND 121.9, ATIS 135.5</p></div>
-      <div class="airport"><h3>KLNS</h3><p><b>סוג:</b> Towered (Class D)</p><p><b>מיוחד:</b> "ארץ האמיש" + מסעדת Fiorentino's בשדה</p><p><b>תדרים:</b> TWR/CTAF 120.9, GND 121.8, ATIS 125.675</p></div>
-      <div class="airport"><h3>26N</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> שדה על קצה האי, גישה ישירה ל-Boardwalk</p><p><b>תדרים:</b> CTAF 122.7, AWOS 119.775</p></div>
-      <div class="airport"><h3>N40</h3><p><b>סוג:</b> GA לא מבוקר</p><p><b>מיוחד:</b> Sky Café על המנחת (סגור שלישי)</p><p><b>תדרים:</b> CTAF 122.975, AWOS 121.725</p></div>
-      <div class="airport"><h3>KTGI</h3><p><b>סוג:</b> לא מבוקר (אי)</p><p><b>מיוחד:</b> מסלול 02/20 ~2,426'; כמעט מוקף Restricted Areas</p><p><b>תדרים:</b> CTAF 122.8, AWOS 119.8</p></div>
-    </div>
+
+<div class="wrap" id="top">
+  <h1>שדות תעופה</h1>
+  <p class="lead">שדות המופיעים במסלולים. תמיד אמת תדרים ומסלולים מול Chart Supplement עדכני.</p>
+
+  <div class="airport-grid">
+    <div class="airport"><h3>KGAI</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> בתוך DC SFRA; נהלי Potomac חובה</p><p><b>תדרים:</b> CTAF 123.075, AWOS 128.275, CD 121.6</p></div>
+    <div class="airport"><h3>KFRG</h3><p><b>סוג:</b> ציבורי, Towered</p><p><b>מיוחד:</b> סביבה עמוסה תחת NY Class B</p><p><b>תדרים:</b> TWR 118.8, GND 121.6, ATIS 126.65</p></div>
+    <div class="airport"><h3>KFRR</h3><p><b>סוג:</b> GA לא מבוקר</p><p><b>מיוחד:</b> שדה מעבר מצוין לרכס/עמק</p><p><b>תדר:</b> CTAF 123.0</p></div>
+    <div class="airport"><h3>W45</h3><p><b>סוג:</b> שדה GA קטן</p><p><b>מיוחד:</b> עצירת נוף באזור Luray</p><p><b>הערה:</b> לבדוק תדר/תנאי שדה עדכניים</p></div>
+    <div class="airport"><h3>KSHD</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> מסלול ארוך ונוח באזור הררי</p><p><b>תדרים:</b> UNICOM 123.0, AWOS 124.925</p></div>
+    <div class="airport"><h3>W29</h3><p><b>סוג:</b> GA קטן</p><p><b>מיוחד:</b> גישה ישירה לנוף המפרץ</p><p><b>תדרים:</b> CTAF 122.725, AWOS 120.575</p></div>
+    <div class="airport"><h3>KESN</h3><p><b>סוג:</b> Towered (שעות מוגבלות)</p><p><b>מיוחד:</b> עצירה נוחה ב-Eastern Shore</p><p><b>תדרים:</b> TWR/CTAF 118.525, GND 119.075</p></div>
+    <div class="airport"><h3>KOXB</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> שדה גישה לאושן סיטי ולינה</p><p><b>תדרים:</b> CTAF 123.05, ASOS 119.025</p></div>
+    <div class="airport"><h3>KCGE</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שדה רגוע לחזרה ממסלול חוף</p><p><b>תדרים:</b> CTAF 122.7, AWOS 120.675</p></div>
+    <div class="airport"><h3>KFDK</h3><p><b>סוג:</b> Towered (שעות מוגבלות)</p><p><b>מיוחד:</b> שדה אימונים מרכזי במרילנד</p><p><b>תדרים:</b> TWR 132.4, GND 121.975</p></div>
+    <div class="airport"><h3>KCBE</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שטח הררי סביב השדה</p><p><b>תדרים:</b> CTAF 122.8, AWOS 128.625</p></div>
+    <div class="airport"><h3>2G4</h3><p><b>סוג:</b> שדה אזורי לא מבוקר</p><p><b>מיוחד:</b> קרוב ל-Deep Creek</p><p><b>תדרים:</b> CTAF 123.0, AWOS 120.125</p></div>
+    <div class="airport"><h3>KIPT</h3><p><b>סוג:</b> Towered</p><p><b>מיוחד:</b> עצירת ביניים לציר צפונה</p><p><b>תדרים:</b> TWR/CTAF 119.1, GND 121.9</p></div>
+    <div class="airport"><h3>KIAG</h3><p><b>סוג:</b> בינלאומי, Towered</p><p><b>מיוחד:</b> קרבה לניאגרה ושדה ארוך</p><p><b>תדרים:</b> TWR 118.5, GND 125.3, ATIS 120.8</p></div>
+    <div class="airport"><h3>KITH</h3><p><b>סוג:</b> Towered</p><p><b>מיוחד:</b> שדה מרכזי באזור Finger Lakes</p><p><b>תדרים:</b> TWR/CTAF 119.6, ATIS 125.175</p></div>
+    <div class="airport"><h3>KART</h3><p><b>סוג:</b> לא מבוקר</p><p><b>מיוחד:</b> שער אווירי לאזור Thousand Islands</p><p><b>תדרים:</b> CTAF 123.0, CD 120.8</p></div>
+    <div class="airport"><h3>KJPX / KMTP / KBID / KMVY / KPVC</h3><p><b>סוג:</b> שדות חוף/איים</p><p><b>מיוחד:</b> דגש על רוח/מים/ערפל ימי</p><p><b>המלצה:</b> מינימום מז"א שמרני יותר</p></div>
+    <div class="airport"><h3>KCDW</h3><p><b>סוג:</b> Towered (Class D)</p><p><b>מיוחד:</b> בסיס מצוין למסדרון ההדסון</p><p><b>תדרים:</b> TWR 119.8, GND 121.9, ATIS 135.5</p></div>
+    <div class="airport"><h3>KLNS</h3><p><b>סוג:</b> Towered (Class D)</p><p><b>מיוחד:</b> "ארץ האמיש" + Fiorentino's בשדה</p><p><b>תדרים:</b> TWR 120.9, GND 121.8, ATIS 125.675</p></div>
+    <div class="airport"><h3>26N</h3><p><b>סוג:</b> ציבורי, ללא מגדל</p><p><b>מיוחד:</b> שדה על קצה האי, גישה ל-Boardwalk</p><p><b>תדרים:</b> CTAF 122.7, AWOS 119.775</p></div>
+    <div class="airport"><h3>N40</h3><p><b>סוג:</b> GA לא מבוקר</p><p><b>מיוחד:</b> Sky Café על המנחת (סגור שלישי)</p><p><b>תדרים:</b> CTAF 122.975, AWOS 121.725</p></div>
+    <div class="airport"><h3>KTGI</h3><p><b>סוג:</b> לא מבוקר (אי)</p><p><b>מיוחד:</b> מסלול 02/20 ~2,426'; מוקף Restricted Areas</p><p><b>תדרים:</b> CTAF 122.8, AWOS 119.8</p></div>
   </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
+    VFR Flight Plan · C172 · כלי תכנון בלבד.<br>
+    לפני כל טיסה יש לאמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
   </div>
 </footer>
-  
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+
+<script src="assets/search-index.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

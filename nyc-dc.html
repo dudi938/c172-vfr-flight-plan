@@ -3,181 +3,202 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ניו יורק↔וושינגטון · תוכנית VFR C172</title>
+  <title>NYC↔DC · VFR Flight Plan</title>
+  <meta name="description" content="מסלולי VFR במסדרון NYC-DC - Ocean City, Lancaster, Hudson Corridor, Block Island, Tangier">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html" class="active">ניו יורק↔וושינגטון</a><a href="bonus.html">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
+    <a class="brand" href="index.html">✈ VFR Flight Plan</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰</button>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">בית</a>
+      <a href="maryland.html">מרילנד</a>
+      <a href="new-york.html">ניו יורק</a>
+      <a href="nyc-dc.html" class="active">NYC↔DC</a>
+      <a href="bonus.html">בונוס</a>
+      <a href="airports.html">שדות</a>
+      <a href="info.html">מידע</a>
+    </nav>
   </div>
   <div class="search-bar">
     <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
+      placeholder="חפש מסלול, שדה, או נקודת עניין..." />
     <div id="searchResults" class="search-dropdown" role="listbox"></div>
   </div>
 </header>
-  <div class="wrap" id="top">
-    <h1>ניו יורק↔וושינגטון — מסלולי VFR</h1>
-    <p class="lead">היעדים המתויירים ביותר ע"י קהילת ה-GA במסדרון NYC↔DC: איים, חופים, ארוחות fly-in ומסדרון ההדסון. טווח ~שעתיים לכל כיוון ב-C172. חובה: הדרכת DC SFRA ואיסור כניסה ל-FRZ ללא אישור.</p>
-    <div class="chip-nav"><a class="chip" href="#trip-d1">D1 - Ocean City Boardwalk (ניו ג'רזי, שדה על המים)</a><a class="chip" href="#trip-d2">D2 - Amish Country & Pancakes (KLNS + N40)</a><a class="chip" href="#trip-d3">D3 - Hudson River SFRA Loop (מבסיס KCDW)</a><a class="chip" href="#trip-d4">D4 - Block Island Day (רוד איילנד)</a><a class="chip" href="#trip-d5">D5 - Tangier Island Crab Cakes (מפרץ צ'ספיק)</a></div>
 
-    <div class="card trip" id="trip-d1" data-search-title="D1 Ocean City Boardwalk 26N">
-          <h3 class="trip-title">D1 - Ocean City Boardwalk (ניו ג'רזי, שדה על המים)</h3>
-          <span class="pill">D1 | Beach Fly-in | KFRG → 26N → KFRG | מרחק כולל: 207NM | זמן טיסה כולל: ~2:05 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> מסלול "טיסת החוף" האולטימטיבי - שדה 26N יושב ממש על המים, ובמרחק הליכה קצר ממנו מגיעים לטיילת המפורסמת (Boardwalk) של Ocean City, לחופים ולדוכני האוכל.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KFRG→26N</td><td>Ocean City Municipal Airport (26N) - Ocean City, New Jersey</td><td>יעד חוף/טיילת (Boardwalk)</td><td>103.6NM</td><td>1:02</td><td>4,500</td><td>CTAF 122.7, AWOS 119.775; Atlantic City Approach 124.6 ל-Flight Following</td></tr>
-              <tr><td>26N→KFRG</td><td>Republic Airport (KFRG) - Farmingdale, New York</td><td>חזרה לבסיס</td><td>103.6NM</td><td>1:02</td><td>5,500</td><td>מסלול 06/24 2,972', PAPI 3.5°; בריזת ים אחה"צ</td></tr>
-            </tbody>
-          </table>
-          <div>
-            <b>נקודות עניין והסבר:</b>
-            <ul>
-              <li><b>Ocean City Boardwalk</b> - טיילת חוף קלאסית עם אטרקציות ודוכני אוכל, במרחק הליכה מהשדה.</li>
-              <li><b>שדה על קצה האי</b> - היחיד בניו ג'רזי על אי מחסום, עם גישה חופית מרהיבה.</li>
-              <li><b>שים לב</b> - אין ATIS; קרבה ל-Class B/C של ACY/PHL - מומלץ Flight Following.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.ocnj.us/" target="_blank">Ocean City, NJ (העיר)</a>
-              <a href="https://skyvector.com/airport/26N/Ocean-City-Municipal-Airport" target="_blank">26N - SkyVector</a>
-            </div>
-          </div>
-          <div id="mapD1" class="map"></div>
-        </div>
+<div class="wrap" id="top">
+  <h1>NYC ↔ Washington — מסלולי VFR</h1>
+  <p class="lead">היעדים המתויירים ביותר ע"י קהילת ה-GA במסדרון NYC↔DC. טווח ~שעתיים לכל כיוון ב-C172. חובה: הדרכת DC SFRA.</p>
 
-    <div class="card trip" id="trip-d2" data-search-title="D2 Amish Country Pancakes Lancaster Sky Manor KLNS N40">
-          <h3 class="trip-title">D2 - Amish Country & Pancakes (KLNS + N40)</h3>
-          <span class="pill">D2 | Fly-in Dining | KFRG → KLNS → N40 → KFRG | מרחק כולל: ~276NM | זמן טיסה כולל: ~2:46 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> שילוב fly-in dining קלאסי - נחיתה בלב "ארץ האמיש" עם מסעדת Fiorentino's בשדה (Class D מצוין לתרגול קשר), ואז עצירת בוקר/פנקייקס ב-Sky Manor (Sky Café על המנחת).</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KFRG→KLNS</td><td>Lancaster Airport (KLNS) - Lititz, Pennsylvania</td><td>ארוחה ב-Fiorentino's + Amish Country</td><td>137NM</td><td>1:22</td><td>5,500</td><td>TWR/CTAF 120.9, GND 121.8, ATIS 125.675; מסלול 08/26 6,934'</td></tr>
-              <tr><td>KLNS→N40</td><td>Sky Manor Airport (N40) - Pittstown, New Jersey</td><td>קפה/פנקייקס ב-Sky Café</td><td>66NM</td><td>0:40</td><td>3,500</td><td>לא מבוקר, CTAF 122.975, AWOS 121.725; מסלול 07/25 2,900'</td></tr>
-              <tr><td>N40→KFRG</td><td>Republic Airport (KFRG) - Farmingdale, New York</td><td>חזרה לבסיס</td><td>73NM</td><td>0:44</td><td>4,500</td><td>מעבר מתחת ל-Class B של ניו יורק</td></tr>
-            </tbody>
-          </table>
-          <div>
-            <b>נקודות עניין והסבר:</b>
-            <ul>
-              <li><b>Fiorentino's</b> - מסעדה איטלקית בטרמינל KLNS עם נוף למסלול, פופולרית בקרב טייסים.</li>
-              <li><b>Amish Country</b> - חוות חקלאיות ירוקות ומסורתיות, נוף כפרי קלאסי בלב פנסילבניה.</li>
-              <li><b>Sky Café (N40)</b> - מקום מפגש קלאסי לטייסים לטיסת בוקר של סוף שבוע (סגור בימי שלישי).</li>
-              <li><b>KLNS Class D</b> - מצוין לתרגול תקשורת בסביבה מסבירת פנים.</li>
-            </ul>
-            <div class="links">
-              <a href="https://lancasterairport.com/airfield-conveniences/" target="_blank">Fiorentino's / Lancaster Airport</a>
-              <a href="https://skymanorairport.com/" target="_blank">Sky Manor Airport (N40)</a>
-            </div>
-          </div>
-          <div id="mapD2" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-d3" data-search-title="D3 Hudson River SFRA Loop Essex County KCDW Manhattan">
-          <h3 class="trip-title">D3 - Hudson River SFRA Loop (מבסיס KCDW)</h3>
-          <span class="pill">D3 | Iconic VFR | KCDW → VZ → Statue → Intrepid → GWB → Alpine → KCDW | מרחק כולל: ~59NM | זמן טיסה כולל: ~0:38 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> חוויית הטיסה המפורסמת ביותר באזור - מעוף לאורך נהר ההדסון מתחת ל-1,300 רגל, ממש לצד גורדי השחקים של מנהטן ופסל החירות, מחוץ ל-Class B. יציאה נוחה מ-Essex County (KCDW) מתחת לרצפת 3,000' של NY Class B.</p>
-          <table>
-            <thead><tr><th>לג/מקטע</th><th>אזור/שדה</th><th>מטרת הקטע</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KCDW→VZ</td><td>Essex County (KCDW) → Verrazzano</td><td>כניסה דרומית למסדרון</td><td>19.4NM</td><td>12 דק'</td><td>מתחת 1,300</td><td>TWR/CTAF 119.8, GND 121.9, ATIS 135.5; אזן ל-SFRA CTAF 123.05</td></tr>
-              <tr><td>VZ→Statue</td><td>New York Harbor</td><td>דיווח חובה + נוף מרכזי</td><td>5.0NM</td><td>3 דק'</td><td>1,000-1,200</td><td>לא לעבור 140 קשר, אורות דלוקים</td></tr>
-              <tr><td>Statue→Intrepid</td><td>West Manhattan waterfront</td><td>קו רקיע</td><td>5.6NM</td><td>4 דק'</td><td>1,000-1,200</td><td>שמור צד נתיב לפי הכיוון</td></tr>
-              <tr><td>Intrepid→GWB</td><td>Upper Manhattan</td><td>המשך צפונה</td><td>5.6NM</td><td>4 דק'</td><td>1,000-1,300</td><td>דיווח GWB</td></tr>
-              <tr><td>GWB→Alpine→KCDW</td><td>New Jersey</td><td>יציאה מהמסדרון וחזרה לבסיס</td><td>23.8NM</td><td>15 דק'</td><td>1,300→2,000</td><td>דיווח Alpine, חזרה ל-CDW</td></tr>
-            </tbody>
-          </table>
-          <div>
-            <b>נקודות עניין והסבר:</b>
-            <ul>
-              <li><b>Hudson River SFRA</b> - חובה הכרת נהלי 14 CFR Part 93: נקודות דיווח, גבהים ו-CTAF 123.05.</li>
-              <li><b>KCDW (Caldwell)</b> - כ-20 מייל ממערב ל-NYC ו-10 מייל ממערב ל-Teterboro; שדה מצוין כבסיס לקטע.</li>
-              <li><b>אלטרנטיבה</b> - אפשר להגיע למסדרון גם מ-KFRG; טייסים רבים מגיעים רק בשביל הלוּפ.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">NYC SFRA Kneeboard (FAA Safety)</a>
-              <a href="https://flycdw.com/about-essex-county-airport/" target="_blank">Essex County Airport (KCDW)</a>
-            </div>
-          </div>
-          <div class="img-grid">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Luchtfoto_van_Lower_Manhattan.jpg/3840px-Luchtfoto_van_Lower_Manhattan.jpg" alt="Lower Manhattan">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Liberty_Island_photo_Don_Ramey_Logan.jpg" alt="Statue of Liberty">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/George_Washington_Bridge_001.JPG" alt="George Washington Bridge">
-          </div>
-          <div id="mapD3" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-d4" data-search-title="D4 Block Island Day KBID Rhode Island">
-          <h3 class="trip-title">D4 - Block Island Day (רוד איילנד)</h3>
-          <span class="pill">D4 | Island Must-Do | KFRG → KBID → KFRG | מרחק כולל: ~175NM | זמן טיסה כולל: ~1:36 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> אחד מיעדי ה"חובה" לכל טייס בחוף המזרחי - אי קטן ומקסים צפונית ללונג איילנד, במרחק הליכה/מונית מהעיירה, מהחופים וממסעדות דגים מצוינות. הטיסה אליו לאורך קו החוף מרהיבה.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KFRG→KBID</td><td>Block Island State Airport (KBID) - Block Island, Rhode Island</td><td>יעד אי/חוף/דגים</td><td>87.3NM</td><td>0:48</td><td>5,500</td><td>CTAF 123.0, AWOS 134.775; קטע מעל מים - ציוד ציפה</td></tr>
-              <tr><td>KBID→KFRG</td><td>Republic Airport (KFRG) - Farmingdale, New York</td><td>חזרה לבסיס</td><td>87.3NM</td><td>0:48</td><td>4,500</td><td>מעקב מז"א וערפל ימי</td></tr>
-            </tbody>
-          </table>
-          <div>
-            <b>נקודות עניין והסבר:</b>
-            <ul>
-              <li><b>העיירה והחופים</b> - במרחק הליכה/מונית מהשדה, עם מסעדות דגים מצוינות.</li>
-              <li><b>קטע מעל מים</b> - הגדר no-go ברור ומינימום מז"א שמרני יותר.</li>
-              <li><b>נוף חוף Long Island</b> - טיסה נופית לאורך קו החוף עד האי.</li>
-            </ul>
-            <div class="links">
-              <a href="https://www.blockislandinfo.com/" target="_blank">Block Island</a>
-              <a href="https://www.flyingmag.com/flying-to-block-island-and-six-things-you-have-to-see-after-you-land/" target="_blank">FlyingMag - Block Island</a>
-            </div>
-          </div>
-          <div class="img-grid">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/HiRes_BlockIsland_Aerial_7-23-2015.jpg" alt="Block Island aerial">
-          </div>
-          <div id="mapD4" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-d5" data-search-title="D5 Tangier Island Crab Cakes KTGI Chesapeake">
-          <h3 class="trip-title">D5 - Tangier Island Crab Cakes (מפרץ צ'ספיק)</h3>
-          <span class="pill">D5 | Unique Fly-in | KGAI → KTGI → KGAI | מרחק כולל: ~194NM | זמן טיסה כולל: ~1:56 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> חוויה ייחודית במינה - אי קטן ומבודד באמצע מפרץ צ'ספיק, שבו התושבים עדיין מדברים בניב אנגלי עתיק. הולכים ברגל או שוכרים עגלת גולף כדי לאכול את ה-Crab Cakes המפורסמים. יציאה מ-KGAI דרך ה-DC SFRA.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה נחיתה + מיקום</th><th>מטרת העצירה</th><th>מרחק</th><th>זמן</th><th>גובה VFR</th><th>תדרים/דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KGAI→KTGI</td><td>Tangier Island Airport (KTGI) - Tangier, Virginia</td><td>סרטנים (Crab Cakes)/הליכה/מוזיאון</td><td>96.9NM</td><td>0:58</td><td>4,500</td><td>CTAF 122.8, AWOS 119.8; מסלול 02/20 2,426' (מצב בינוני)</td></tr>
-              <tr><td>KTGI→KGAI</td><td>Montgomery County Airpark (KGAI) - Gaithersburg, Maryland</td><td>חזרה לבסיס</td><td>96.9NM</td><td>0:58</td><td>5,500</td><td>כניסה מסודרת ל-DC SFRA</td></tr>
-            </tbody>
-          </table>
-          <div>
-            <b>נקודות עניין והסבר:</b>
-            <ul>
-              <li><b>חובה</b> - לעבוד עם Patuxent/Potomac Approach: האי כמעט מוקף Restricted Areas (NAS Patuxent).</li>
-              <li><b>בקרקע</b> - דמי נחיתה ~$10 במזומן, עגלות גולף להשכרה, מסעדות סרטנים (חלקן סגורות בימים מסוימים).</li>
-              <li><b>מסלול</b> - במצב בינוני; בדוק NOTAMs ותנאי שדה ואור יום (השדה סגור משקיעה לזריחה).</li>
-            </ul>
-            <div class="links">
-              <a href="https://youcanfly.aopa.org/flying-clubs/flying-club-newsletter/2024/may/15/event-spotlight" target="_blank">AOPA - Tangier Island spotlight</a>
-              <a href="https://airnav.com/airport/TGI" target="_blank">KTGI - AirNav</a>
-            </div>
-          </div>
-          <div id="mapD5" class="map"></div>
-        </div>
+  <div class="chip-nav">
+    <a class="chip" href="#trip-d1">D1 · Ocean City Boardwalk</a>
+    <a class="chip" href="#trip-d2">D2 · Amish Country & Pancakes</a>
+    <a class="chip" href="#trip-d3">D3 · Hudson River SFRA Loop</a>
+    <a class="chip" href="#trip-d4">D4 · Block Island Day</a>
+    <a class="chip" href="#trip-d5">D5 · Tangier Island Crab Cakes</a>
   </div>
+
+  <!-- ═══ D1 ═══ -->
+  <div class="card trip" id="trip-d1" data-search-title="D1 Ocean City Boardwalk 26N">
+    <h3 class="trip-title">D1 · Ocean City Boardwalk</h3>
+    <span class="pill">KFRG → 26N → KFRG · 207 NM · 2:05 · יום אחד</span>
+    <p><b>מה מיוחד:</b> שדה 26N יושב ממש על המים, במרחק הליכה מהטיילת המפורסמת של Ocean City, NJ.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה נחיתה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KFRG→26N</td><td>Ocean City Municipal (26N), NJ</td><td>חוף/טיילת</td><td>103.6 NM</td><td>1:02</td><td>4,500</td><td>CTAF 122.7, AWOS 119.775</td></tr>
+        <tr><td>26N→KFRG</td><td>Republic Airport (KFRG)</td><td>חזרה</td><td>103.6 NM</td><td>1:02</td><td>5,500</td><td>מסלול 06/24 2,972'</td></tr>
+      </tbody>
+    </table>
+    <div>
+      <b>נקודות עניין:</b>
+      <ul>
+        <li><b>Ocean City Boardwalk</b> — טיילת חוף עם אטרקציות ודוכני אוכל.</li>
+        <li><b>שדה על קצה האי</b> — היחיד בניו ג'רזי על אי מחסום.</li>
+      </ul>
+      <div class="links">
+        <a href="https://www.ocnj.us/" target="_blank">Ocean City, NJ</a>
+        <a href="https://skyvector.com/airport/26N/Ocean-City-Municipal-Airport" target="_blank">26N SkyVector</a>
+      </div>
+    </div>
+    <div id="mapD1" class="map"></div>
+  </div>
+
+  <!-- ═══ D2 ═══ -->
+  <div class="card trip" id="trip-d2" data-search-title="D2 Amish Country Pancakes Lancaster Sky Manor KLNS N40">
+    <h3 class="trip-title">D2 · Amish Country & Pancakes</h3>
+    <span class="pill">KFRG → KLNS → N40 → KFRG · 276 NM · 2:46 · יום אחד</span>
+    <p><b>מה מיוחד:</b> fly-in dining קלאסי — Fiorentino's בלב "ארץ האמיש", ואז Sky Café ב-Sky Manor.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה נחיתה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KFRG→KLNS</td><td>Lancaster Airport (KLNS)</td><td>ארוחה + Amish Country</td><td>137 NM</td><td>1:22</td><td>5,500</td><td>TWR 120.9, ATIS 125.675</td></tr>
+        <tr><td>KLNS→N40</td><td>Sky Manor Airport (N40)</td><td>קפה/פנקייקס</td><td>66 NM</td><td>0:40</td><td>3,500</td><td>CTAF 122.975</td></tr>
+        <tr><td>N40→KFRG</td><td>Republic Airport (KFRG)</td><td>חזרה</td><td>73 NM</td><td>0:44</td><td>4,500</td><td>מתחת ל-Class B</td></tr>
+      </tbody>
+    </table>
+    <div>
+      <b>נקודות עניין:</b>
+      <ul>
+        <li><b>Fiorentino's</b> — מסעדה איטלקית בטרמינל KLNS, פופולרית בקרב טייסים.</li>
+        <li><b>Amish Country</b> — חוות חקלאיות ונוף כפרי קלאסי.</li>
+        <li><b>Sky Café</b> — מקום מפגש קלאסי לטייסים (סגור שלישי).</li>
+      </ul>
+      <div class="links">
+        <a href="https://lancasterairport.com/airfield-conveniences/" target="_blank">Lancaster Airport</a>
+        <a href="https://skymanorairport.com/" target="_blank">Sky Manor (N40)</a>
+      </div>
+    </div>
+    <div id="mapD2" class="map"></div>
+  </div>
+
+  <!-- ═══ D3 ═══ -->
+  <div class="card trip" id="trip-d3" data-search-title="D3 Hudson River SFRA Loop Essex County KCDW Manhattan">
+    <h3 class="trip-title">D3 · Hudson River SFRA Loop</h3>
+    <span class="pill">KCDW → VZ → Statue → Intrepid → GWB → Alpine → KCDW · 59 NM · 0:38 · יום אחד</span>
+    <p><b>מה מיוחד:</b> הטיסה המפורסמת ביותר באזור — לאורך נהר ההדסון מתחת ל-1,300', לצד גורדי השחקים.</p>
+    <table>
+      <thead><tr><th>מקטע</th><th>אזור</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KCDW→VZ</td><td>Essex County → Verrazzano</td><td>כניסה למסדרון</td><td>19.4 NM</td><td>12 דק'</td><td>&lt;1,300</td><td>CTAF 123.05</td></tr>
+        <tr><td>VZ→Statue</td><td>NY Harbor</td><td>דיווח חובה + נוף</td><td>5.0 NM</td><td>3 דק'</td><td>1,000-1,200</td><td>≤140 kts</td></tr>
+        <tr><td>Statue→Intrepid</td><td>West Manhattan</td><td>קו רקיע</td><td>5.6 NM</td><td>4 דק'</td><td>1,000-1,200</td><td>שמור צד</td></tr>
+        <tr><td>Intrepid→GWB</td><td>Upper Manhattan</td><td>המשך צפונה</td><td>5.6 NM</td><td>4 דק'</td><td>1,000-1,300</td><td>דיווח GWB</td></tr>
+        <tr><td>GWB→Alpine→KCDW</td><td>New Jersey</td><td>יציאה + חזרה</td><td>23.8 NM</td><td>15 דק'</td><td>1,300→2,000</td><td>דיווח Alpine</td></tr>
+      </tbody>
+    </table>
+    <div>
+      <b>נקודות עניין:</b>
+      <ul>
+        <li><b>Hudson River SFRA</b> — חובה הכרת 14 CFR Part 93.</li>
+        <li><b>KCDW (Caldwell)</b> — בסיס מצוין, ~20 מייל ממערב NYC.</li>
+      </ul>
+      <div class="links">
+        <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">NYC SFRA Kneeboard</a>
+        <a href="https://flycdw.com/about-essex-county-airport/" target="_blank">KCDW Info</a>
+      </div>
+    </div>
+    <div class="img-grid">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Luchtfoto_van_Lower_Manhattan.jpg/3840px-Luchtfoto_van_Lower_Manhattan.jpg" alt="Lower Manhattan" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Liberty_Island_photo_Don_Ramey_Logan.jpg" alt="Statue of Liberty" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/George_Washington_Bridge_001.JPG" alt="GWB" loading="lazy">
+    </div>
+    <div id="mapD3" class="map"></div>
+  </div>
+
+  <!-- ═══ D4 ═══ -->
+  <div class="card trip" id="trip-d4" data-search-title="D4 Block Island Day KBID Rhode Island">
+    <h3 class="trip-title">D4 · Block Island Day</h3>
+    <span class="pill">KFRG → KBID → KFRG · 175 NM · 1:36 · יום אחד</span>
+    <p><b>מה מיוחד:</b> אחד מיעדי ה"חובה" לכל טייס בחוף המזרחי — אי קטן ומקסים עם מסעדות דגים.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה נחיתה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KFRG→KBID</td><td>Block Island State (KBID)</td><td>אי/חוף/דגים</td><td>87.3 NM</td><td>0:48</td><td>5,500</td><td>CTAF 123.0, AWOS 134.775</td></tr>
+        <tr><td>KBID→KFRG</td><td>Republic Airport (KFRG)</td><td>חזרה</td><td>87.3 NM</td><td>0:48</td><td>4,500</td><td>מעקב מז"א/ערפל</td></tr>
+      </tbody>
+    </table>
+    <div>
+      <b>נקודות עניין:</b>
+      <ul>
+        <li><b>העיירה והחופים</b> — במרחק הליכה מהשדה.</li>
+        <li><b>קטע מעל מים</b> — הגדר no-go ומינימום מז"א שמרני.</li>
+      </ul>
+      <div class="links">
+        <a href="https://www.blockislandinfo.com/" target="_blank">Block Island</a>
+        <a href="https://www.flyingmag.com/flying-to-block-island-and-six-things-you-have-to-see-after-you-land/" target="_blank">Flying Magazine</a>
+      </div>
+    </div>
+    <div class="img-grid">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/HiRes_BlockIsland_Aerial_7-23-2015.jpg" alt="Block Island aerial" loading="lazy">
+    </div>
+    <div id="mapD4" class="map"></div>
+  </div>
+
+  <!-- ═══ D5 ═══ -->
+  <div class="card trip" id="trip-d5" data-search-title="D5 Tangier Island Crab Cakes KTGI Chesapeake">
+    <h3 class="trip-title">D5 · Tangier Island Crab Cakes</h3>
+    <span class="pill">KGAI → KTGI → KGAI · 194 NM · 1:56 · יום אחד</span>
+    <p><b>מה מיוחד:</b> אי קטן ומבודד באמצע מפרץ צ'ספיק. תושבים מדברים ניב עתיק. Crab Cakes מפורסמים.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה נחיתה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KGAI→KTGI</td><td>Tangier Island (KTGI)</td><td>סרטנים/הליכה/מוזיאון</td><td>96.9 NM</td><td>0:58</td><td>4,500</td><td>CTAF 122.8, AWOS 119.8</td></tr>
+        <tr><td>KTGI→KGAI</td><td>Montgomery County (KGAI)</td><td>חזרה</td><td>96.9 NM</td><td>0:58</td><td>5,500</td><td>כניסה ל-SFRA</td></tr>
+      </tbody>
+    </table>
+    <div>
+      <b>נקודות עניין:</b>
+      <ul>
+        <li><b>Restricted Areas</b> — האי מוקף אזורים מוגבלים (NAS Patuxent).</li>
+        <li><b>בקרקע</b> — דמי נחיתה ~$10 במזומן, עגלות גולף, מסעדות.</li>
+        <li><b>מסלול</b> — 02/20 2,426', סגור משקיעה לזריחה.</li>
+      </ul>
+      <div class="links">
+        <a href="https://youcanfly.aopa.org/flying-clubs/flying-club-newsletter/2024/may/15/event-spotlight" target="_blank">AOPA Tangier</a>
+        <a href="https://airnav.com/airport/TGI" target="_blank">KTGI AirNav</a>
+      </div>
+    </div>
+    <div id="mapD5" class="map"></div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
+    VFR Flight Plan · C172 · כלי תכנון בלבד.<br>
+    לפני כל טיסה יש לאמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
   </div>
 </footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>

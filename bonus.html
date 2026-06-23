@@ -3,157 +3,184 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>טיולי בונוס · תוכנית VFR C172</title>
+  <title>טיולי בונוס · VFR Flight Plan</title>
+  <meta name="description" content="מסלולי VFR מומלצים נוספים - Hudson Corridor, Chesapeake, Blue Ridge, Long Island, East River">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="index.html">🛩️ תוכנית VFR · C172</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰ תפריט</button>
-    <nav class="site-nav" id="siteNav"><a href="index.html">בית</a><a href="maryland.html">מרילנד</a><a href="new-york.html">ניו יורק</a><a href="nyc-dc.html">ניו יורק↔וושינגטון</a><a href="bonus.html" class="active">טיולי בונוס</a><a href="airports.html">שדות</a><a href="info.html">מידע ובטיחות</a></nav>
+    <a class="brand" href="index.html">✈ VFR Flight Plan</a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="תפריט">☰</button>
+    <nav class="site-nav" id="siteNav">
+      <a href="index.html">בית</a>
+      <a href="maryland.html">מרילנד</a>
+      <a href="new-york.html">ניו יורק</a>
+      <a href="nyc-dc.html">NYC↔DC</a>
+      <a href="bonus.html" class="active">בונוס</a>
+      <a href="airports.html">שדות</a>
+      <a href="info.html">מידע</a>
+    </nav>
   </div>
   <div class="search-bar">
     <input id="globalSearch" type="search" autocomplete="off"
-      placeholder="חיפוש בכל האתר: טיול, שדה, KFRG, Hudson, Niagara..." />
+      placeholder="חפש מסלול, שדה, או נקודת עניין..." />
     <div id="searchResults" class="search-dropdown" role="listbox"></div>
   </div>
 </header>
-  <div class="wrap" id="top">
-    <h1>טיולי בונוס — מסלולי VFR</h1>
-    <p class="lead">מסלולי VFR מומלצים נוספים שחקרנו - שילובי מרילנד/ניו יורק/קונטיקט.</p>
-    <div class="chip-nav"><a class="chip" href="#trip-r1">R1 - Hudson Corridor Classic (אזור ניו יורק)</a><a class="chip" href="#trip-r2">R2 - Chesapeake / Tangier Loop (אזור מרילנד-וירג'יניה)</a><a class="chip" href="#trip-r3">R3 - Blue Ridge / Shenandoah Scenic (אזור וירג'יניה)</a><a class="chip" href="#trip-r4">R4 - Long Island / Montauk / Block Island (אזור ניו יורק-רוד איילנד)</a><a class="chip" href="#trip-r5">R5 - East River / Skyline Advanced (ניו יורק למתקדמים)</a><a class="chip" href="#trip-r6">R6 - East-Coast Coastal Roadtrip (מרילנד עד ניו יורק/קונטיקט)</a></div>
 
-    <div class="card trip" id="trip-r1" data-search-title="R1 Hudson Corridor Classic">
-          <h3 class="trip-title">R1 - Hudson Corridor Classic (אזור ניו יורק)</h3>
-          <span class="pill">R1 | Hudson Corridor Classic | KFRG → VZ → Statue → Intrepid → GWB → Alpine → KFRG | מרחק כולל: 78.3NM | זמן טיסה כולל: 0:43 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> מסלול bucket-list קלאסי. חוויית עיר-נהר שאין לה מקבילה ב-GA.</p>
-          <table>
-            <thead><tr><th>לג</th><th>אזור/שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KFRG→VZ</td><td>Republic Airport (KFRG) → Verrazzano</td><td>כניסה למסדרון</td><td>29.7NM</td><td>16 דק'</td><td>1,200-1,300</td><td>CTAF 123.05, הכנה לדיווחים</td></tr>
-              <tr><td>VZ→Statue</td><td>NY Harbor</td><td>קטע נופי + דיווח חובה</td><td>5.0NM</td><td>3 דק'</td><td>1,000-1,200</td><td>לא לעבור 140 קשר</td></tr>
-              <tr><td>Statue→Intrepid</td><td>Lower/West Manhattan</td><td>קו רקיע</td><td>5.0NM</td><td>3 דק'</td><td>1,000-1,200</td><td>שמור צד נתיב לפי כיוון</td></tr>
-              <tr><td>Intrepid→GWB→Alpine</td><td>Upper Manhattan / NJ</td><td>יציאה צפונית מהמסדרון</td><td>12.1NM</td><td>7 דק'</td><td>1,000-1,300</td><td>דיווח GWB + Alpine</td></tr>
-              <tr><td>Alpine→KFRG</td><td>Republic Airport (KFRG)</td><td>חזרה לבסיס</td><td>26.7NM</td><td>15 דק'</td><td>2,500</td><td>יציאה מהאזור העמוס</td></tr>
-            </tbody>
-          </table>
-          <div class="links">
-            <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">NYC SFRA Kneeboard</a>
-            <a href="https://www.aopa.org/news-and-media/all-news/2017/march/flight-training-magazine/road-trip-hudson-river-corridor" target="_blank">AOPA Hudson guide</a>
-          </div>
-          <div id="mapR1" class="map"></div>
-        </div>
+<div class="wrap" id="top">
+  <h1>טיולי בונוס — מסלולים נוספים</h1>
+  <p class="lead">מסלולי VFR מומלצים נוספים שנחקרו מקהילת הטייסים — שילובי מרילנד/ניו יורק/קונטיקט.</p>
 
-    <div class="card trip" id="trip-r2" data-search-title="R2 Chesapeake Tangier Loop">
-          <h3 class="trip-title">R2 - Chesapeake / Tangier Loop (אזור מרילנד-וירג'יניה)</h3>
-          <span class="pill">R2 | Chesapeake / Tangier Style Loop | KGAI → W29 → KESN → KTGI → KGAI | מרחק כולל: 213.3NM | זמן טיסה כולל: 1:56 | כמות ימים: 1-2</span>
-          <p><b>מה מיוחד:</b> שילוב מפרץ/חוף/אי - אחד המסלולים האהובים על טייסי אזור DC/MD.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KGAI→W29</td><td>Bay Bridge Airport (W29), Stevensville MD</td><td>עצירת נוף קצרה</td><td>40.6NM</td><td>22 דק'</td><td>3,500</td><td>יציאה מה-SFRA</td></tr>
-              <tr><td>W29→KESN</td><td>Easton Airport / Newnam Field (KESN)</td><td>תדלוק/הפסקה</td><td>16.0NM</td><td>9 דק'</td><td>2,500</td><td>לג קצר לתרגול קומס</td></tr>
-              <tr><td>KESN→KTGI</td><td>Tangier Island Airport (KTGI), VA</td><td>יעד בילוי אי (Seafood/Walking)</td><td>58.9NM</td><td>32 דק'</td><td>3,500</td><td>לג מעל מים רדודים יחסית</td></tr>
-              <tr><td>KTGI→KGAI</td><td>Montgomery County Airpark (KGAI)</td><td>חזרה לבסיס</td><td>97.7NM</td><td>53 דק'</td><td>5,500</td><td>כניסה מסודרת ל-SFRA</td></tr>
-            </tbody>
-          </table>
-          <div class="links">
-            <a href="https://youcanfly.aopa.org/flying-clubs/flying-club-newsletter/2024/may/15/event-spotlight" target="_blank">AOPA Tangier spotlight</a>
-            <a href="https://www.aopa.org/news-and-media/all-news/2024/march/pilot/destinations-in-captain-smiths-footsteps" target="_blank">AOPA Chesapeake destinations</a>
-          </div>
-          <div id="mapR2" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-r3" data-search-title="R3 Blue Ridge Shenandoah Scenic">
-          <h3 class="trip-title">R3 - Blue Ridge / Shenandoah Scenic (אזור וירג'יניה)</h3>
-          <span class="pill">R3 | Blue Ridge / Shenandoah Scenic | KGAI → KFRR → W45 → KSHD → KGAI | מרחק כולל: 200.0NM | זמן טיסה כולל: 1:49 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> טיסת רכסים-עמקים קלאסית שמומלצת שוב ושוב ע"י טייסי VFR באזור.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KGAI→KFRR</td><td>Front Royal-Warren County (KFRR)</td><td>עצירת מעבר</td><td>52.9NM</td><td>29 דק'</td><td>4,500</td><td>מעבר מסודר מה-SFRA</td></tr>
-              <tr><td>KFRR→W45</td><td>Luray Caverns Airport (W45)</td><td>יעד נוף/בילוי</td><td>18.9NM</td><td>10 דק'</td><td>3,500</td><td>נתיב עמק</td></tr>
-              <tr><td>W45→KSHD</td><td>Shenandoah Valley Regional (KSHD)</td><td>תדלוק/הפסקה</td><td>30.6NM</td><td>17 דק'</td><td>4,500</td><td>רוח רכס</td></tr>
-              <tr><td>KSHD→KGAI</td><td>Montgomery County Airpark (KGAI)</td><td>חזרה לבסיס</td><td>97.6NM</td><td>53 דק'</td><td>5,500</td><td>כניסה ל-SFRA</td></tr>
-            </tbody>
-          </table>
-          <div class="links">
-            <a href="https://aopa.org/news-and-media/all-news/2021/july/pilot/flying-the-at" target="_blank">AOPA Flying the AT</a>
-          </div>
-          <div id="mapR3" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-r4" data-search-title="R4 Long Island Montauk Block Island">
-          <h3 class="trip-title">R4 - Long Island / Montauk / Block Island (אזור ניו יורק-רוד איילנד)</h3>
-          <span class="pill">R4 | Long Island → Montauk → Block Island | KFRG → KJPX → KMTP → KBID → KFRG | מרחק כולל: 174.9NM | זמן טיסה כולל: 1:35 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> טיסת חוף-אי מאוד אהובה על טייסי GA בצפון-מזרח ארה"ב.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KFRG→KJPX</td><td>East Hampton Town (KJPX)</td><td>עצירה קצרה</td><td>54.6NM</td><td>30 דק'</td><td>2,500</td><td>חוף לונג איילנד</td></tr>
-              <tr><td>KJPX→KMTP</td><td>Montauk Airport (KMTP)</td><td>יעד מגדלור/חוף</td><td>16.6NM</td><td>9 דק'</td><td>2,000</td><td>גישה חופית יפה</td></tr>
-              <tr><td>KMTP→KBID</td><td>Block Island State (KBID)</td><td>יעד אי פופולרי</td><td>16.4NM</td><td>9 דק'</td><td>2,500</td><td>קטע מים קצר</td></tr>
-              <tr><td>KBID→KFRG</td><td>Republic Airport (KFRG)</td><td>חזרה לבסיס</td><td>87.3NM</td><td>48 דק'</td><td>4,500</td><td>מעקב מז"א ימי</td></tr>
-            </tbody>
-          </table>
-          <div class="links">
-            <a href="https://www.flyingmag.com/flying-to-block-island-and-six-things-you-have-to-see-after-you-land/" target="_blank">FlyingMag - Block Island</a>
-            <a href="https://planeandpilotmag.com/the-scenic-route/" target="_blank">Plane & Pilot - Montauk route</a>
-          </div>
-          <div id="mapR4" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-r5" data-search-title="R5 East River Skyline Advanced">
-          <h3 class="trip-title">R5 - East River / Skyline Advanced (ניו יורק למתקדמים)</h3>
-          <span class="pill">R5 | East River / Skyline Advanced | KFRG → VZ → Statue → Govs → Williamsburg → Central Park → GWB → Alpine → KFRG | מרחק כולל: 79.8NM | זמן טיסה כולל: 0:44 | כמות ימים: 1</span>
-          <p><b>מה מיוחד:</b> מסלול עירוני מתקדם למי שכבר שולט היטב בניווט ובתקשורת באזור ניו יורק.</p>
-          <table>
-            <thead><tr><th>מקטע</th><th>אזור</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KFRG→VZ</td><td>Verrazzano</td><td>כניסה</td><td>29.7NM</td><td>16 דק'</td><td>1,300-1,500</td><td>בד"כ דורש תיאום/קלירנס לנתיב Skyline</td></tr>
-              <tr><td>VZ→Statue→Govs</td><td>Harbor / Governors</td><td>סיור נופי</td><td>6.3NM</td><td>4 דק'</td><td>1,200-1,500</td><td>עומס תנועה מסוקים</td></tr>
-              <tr><td>Govs→Wburg→CPark</td><td>East River / Midtown</td><td>קטע עירוני מתקדם</td><td>6.6NM</td><td>4 דק'</td><td>1,200-1,500</td><td>ניהול עומס עבודה גבוה</td></tr>
-              <tr><td>CPark→GWB→Alpine</td><td>Upper Manhattan</td><td>יציאה צפונית</td><td>10.7NM</td><td>6 דק'</td><td>1,300-1,500</td><td>מעקב קפדני אחרי הוראות ATC</td></tr>
-              <tr><td>Alpine→KFRG</td><td>חזרה ל-Long Island</td><td>סיום</td><td>26.7NM</td><td>15 דק'</td><td>2,500</td><td>חזרה למסלול סטנדרטי</td></tr>
-            </tbody>
-          </table>
-          <div class="links">
-            <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">NYC Kneeboard/Rules</a>
-          </div>
-          <div id="mapR5" class="map"></div>
-        </div>
-
-    <div class="card trip" id="trip-r6" data-search-title="R6 East Coast Coastal Roadtrip">
-          <h3 class="trip-title">R6 - East-Coast Coastal Roadtrip (מרילנד עד ניו יורק/קונטיקט)</h3>
-          <span class="pill">R6 | East-Coast Coastal Roadtrip | KGAI → KOXB → KISP → KGON → KFRG | מרחק כולל: 414.1NM | זמן טיסה כולל: 3:46 | כמות ימים: 2-3</span>
-          <p><b>מה מיוחד:</b> טיול חוף ארוך לבניית שעות XC איכותית, עם מגוון נופים ושדות לאורך הדרך.</p>
-          <table>
-            <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
-            <tbody>
-              <tr><td>KGAI→KOXB</td><td>Ocean City Municipal (KOXB)</td><td>עצירת חוף</td><td>108.6NM</td><td>59 דק'</td><td>4,500</td><td>יציאה מ-SFRA</td></tr>
-              <tr><td>KOXB→KISP</td><td>Long Island MacArthur (KISP)</td><td>עצירת תדלוק/מעבר</td><td>176.1NM</td><td>1:36</td><td>6,500</td><td>מעבר אווירי צפוף יחסית</td></tr>
-              <tr><td>KISP→KGON</td><td>Groton-New London (KGON)</td><td>עצירת ביניים/ארוחה</td><td>57.6NM</td><td>31 דק'</td><td>3,500</td><td>מעבר חוף + Sound</td></tr>
-              <tr><td>KGON→KFRG</td><td>Republic Airport (KFRG)</td><td>סיום יום/טיול</td><td>71.7NM</td><td>39 דק'</td><td>4,500</td><td>תיאום כניסה ל-FRG</td></tr>
-            </tbody>
-          </table>
-          <div class="links">
-            <a href="https://airfactsjournal.com/2024/08/my-first-and-last-flying-road-trip/" target="_blank">Air Facts - roadtrip report</a>
-          </div>
-          <div id="mapR6" class="map"></div>
-        </div>
+  <div class="chip-nav">
+    <a class="chip" href="#trip-r1">R1 · Hudson Corridor Classic</a>
+    <a class="chip" href="#trip-r2">R2 · Chesapeake / Tangier</a>
+    <a class="chip" href="#trip-r3">R3 · Blue Ridge / Shenandoah</a>
+    <a class="chip" href="#trip-r4">R4 · Long Island / Montauk / Block Island</a>
+    <a class="chip" href="#trip-r5">R5 · East River / Skyline</a>
+    <a class="chip" href="#trip-r6">R6 · East-Coast Coastal Roadtrip</a>
   </div>
+
+  <!-- ═══ R1 ═══ -->
+  <div class="card trip" id="trip-r1" data-search-title="R1 Hudson Corridor Classic">
+    <h3 class="trip-title">R1 · Hudson Corridor Classic</h3>
+    <span class="pill">KFRG → VZ → Statue → Intrepid → GWB → Alpine → KFRG · 78.3 NM · 0:43 · יום אחד</span>
+    <p><b>מה מיוחד:</b> Bucket-list קלאסי. חוויית עיר-נהר שאין לה מקבילה ב-GA.</p>
+    <table>
+      <thead><tr><th>לג</th><th>אזור</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KFRG→VZ</td><td>Republic → Verrazzano</td><td>כניסה למסדרון</td><td>29.7 NM</td><td>16 דק'</td><td>1,200-1,300</td><td>CTAF 123.05</td></tr>
+        <tr><td>VZ→Statue</td><td>NY Harbor</td><td>נוף + דיווח חובה</td><td>5.0 NM</td><td>3 דק'</td><td>1,000-1,200</td><td>≤140 kts</td></tr>
+        <tr><td>Statue→Intrepid</td><td>West Manhattan</td><td>קו רקיע</td><td>5.0 NM</td><td>3 דק'</td><td>1,000-1,200</td><td>שמור צד</td></tr>
+        <tr><td>Intrepid→GWB→Alpine</td><td>Upper Manhattan → NJ</td><td>סיום מסדרון</td><td>12.1 NM</td><td>7 דק'</td><td>1,000-1,300</td><td>דיווחי GWB + Alpine</td></tr>
+        <tr><td>Alpine→KFRG</td><td>New Jersey → Long Island</td><td>חזרה</td><td>26.7 NM</td><td>15 דק'</td><td>2,500</td><td>יציאה מאזור צפוף</td></tr>
+      </tbody>
+    </table>
+    <div class="links">
+      <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">NYC SFRA Kneeboard</a>
+      <a href="https://www.aopa.org/news-and-media/all-news/2017/march/flight-training-magazine/road-trip-hudson-river-corridor" target="_blank">AOPA Hudson Guide</a>
+    </div>
+    <div id="mapR1" class="map"></div>
+  </div>
+
+  <!-- ═══ R2 ═══ -->
+  <div class="card trip" id="trip-r2" data-search-title="R2 Chesapeake Tangier Loop">
+    <h3 class="trip-title">R2 · Chesapeake / Tangier Loop</h3>
+    <span class="pill">KGAI → W29 → KESN → KTGI → KGAI · 213.3 NM · 1:56 · 1-2 ימים</span>
+    <p><b>מה מיוחד:</b> שילוב מפרץ/חוף/אי — אחד המסלולים האהובים על טייסי אזור DC/MD.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KGAI→W29</td><td>Bay Bridge (W29)</td><td>עצירת נוף</td><td>40.6 NM</td><td>22 דק'</td><td>3,500</td><td>יציאה מ-SFRA</td></tr>
+        <tr><td>W29→KESN</td><td>Easton (KESN)</td><td>תדלוק/הפסקה</td><td>16.0 NM</td><td>9 דק'</td><td>2,500</td><td>תרגול קומס</td></tr>
+        <tr><td>KESN→KTGI</td><td>Tangier Island (KTGI)</td><td>בילוי אי/Seafood</td><td>58.9 NM</td><td>32 דק'</td><td>3,500</td><td>מעל מים</td></tr>
+        <tr><td>KTGI→KGAI</td><td>Montgomery County (KGAI)</td><td>חזרה</td><td>97.7 NM</td><td>53 דק'</td><td>5,500</td><td>כניסה ל-SFRA</td></tr>
+      </tbody>
+    </table>
+    <div class="links">
+      <a href="https://youcanfly.aopa.org/flying-clubs/flying-club-newsletter/2024/may/15/event-spotlight" target="_blank">AOPA Tangier</a>
+      <a href="https://www.aopa.org/news-and-media/all-news/2024/march/pilot/destinations-in-captain-smiths-footsteps" target="_blank">AOPA Chesapeake</a>
+    </div>
+    <div id="mapR2" class="map"></div>
+  </div>
+
+  <!-- ═══ R3 ═══ -->
+  <div class="card trip" id="trip-r3" data-search-title="R3 Blue Ridge Shenandoah Scenic">
+    <h3 class="trip-title">R3 · Blue Ridge / Shenandoah Scenic</h3>
+    <span class="pill">KGAI → KFRR → W45 → KSHD → KGAI · 200 NM · 1:49 · יום אחד</span>
+    <p><b>מה מיוחד:</b> טיסת רכסים-עמקים קלאסית, מומלצת שוב ושוב ע"י טייסי VFR.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KGAI→KFRR</td><td>Front Royal (KFRR)</td><td>מעבר</td><td>52.9 NM</td><td>29 דק'</td><td>4,500</td><td>מעבר SFRA</td></tr>
+        <tr><td>KFRR→W45</td><td>Luray Caverns (W45)</td><td>נוף/בילוי</td><td>18.9 NM</td><td>10 דק'</td><td>3,500</td><td>נתיב עמק</td></tr>
+        <tr><td>W45→KSHD</td><td>Shenandoah Valley (KSHD)</td><td>תדלוק</td><td>30.6 NM</td><td>17 דק'</td><td>4,500</td><td>רוח רכס</td></tr>
+        <tr><td>KSHD→KGAI</td><td>Montgomery County (KGAI)</td><td>חזרה</td><td>97.6 NM</td><td>53 דק'</td><td>5,500</td><td>כניסה ל-SFRA</td></tr>
+      </tbody>
+    </table>
+    <div class="links">
+      <a href="https://aopa.org/news-and-media/all-news/2021/july/pilot/flying-the-at" target="_blank">AOPA - Flying the AT</a>
+    </div>
+    <div id="mapR3" class="map"></div>
+  </div>
+
+  <!-- ═══ R4 ═══ -->
+  <div class="card trip" id="trip-r4" data-search-title="R4 Long Island Montauk Block Island">
+    <h3 class="trip-title">R4 · Long Island / Montauk / Block Island</h3>
+    <span class="pill">KFRG → KJPX → KMTP → KBID → KFRG · 174.9 NM · 1:35 · יום אחד</span>
+    <p><b>מה מיוחד:</b> טיסת חוף-אי אהובה מאוד על טייסי GA בצפון-מזרח ארה"ב.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KFRG→KJPX</td><td>East Hampton (KJPX)</td><td>עצירה חופית</td><td>54.6 NM</td><td>30 דק'</td><td>2,500</td><td>חוף LI</td></tr>
+        <tr><td>KJPX→KMTP</td><td>Montauk (KMTP)</td><td>מגדלור/חוף</td><td>16.6 NM</td><td>9 דק'</td><td>2,000</td><td>גישה יפה</td></tr>
+        <tr><td>KMTP→KBID</td><td>Block Island (KBID)</td><td>אי פופולרי</td><td>16.4 NM</td><td>9 דק'</td><td>2,500</td><td>קטע מים קצר</td></tr>
+        <tr><td>KBID→KFRG</td><td>Republic (KFRG)</td><td>חזרה</td><td>87.3 NM</td><td>48 דק'</td><td>4,500</td><td>מעקב מז"א</td></tr>
+      </tbody>
+    </table>
+    <div class="links">
+      <a href="https://www.flyingmag.com/flying-to-block-island-and-six-things-you-have-to-see-after-you-land/" target="_blank">Flying Magazine</a>
+      <a href="https://planeandpilotmag.com/the-scenic-route/" target="_blank">Plane & Pilot</a>
+    </div>
+    <div id="mapR4" class="map"></div>
+  </div>
+
+  <!-- ═══ R5 ═══ -->
+  <div class="card trip" id="trip-r5" data-search-title="R5 East River Skyline Advanced">
+    <h3 class="trip-title">R5 · East River / Skyline Advanced</h3>
+    <span class="pill">KFRG → VZ → Statue → Govs → Wburg → CPark → GWB → Alpine → KFRG · 79.8 NM · 0:44 · יום אחד</span>
+    <p><b>מה מיוחד:</b> מסלול עירוני מתקדם — גשרים, Central Park וקו רקיע מזווית ייחודית.</p>
+    <table>
+      <thead><tr><th>מקטע</th><th>אזור</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KFRG→VZ</td><td>Verrazzano</td><td>כניסה</td><td>29.7 NM</td><td>16 דק'</td><td>1,300-1,500</td><td>תיאום Skyline</td></tr>
+        <tr><td>VZ→Govs</td><td>Harbor/Governors</td><td>סיור נופי</td><td>6.3 NM</td><td>4 דק'</td><td>1,200-1,500</td><td>עומס מסוקים</td></tr>
+        <tr><td>Govs→CPark</td><td>East River/Midtown</td><td>קטע מתקדם</td><td>6.6 NM</td><td>4 דק'</td><td>1,200-1,500</td><td>עומס גבוה</td></tr>
+        <tr><td>CPark→GWB→Alpine</td><td>Upper Manhattan</td><td>יציאה</td><td>10.7 NM</td><td>6 דק'</td><td>1,300-1,500</td><td>ATC</td></tr>
+        <tr><td>Alpine→KFRG</td><td>חזרה</td><td>סיום</td><td>26.7 NM</td><td>15 דק'</td><td>2,500</td><td>סטנדרטי</td></tr>
+      </tbody>
+    </table>
+    <div class="links">
+      <a href="https://www.faasafety.gov/files/gslac/courses/content/79/776/kneeboard.pdf" target="_blank">NYC Rules</a>
+    </div>
+    <div id="mapR5" class="map"></div>
+  </div>
+
+  <!-- ═══ R6 ═══ -->
+  <div class="card trip" id="trip-r6" data-search-title="R6 East Coast Coastal Roadtrip">
+    <h3 class="trip-title">R6 · East-Coast Coastal Roadtrip</h3>
+    <span class="pill">KGAI → KOXB → KISP → KGON → KFRG · 414.1 NM · 3:46 · 2-3 ימים</span>
+    <p><b>מה מיוחד:</b> טיול חוף ארוך לבניית שעות XC איכותית, עם מגוון נופים לאורך הדרך.</p>
+    <table>
+      <thead><tr><th>לג</th><th>שדה</th><th>מטרה</th><th>מרחק</th><th>זמן</th><th>גובה</th><th>דגשים</th></tr></thead>
+      <tbody>
+        <tr><td>KGAI→KOXB</td><td>Ocean City (KOXB)</td><td>עצירת חוף</td><td>108.6 NM</td><td>59 דק'</td><td>4,500</td><td>יציאה מ-SFRA</td></tr>
+        <tr><td>KOXB→KISP</td><td>MacArthur (KISP)</td><td>תדלוק/מעבר</td><td>176.1 NM</td><td>1:36</td><td>6,500</td><td>אווירי צפוף</td></tr>
+        <tr><td>KISP→KGON</td><td>Groton-New London (KGON)</td><td>ארוחה</td><td>57.6 NM</td><td>31 דק'</td><td>3,500</td><td>חוף + Sound</td></tr>
+        <tr><td>KGON→KFRG</td><td>Republic (KFRG)</td><td>סיום</td><td>71.7 NM</td><td>39 דק'</td><td>4,500</td><td>כניסה ל-FRG</td></tr>
+      </tbody>
+    </table>
+    <div class="links">
+      <a href="https://airfactsjournal.com/2024/08/my-first-and-last-flying-road-trip/" target="_blank">Air Facts Roadtrip</a>
+    </div>
+    <div id="mapR6" class="map"></div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
-    תוכנית VFR · C172 · יולי-אוגוסט — כלי תכנון בלבד. לפני כל טיסה אמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
+    VFR Flight Plan · C172 · כלי תכנון בלבד.<br>
+    לפני כל טיסה יש לאמת מול Chart Supplement, NOTAMs, מז"א, TFRs, ביצועים ומשקל/איזון.
   </div>
 </footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="assets/search-index.js"></script>
-  <script src="assets/site.js"></script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/search-index.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>
